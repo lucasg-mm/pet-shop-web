@@ -1,0 +1,11 @@
+header{
+	background-image: blue;
+	color: white;
+	font-family: 'Pacifico', cursive;
+	font-size: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;
+}
