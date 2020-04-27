@@ -131,7 +131,7 @@ body{
 	padding: 5%;
 	text-align: center;
 	width: 230px;	
-	height: 360px;	
+	height: 400px;	
 	margin: 25px;
 }
 
@@ -150,7 +150,9 @@ body{
 	font-size: 20px;
 	margin-top: 20px;
 	padding: 20px;
-	width: 200px;	
+	width: 200px;
+	margin-right: auto;	
+	margin-left: auto;
 }
 
 /*--------Estilos do Serviço/Produto Grande*/
