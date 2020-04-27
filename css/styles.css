@@ -2,6 +2,59 @@ body{
 	background-color: #769fcd;
 }
 
+/*--Estilo Blocos Iniciais--*/
+.whoarewe{
+	border: medium solid #222831;
+	border-radius: 10px;
+	font-family: 'Pacifico', cursive;
+	background-image: url(../images/header-bckg.jpg);
+	text-align: center;
+	float:left;
+	padding: 5%;
+	max-width: 30%;
+	margin-left: 9.6%;
+}
+
+.whoarewe h1{
+	font-size: large;
+	color: black;
+}
+
+.whoarewe p{
+	color: #222831;
+}
+
+/*--Tela Formulario de Login--*/
+.loginform{
+	border: medium solid #222831;
+	border-radius: 10px;
+	font-family: 'Pacifico', cursive;
+	background-image: url(../images/header-bckg.jpg);
+	text-align: center;
+	float:left;
+	margin-left: 20px;
+	padding: 5%;
+	max-width: 30%;
+	margin-right: 9.6%;
+}
+
+.loginform button{
+	background-color: #aa96da;
+	border: thick dashed black;
+	border-radius: 10px;
+	color: black;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.loginform button:hover{
+	border-color:white;
+}
+
 /*--------Estilos do Cabeçalho*/
 
 .cabecalho header{
@@ -61,6 +114,14 @@ body{
 
 /*--------Estilos do Serviço/Produto Pequeno*/
 
+.seletor ul{
+	display: inline-block;
+	list-style: none;
+}
+.seletor li{
+	float: left;
+}
+
 .serv-pequeno{
 	background-color: #aa96da;
 	border: none;
@@ -71,6 +132,7 @@ body{
 	text-align: center;
 	width: 230px;	
 	height: 360px;	
+	margin: 25px;
 }
 
 .serv-pequeno img{
@@ -136,4 +198,141 @@ body{
 
 .serv-grande p{
 	text-align: justify;	
+}
+/*--Estilo Registro do Admin--*/
+
+.regAdmin{
+	width: 800px;
+	height: 120px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	background-color: #aa96da;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.regAdmin img{
+	width: auto; 
+	max-height: 80px; 
+	margin: 20px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 52%;
+	float: left;
+}
+
+.regAdmin ul{
+	list-style: none;
+	margin: 10px;
+	padding: 15px;
+	margin-top: 20px;
+}
+
+.regAdmin li{
+	margin: 5px;
+}
+
+.regAdmin #list1{
+	float: left ;
+}
+.closeButton{
+	width: 30px;
+	height: 30px;
+	background-color: rgba(221, 29, 29, 0.63);
+	float:right;
+	border-radius: 50%;
+}
+
+/*-- Estilo Registro de Animal--*/
+
+.regAnimal{
+	width: 800px;
+	height: 220px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	background-color: #aa96da;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.regAnimal img{
+	max-width: auto; 
+	max-height: 120px; 
+	margin: 20px;
+	margin-top: 45px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 5%;
+	float: left;
+}
+
+.regAnimal ul{
+	margin: 10px;
+	padding: 15px;
+	margin: 30px;
+	float:left
+}
+
+.regAnimal #list1{
+	list-style: none;  
+			  
+}
+
+.regAnimal .listItem{
+	padding: 3px;
+}
+
+.regAnimal #button2{
+	float:top ;
+}
+
+/*-- Estilo Registro do Usuario Cliente--*/
+
+.userDiv{
+	width: 80%;
+	height: 40px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: solid;
+	background-color: #aa96da;
+	font-family: 'Josefin Sans', sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.userDiv img{
+	width: auto; 
+	max-height: 32px; 
+	margin: 4px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 2px;
+	float: left;
+}
+
+.userDiv button{
+	margin: 10px;
+	border: 2px;
+	border-radius: 2px;
+	border-color: white;
+	background-color: #8e7cb8 ;
+	float: right;
+}
+
+.cart{
+	width: auto;
+	max-height: 30px;
+	margin: 10px;
+	border: 2px;
+	border-style: solid;
+	border-radius: 2px;
+	float: right;
+}
+
+.seletor .productholder{
+	
 }

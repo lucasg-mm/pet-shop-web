@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+	    <link rel="stylesheet" href="css/styles.css">
+	    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+	    <title>Pet Shop</title>
+    </head>
+    <body>
+
+        <div id="app">
+            
+            
+            <div class="cabecalho">
+                <header>
+                <h1 id="logo-text">Lorem ipsum dolor</h1>
+                </header>
+            </div>
+            <br>
+            <div v-show="currPage == pages[0]">
+                <div class="whoarewe">
+                    <h1><u>Who are we:</u></h1>
+                    <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+                        Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.</p>
+
+                </div>
+
+                <div class="loginform">
+                    <label style="float: left;">Login:</label>
+                    <br>
+                    <label>Username:</label>
+                    <input type="text" v-model="username">
+                    <br>
+                    <label>Password:</label>
+                    <input type="password" v-model="password">
+                    <br>
+                    <label>Log In as Administrator:</label>
+                    <input type="checkbox" v-model="admincheck">
+                    <br>
+                    <button v-on:click="onlogin()">Log In</button>
+                    
+                </div>
+                
+            </div>
+
+
+            <div v-show="currUser == usertypes[0]">
+                <div class="userDiv">
+   
+                    <img src="images/osso.png">
+                    <p style="float: left;">{{username}}</p>  
+                    <div class="cart">My cart: U$ 00,00</div>
+                    <button v-on:click="exite()">Exit</button>
+            
+                </div>
+                <br>
+                <div v-show="currPage == pages[1]">
+                    <div class="seletor cliente">
+                        <h2>Client's Dashboard</h2>
+                        <button>Schedule Service<br><br><img src="images/calendar.png"></button>
+                        <button v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
+                        <button>Edit Your Registration<br><br><img src="images/registration.png"></button>
+                        <button>Register Animals<br><br><img src="images/carrier.png"></button>
+                    </div>
+                </div>
+
+                <div v-show="currPage == pages[2]">
+                    <div class="seletor">
+                      <ul>
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button>BUY</button>
+                                </div>
+                          </li>
+                      </ul>  
+                      
+                    
+                    </div>
+                </div>
+
+            </div>
+
+            <div v-show="currUser == usertypes[1]">
+                <div class="userDiv">
+   
+                    <img src="images/osso.png">
+                    <p style="float: left;">{{username}}</p>
+                    <button v-on:click="exite()">Exit</button>  
+                   
+            
+                </div>
+
+                <div v-show="currPage == pages[1]">
+                    <br>
+                    <div class="seletor admin">
+                        <h2>Admin's Dashboard</h2>
+                        <button>Manage Admins<br><br><img src="images/admin.png"></button>
+                        <button>Manage Clients<br><br><img src="images/cliente.png"></button>
+                        <button>Manage Products<br><br><img src="images/osso.png"></button>
+                        <button>Manage Services<br><br><img src="images/banho.png"></button>
+                    </div>
+                </div>
+
+            </div>              
+            
+        </div>
+
+
+        <!--Vou Usar o VUE para fazer a implementação do SPA-->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            new Vue({
+                el:"#app",
+
+                data:{
+                    //Informacao login
+                    username:"",
+                    password:"",
+                    admincheck: false,
+
+                    //informacao SPA
+                    currPage:"login",
+                    currUser:"N",
+
+                    //"base de dados"
+                    //Paginas que temos
+                    pages:["login","main","products","service","manage1","manage2"],
+                    //tipos de usuarios
+                    usertypes:["Cli", "Adm", "N"],
+                    //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
+
+                },
+
+                methods:{
+
+                    onlogin(){
+
+                        if(this.admincheck)
+                        {
+                            this.currUser = this.usertypes[1];
+                        }
+                        else{
+                            this.currUser = this.usertypes[0];
+                        }
+
+                        this.currPage = this.pages[1];
+                    },
+
+                    setUser(sstring){
+                        this.currUser = sstring;
+                    },
+
+                    setPage(sstring){
+                        this.currPage = sstring;
+                    },
+
+                    exite()
+                    {
+                        this.setPage("login");
+                        this.setUser("N");
+                    },
+
+                   
+
+                },
+
+
+
+
+
+            })
+        </script>
+            
+
+
+        </script>
+
+        
+    </body>
+
+
+
+
+</html>
