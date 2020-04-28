@@ -70,6 +70,7 @@
                     <!--Modal, apenas para mostrar o produto grande-->
                     <div id="fancymodal" class="big-box-modal">
                         <div class="serv-grande">
+                            <button class="closeButton" onclick="closer()">X</button>
                             <img src="images/osso.png">
                             <br>
                             <em>Product Name: Lorem Ipsum</em>
@@ -78,7 +79,7 @@
                             <br>
                             <em>Price: $00.00</em>
                             <br>
-                            <button>BUY</button>
+                            <button class="buy-btn-big">BUY</button>
                             <br>
                             <div id="descricao-produto">
                                 <h3>Product Description:</h3>
@@ -87,7 +88,6 @@
                                     Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.
                                 </p>
                              </div>
-                            <button class="close" onclick="closer()"><img src="images/close.png"></button>
                         </div>	
                     </div>
                     <div class="seletor">
@@ -200,7 +200,7 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-
+                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
                                 </div>
                           </li>
 
@@ -316,7 +316,7 @@
 
             //uns javascript normal, testar se funciona em conjunto com vue.
             var modal = document.getElementById("fancymodal");
-            var closebtn = document.getElementsByClassName("close")[0];
+            var closebtn = document.getElementsByClassName("closeButton")[0];
 
             function showmodal(){
                 modal.style.display = "block";
