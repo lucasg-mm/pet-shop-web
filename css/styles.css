@@ -338,3 +338,153 @@ body{
 .seletor .productholder{
 	
 }
+
+/*Estilo do Gerenciador de Produtos*/
+
+.manage-products{
+	background-color: #aa96da;
+	border: none;
+	border-radius: 10px;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	height: 600px;
+	width: 1100px;
+	padding: 0;
+	position: relative;
+}
+
+.manage-products #editor{
+	background-color: #2c003e;
+	border-radius: 10px;
+	color: white;
+	float: left;
+	height: 600px;
+	width: 300px;
+	text-align: center;
+	overflow: auto;
+}
+
+.manage-products #editor input{
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;	
+	color: white;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: transparent;
+	border-style: none;
+	width: 200px;
+}
+
+.manage-products #editor textarea{
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;	
+	color: white;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: transparent;
+	border-style: none;
+	width: 230px;
+	height: 300px;
+	text-align: justify;
+}
+
+.manage-products #product-inventory{
+	background-color: #512b58;
+	border-radius: 10px;
+	color: white;
+	float: right;
+	height: 600px;
+	text-align: center;
+	width: 800px;
+}
+
+.manage-products #site-search{
+	background-color: transparent;
+	border-radius: 15px;
+	border: solid yellow 1px;
+	color: yellow;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.manage-products #search-btn{
+	background-color: transparent;
+	border-color: yellow;
+	border-width: 1px;
+	height: 34px;
+	width: 34px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-left: 10px;
+	border-radius: 100%;	
+}
+
+.manage-products #search-btn img{
+	height: 20px;
+	width: 20px;		
+}
+
+.manage-products h2{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Estilo da lista de registros */
+.lista-registros{
+	overflow: auto;
+	height: 400px;
+}
+
+/*Estilo Registro do Produto*/
+
+.registro-produto{
+	height: 60px;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.registro-produto #produto-nome{
+	float: left;
+	border: solid 1px;
+	border-radius: 15px;
+	padding-left: 10px;
+	padding-right: 345px;
+}
+
+.registro-produto #btn-del{
+	background-color: transparent;
+	border-color: red;
+	border-width: 1px;
+	float: right;
+	height: 34px;
+	width: 34px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-left: 5px;
+	border-radius: 100%;
+}
+
+.registro-produto #btn-edit{
+	background-color: transparent;
+	border-color: blue;
+	border-width: 1px;
+	float: right;
+	height: 34px;
+	width: 34px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-right: 5px;
+	border-radius: 100%;
+}
+
+.registro-produto #btn-del img, .registro-produto #btn-edit img{
+	height: 20px;
+	width: 20px;
+}
