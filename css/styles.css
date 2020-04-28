@@ -88,7 +88,7 @@ body{
 	width: 70%;	
 }
 
-.seletor button{
+.botao-menu{
 	background-color: #aa96da;
 	border: thick dashed black;
 	border-radius: 10px;
@@ -99,11 +99,11 @@ body{
 	padding: 50px;
 }
 
-.seletor button:hover{
+.botao-menu:hover{
 	border-color: white;
 }
 
-.seletor button img{
+.botao-menu img{
 	width: 150px;
 	height: 150px;
 }
@@ -127,6 +127,7 @@ body{
 	border: none;
 	border-radius: 10px;	
 	font-family: 'Josefin Sans', sans-serif;
+	color: black;
 	font-size: 25px;
 	padding: 5%;
 	text-align: center;
@@ -135,13 +136,13 @@ body{
 	margin: 25px;
 }
 
-.serv-pequeno img{
+.produto-miniatura{
 	width: 150px;
 	height: 150px;
 	margin-bottom: 30px;
 }
 
-.serv-pequeno button, .serv-grande button{
+.buy-btn-small, .buy-btn-big{
 	background-color: #88304e;
 	border: none;
 	border-radius: 5px;
@@ -165,8 +166,7 @@ body{
 	font-size: 35px;
 	height: 100%;
 	width: 90%;
-	padding: 5%;
-	position: relative;
+	padding: 60px;
 }
 
 .serv-grande img{
@@ -176,7 +176,13 @@ body{
 	width: 400px;
 }
 
-.serv-grande button{
+.serv-grande .closeButton{
+	position: relative;
+	top: -55px;
+	right: -55px;
+}
+
+.serv-grande .buy-btn-big{
 	font-size: 45px;
 	margin-top: 100px;
 	margin-left: auto;
@@ -186,16 +192,6 @@ body{
 
 .serv-grande #descricao-produto{
 	margin-top: 150px;
-}
-
-.serv-grande .close{
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 50px;
-	width: 50px;
-	margin-right: 20px;
-	margin-top: 10px;
 }
 
 .serv-grande p{
@@ -350,7 +346,6 @@ body{
 	height: 600px;
 	width: 1100px;
 	padding: 0;
-	position: relative;
 }
 
 .manage-products #editor{
@@ -376,6 +371,10 @@ body{
 	width: 200px;
 }
 
+.manage-products #editor input#nome-produto-editor{
+	margin-top: 35px;
+}
+
 .manage-products #editor textarea{
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;	
@@ -388,6 +387,35 @@ body{
 	width: 230px;
 	height: 300px;
 	text-align: justify;
+	margin-top: 35px;
+}
+
+.manage-products #editor #estoque-check{
+	width: 20px;
+	margin-top: 40px;
+	margin-bottom: 10px;
+	margin-right: 85px;
+}
+
+.manage-products #editor #estoque-label{
+	float: left;
+	margin-left: 60px;
+	margin-right: 20px;
+	margin-top: 31px;
+}
+
+.manage-products #editor button{
+	display: block;
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;	
+	color: green;
+	background-color: transparent;
+	border-color: green;
+	border-width: 1px;
+	border-radius: 15px;
+	clear: left;
+	margin: 35px auto 10px;
+	padding: 10px 30px 10px;
 }
 
 .manage-products #product-inventory{
@@ -410,21 +438,8 @@ body{
 	margin-right: 10px;
 }
 
-.manage-products #search-btn{
-	background-color: transparent;
+#search-btn{
 	border-color: yellow;
-	border-width: 1px;
-	height: 34px;
-	width: 34px;
-	margin-bottom: 20px;
-	margin-top: 20px;
-	margin-left: 10px;
-	border-radius: 100%;	
-}
-
-.manage-products #search-btn img{
-	height: 20px;
-	width: 20px;		
 }
 
 .manage-products h2{
@@ -446,11 +461,11 @@ body{
 	margin-left: auto;
 	margin-bottom: 10px;
 	margin-top: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
-.registro-produto #produto-nome{
+#produto-nome{
 	float: left;
 	border: solid 1px;
 	border-radius: 15px;
@@ -458,11 +473,26 @@ body{
 	padding-right: 345px;
 }
 
-.registro-produto #btn-del{
-	background-color: transparent;
+#btn-del{
 	border-color: red;
-	border-width: 1px;
 	float: right;
+}
+
+#btn-edit{
+	border-color: blue;
+	float: right;
+}
+
+/*Estilo para botões dentro da área do inventário (geral -- cores estão especificadas acima)*/
+
+.img-btn{
+	height: 20px;
+	width: 20px;
+}
+
+.inventory-btn{
+	background-color: transparent;
+	border-width: 1px;
 	height: 34px;
 	width: 34px;
 	margin-bottom: 20px;
@@ -471,20 +501,12 @@ body{
 	border-radius: 100%;
 }
 
-.registro-produto #btn-edit{
-	background-color: transparent;
-	border-color: blue;
-	border-width: 1px;
-	float: right;
-	height: 34px;
-	width: 34px;
-	margin-bottom: 20px;
-	margin-top: 20px;
-	margin-right: 5px;
-	border-radius: 100%;
+#add-btn{
+	border-color: green;
 }
 
-.registro-produto #btn-del img, .registro-produto #btn-edit img{
-	height: 20px;
-	width: 20px;
+#product-inventory .closeButton{
+	position: relative;
+	top: 5px;
+	right: 5px;
 }

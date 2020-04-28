@@ -59,10 +59,10 @@
                 <div v-show="currPage == pages[1]">
                     <div class="seletor cliente">
                         <h2>Client's Dashboard</h2>
-                        <button>Schedule Service<br><br><img src="images/calendar.png"></button>
-                        <button v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
-                        <button>Edit Your Registration<br><br><img src="images/registration.png"></button>
-                        <button>Register Animals<br><br><img src="images/carrier.png"></button>
+                        <button class="botao-menu">Schedule Service<br><br><img src="images/calendar.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
+                        <button class="botao-menu">Edit Your Registration<br><br><img src="images/registration.png"></button>
+                        <button class="botao-menu">Register Animals<br><br><img src="images/carrier.png"></button>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                       <ul>
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -79,13 +79,27 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
+                            </div>
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="produto-miniatura" src="images/osso.png">
+                                <br>
+                                <em>Product Name: Lorem Ipsum</em>
+                                <br>
+                                <em>In stock: Yes</em>
+                                <br>
+                                <em>Price: $00.00</em>
+                                <br>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -93,13 +107,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -107,13 +121,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -121,13 +135,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -135,13 +149,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -149,13 +163,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -163,13 +177,13 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
 
                           <li>
                             <div class="serv-pequeno">
-                                <img src="images/osso.png">
+                                <img class="produto-miniatura" src="images/osso.png">
                                 <br>
                                 <em>Product Name: Lorem Ipsum</em>
                                 <br>
@@ -177,26 +191,10 @@
                                 <br>
                                 <em>Price: $00.00</em>
                                 <br>
-                                <button>BUY</button>
-                                </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button>BUY</button>
+                                <button class="buy-btn-small">BUY</button>
                                 </div>
                           </li>
                       </ul>  
-                      
-                    
                     </div>
                 </div>
 
@@ -216,10 +214,10 @@
                     <br>
                     <div class="seletor admin">
                         <h2>Admin's Dashboard</h2>
-                        <button>Manage Admins<br><br><img src="images/admin.png"></button>
-                        <button>Manage Clients<br><br><img src="images/cliente.png"></button>
-                        <button>Manage Products<br><br><img src="images/osso.png"></button>
-                        <button>Manage Services<br><br><img src="images/banho.png"></button>
+                        <button class="botao-menu">Manage Admins<br><br><img src="images/admin.png"></button>
+                        <button class="botao-menu">Manage Clients<br><br><img src="images/cliente.png"></button>
+                        <button class="botao-menu">Manage Products<br><br><img src="images/osso.png"></button>
+                        <button class="botao-menu">Manage Services<br><br><img src="images/banho.png"></button>
                     </div>
                 </div>
 
