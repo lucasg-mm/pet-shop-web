@@ -153,70 +153,136 @@
 	<br><br>
 
 	<!-- div manage products -->
-	<div class="manage-products">
-		<div id="editor">
+	<div class="manager">
+		<div class="editor">
 			<h2>Editor</h2>
-			<img class="produto-miniatura" src="images/osso.png">
-			<input type="file" id="imagem-escolhida" name="myfile">
-            <input id="nome-produto-editor" value="Product's name" type="text"></input>
-			<input id="preço-editor" value="Price" type="text"></input>
+			<img class="prod-serv-miniatura" src="images/osso.png">
+			<input type="file" id="imagem-escolhida-prod" name="myfile">
+            <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name" type="text"></input>
+			<input id="preço-produto-editor" value="Price" type="text"></input>
 			<textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
 			</textarea>
 			<label id="estoque-label" for="estoque">In Stock?</label>				
 			<input type="checkbox" id="estoque-check" name="estoque" value="true">
 			<button>Salvar</button>
 		</div>
-		<div id="product-inventory">
+		<div class="inventory">
 			<button class="closeButton">X</button>
 			<h2>Product Inventory</h2>
-			<input type="search" id="site-search" name="q"
+			<input type="search" class="search" id="product-search" name="q"
 	        aria-label="Search through site content">
-			<button class="inventory-btn" id="search-btn"><img class="img-btn" src="images/loupe.png"></button>
-			<button class="inventory-btn" id="add-btn"><img class="img-btn" src="images/plus.png"></button>
+			<button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+			<button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
 			<div class="lista-registros">
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button> 
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button> 
 				</div>												
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>  
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>  
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>
-				<div class="registro-produto">
-					<p id="produto-nome">Product's name</p>
-					<button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
-					<button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				<div class="registro">
+					<p class="registro-nome">Product's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
 				</div>																								
 			</div>	
 		</div>
-	</div>	
+	</div>
+
+	<br><br>	
+
+<!-- div manage services -->
+	<div class="manager">
+		<div class="editor">
+			<h2>Editor</h2>
+			<img class="prod-serv-miniatura" src="images/banho.png">
+			<input type="file" id="imagem-escolhida-serviço" name="myfile">
+            <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name" type="text"></input>
+			<input id="preço-serviço-editor" value="Price" type="text"></input>
+			<textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
+			</textarea>
+			<button>Salvar</button>
+		</div>
+		<div class="inventory">
+			<button class="closeButton">X</button>
+			<h2>Service Inventory</h2>
+			<input type="search" class="search" id="service-search" name="q"
+	        aria-label="Search through site content">
+			<button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+			<button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+			<div class="lista-registros">
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>												
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Service's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>																						
+			</div>	
+		</div>
+	</div>		
 
 </body>
 </html>

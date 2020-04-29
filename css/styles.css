@@ -136,7 +136,7 @@ body{
 	margin: 25px;
 }
 
-.produto-miniatura{
+.prod-serv-miniatura{
 	width: 150px;
 	height: 150px;
 	margin-bottom: 30px;
@@ -340,7 +340,7 @@ body{
 
 /*Estilo do Gerenciador de Produtos*/
 
-.manage-products{
+.manager{
 	background-color: #aa96da;
 	border: none;
 	border-radius: 10px;	
@@ -351,7 +351,7 @@ body{
 	padding: 0;
 }
 
-.manage-products #editor{
+.manager .editor{
 	background-color: #2c003e;
 	border-radius: 10px;
 	color: white;
@@ -362,7 +362,7 @@ body{
 	overflow: auto;
 }
 
-.manage-products #editor input{
+.manager .editor input{
 	font-family: 'Poppins', sans-serif;
 	font-size: 20px;	
 	color: white;
@@ -374,11 +374,11 @@ body{
 	width: 200px;
 }
 
-.manage-products #editor input#nome-produto-editor{
+.manager .editor input.nome-prod-serv{
 	margin-top: 35px;
 }
 
-.manage-products #editor textarea{
+.manager .editor textarea{
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;	
 	color: white;
@@ -393,21 +393,21 @@ body{
 	margin-top: 35px;
 }
 
-.manage-products #editor #estoque-check{
+.manager .editor #estoque-check{
 	width: 20px;
 	margin-top: 40px;
 	margin-bottom: 10px;
 	margin-right: 85px;
 }
 
-.manage-products #editor #estoque-label{
+.manager .editor #estoque-label{
 	float: left;
 	margin-left: 60px;
 	margin-right: 20px;
 	margin-top: 31px;
 }
 
-.manage-products #editor button{
+.manager .editor button{
 	display: block;
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;	
@@ -421,7 +421,7 @@ body{
 	padding: 10px 30px 10px;
 }
 
-.manage-products #product-inventory{
+.manager .inventory{
 	background-color: #512b58;
 	border-radius: 10px;
 	color: white;
@@ -431,7 +431,7 @@ body{
 	width: 800px;
 }
 
-.manage-products #site-search{
+.manager .search{
 	background-color: transparent;
 	border-radius: 15px;
 	border: solid yellow 1px;
@@ -441,11 +441,11 @@ body{
 	margin-right: 10px;
 }
 
-#search-btn{
+.search-btn{
 	border-color: yellow;
 }
 
-.manage-products h2{
+.manager h2{
 	font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -457,7 +457,7 @@ body{
 
 /*Estilo Registro do Produto*/
 
-.registro-produto{
+.registro{
 	height: 60px;
 	width: 600px;
 	margin-right: auto;
@@ -468,7 +468,7 @@ body{
 	padding-bottom: 2px;
 }
 
-#produto-nome{
+.registro-nome{
 	float: left;
 	border: solid 1px;
 	border-radius: 15px;
@@ -476,12 +476,12 @@ body{
 	padding-right: 345px;
 }
 
-#btn-del{
+.btn-del{
 	border-color: red;
 	float: right;
 }
 
-#btn-edit{
+.btn-edit{
 	border-color: blue;
 	float: right;
 }
@@ -504,11 +504,11 @@ body{
 	border-radius: 100%;
 }
 
-#add-btn{
+.add-btn{
 	border-color: green;
 }
 
-#product-inventory .closeButton{
+.inventory .closeButton{
 	position: relative;
 	top: 5px;
 	right: 5px;
