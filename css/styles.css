@@ -411,14 +411,22 @@ body{
 	display: block;
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;	
-	color: green;
 	background-color: transparent;
-	border-color: green;
-	border-width: 1px;
+	border-width: 2px;
 	border-radius: 15px;
 	clear: left;
 	margin: 35px auto 10px;
 	padding: 10px 30px 10px;
+}
+
+.save-btn{
+	border-color: green;
+	color: green;	
+}
+
+.time-slots-btn{
+	border-color: blue;
+	color: blue;
 }
 
 .manager .inventory{
@@ -434,7 +442,7 @@ body{
 .manager .search{
 	background-color: transparent;
 	border-radius: 15px;
-	border: solid yellow 1px;
+	border: solid yellow 2px;
 	color: yellow;
 	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
@@ -470,7 +478,7 @@ body{
 
 .registro-nome{
 	float: left;
-	border: solid 1px;
+	border: solid 2px;
 	border-radius: 15px;
 	padding-left: 10px;
 	padding-right: 345px;
@@ -495,7 +503,7 @@ body{
 
 .inventory-btn{
 	background-color: transparent;
-	border-width: 1px;
+	border-width: 2px;
 	height: 34px;
 	width: 34px;
 	margin-bottom: 20px;
