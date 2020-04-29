@@ -136,7 +136,7 @@ body{
 	margin: 25px;
 }
 
-.prod-serv-miniatura{
+.prod-serv-miniatura, .pessoa-miniatura{
 	width: 150px;
 	height: 150px;
 	margin-bottom: 30px;
@@ -417,6 +417,7 @@ body{
 	clear: left;
 	margin: 35px auto 10px;
 	padding: 10px 30px 10px;
+	width: 150px;
 }
 
 .save-btn{
@@ -424,7 +425,7 @@ body{
 	color: green;	
 }
 
-.time-slots-btn{
+.time-slots-btn, .view-pets-btn{
 	border-color: blue;
 	color: blue;
 }
