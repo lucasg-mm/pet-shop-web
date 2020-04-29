@@ -158,8 +158,8 @@
 			<h2>Editor</h2>
 			<img class="prod-serv-miniatura" src="images/osso.png">
 			<input type="file" id="imagem-escolhida-prod" name="myfile">
-            <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name" type="text"></input>
-			<input id="preço-produto-editor" value="Price" type="text"></input>
+            <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name" placeholder="Product's name" type="text"></input>
+			<input id="preço-produto-editor" value="Price" placeholder="Product's price" type="text"></input>
 			<textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
 			</textarea>
 			<label id="estoque-label" for="estoque">In Stock?</label>				
@@ -220,15 +220,15 @@
 
 	<br><br>	
 
-<!-- div manage services -->
+	<!-- div manage services -->
 	<div class="manager">
 		<div class="editor">
 			<h2>Editor</h2>
 			<img class="prod-serv-miniatura" src="images/banho.png">
 			<input type="file" id="imagem-escolhida-serviço" name="myfile">
-            <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name" type="text"></input>
-			<input id="preço-serviço-editor" value="Price" type="text"></input>
-			<textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
+            <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name" placeholder="Service's name" type="text"></input>
+			<input id="preço-serviço-editor" value="Price" placeholder="Service's Price" type="text"></input>
+			<textarea placeholder="Service's Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
 			</textarea>
 			<button class="time-slots-btn">Time Slots</button>
 			<button class="save-btn">Save</button>
@@ -284,6 +284,74 @@
 			</div>	
 		</div>
 	</div>		
+	
+	<br><br>
+
+	<!-- div customer services -->
+	<div class="manager">
+		<div class="editor">
+			<h2>Editor</h2>
+			<img class="prod-serv-miniatura" src="images/social.png">
+			<input type="file" id="imagem-escolhida-cliente" name="myfile">
+            <input class="nome-prod-serv" id="nome-serviço-editor" value="Customer's name" placeholder="Customer's Name" type="text"></input>
+            <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" type="text"></input>
+			<input id="customer-address" value="Customer's Address" placeholder="Customer's Address" type="text"></input>
+			<input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone" type="text"></input>
+			<input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail" type="text"></input>
+			<input id="customer-nickname" value="Customer's Nickname" placeholder="Customer's Nickname" type="text"></input>
+			<button class="save-btn">Save</button>
+		</div>
+		<div class="inventory">
+			<button class="closeButton">X</button>
+			<h2>Customer Inventory</h2>
+			<input type="search" class="search" id="service-search" name="q"
+	        aria-label="Search through site content">
+			<button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+			<button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+			<div class="lista-registros">
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>												
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>
+				<div class="registro">
+					<p class="registro-nome">Customer's name</p>
+					<button class="inventory-btn btn-del"><img class="img-btn" src="images/trash.png"></button> 
+					<button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
+				</div>																						
+			</div>	
+		</div>
+	</div>
 
 </body>
 </html>
