@@ -88,6 +88,64 @@ body{
 	width: 70%;	
 }
 
+.useReg{
+	position:relative;
+	background-color: #252a34;
+	border: none;
+	border-radius: 10px;
+	color: #8785a2;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: left;
+	width: 70%;	
+	min-height: 700px;
+} 
+
+.useReg h2{
+	color:#43d8c9;
+}
+
+.useReg input{
+	font-family: 'Josefin Sans', sans-serif;
+	border-radius: 10px;
+	background-color:white;
+	margin-right: 10px;
+}
+
+.contrastbox{
+	background-color:#8785a2;
+	color: black;
+	width: 45%;
+	border-style: dashed;
+	border-radius: 10px;
+	padding: 30px;
+	border-radius: 15px;
+}
+
+.useReg img{
+	width: 200px;
+	height: 200px;
+	border-style: solid;
+	border-radius: 10px;
+}
+
+.imagebutton {
+	border-style: solid;
+	border-color: black;
+	border-radius: 10px;
+	padding: 30px;
+	position: absolute;
+	right: 100px;
+	top: 150px;
+	text-align: center;
+	background-color:#8785a2;
+	color:black
+}
+
+
 .botao-menu{
 	background-color: #aa96da;
 	border: thick dashed black;
@@ -332,10 +390,6 @@ body{
 	border-style: solid;
 	border-radius: 2px;
 	float: right;
-}
-
-.seletor .productholder{
-	
 }
 
 /*Estilo do Gerenciador de Produtos*/

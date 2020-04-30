@@ -12,13 +12,14 @@
 
         <div id="app">
             
-            
+            <!--Cabecalho, Presente em todas as Paginas-->
             <div class="cabecalho">
                 <header>
                 <h1 id="logo-text">Lorem ipsum dolor</h1>
                 </header>
             </div>
             <br>
+            <!--Divs Presentes no login/paginal inicial-->
             <div v-show="currPage == pages[0]">
                 <div class="whoarewe">
                     <h1><u>Who are we:</u></h1>
@@ -45,8 +46,9 @@
                 
             </div>
 
-
+            <!--Secao divs usuario-->
             <div v-show="currUser == usertypes[0]">
+                <!--Divs para clientes Aparece sempre que o usuario e cliente-->
                 <div class="userDiv">
    
                     <img src="images/osso.png">
@@ -56,16 +58,55 @@
             
                 </div>
                 <br>
+                <!--Pagina Menu de opcoes cliente-->
                 <div v-show="currPage == pages[1]">
                     <div class="seletor cliente">
                         <h2>Client's Dashboard</h2>
                         <button class="botao-menu">Schedule Service<br><br><img src="images/calendar.png"></button>
                         <button class="botao-menu" v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
-                        <button class="botao-menu">Edit Your Registration<br><br><img src="images/registration.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('manage1')">Edit Your Registration<br><br><img src="images/registration.png"></button>
                         <button class="botao-menu">Register Animals<br><br><img src="images/carrier.png"></button>
                     </div>
                 </div>
+                <!--Pagina editar registro-->
+                <div v-show = "currPage ==pages[4]">
+                    <div class="useReg">
+                        <h2 style="text-align: center;"><u>Edit your Registration:</u></h2>
+                        <div class="imagebutton">
+                            <h2>Choose Image:</h2>
+                            <br>
+                            <img src="images/calendar.png">
+                            <br>
+                            <input type="file" id="imagem-escolhida" name="myfile">
+                        </div>
+                        <br>
+                        <br>
+                        <div class="contrastbox">
+                            <label>Username:</label>
+                            <input type="text" v-model="username">
+                            <br>
+                            <label>Id:</label>
+                            <input type="text" value="123456">
+                            <br>
+                            <label>Phone Number:</label>
+                            <input type="text" value="1231231231">
+                            <br>
+                            <label>Adress:</label>
+                            <input type="text" value="location,123">
+                            <br>
+                            <label>Email:</label>
+                            <input type="text" value="Email@email.com">
+                            <br>
+                            <label>Password:</label>
+                            <input type="password" v-model="password">
+                            <br>
+                            <button>Confirm Changes</button>
+                        </div>
 
+
+                    </div>
+                </div>
+                <!--Pagina comprar Produtos-->
                 <div v-show="currPage == pages[2]">
                     <!--Modal, apenas para mostrar o produto grande-->
                     <div id="fancymodal" class="big-box-modal">
@@ -222,8 +263,9 @@
                 </div>
 
             </div>
-
+            <!--Paginas Usuario = Admin-->
             <div v-show="currUser == usertypes[1]">
+                <!--Div Admin, presente em todo momento em que user = admin-->
                 <div class="userDiv">
    
                     <img src="images/osso.png">
@@ -233,15 +275,86 @@
             
                 </div>
 
+                <!--Menu de opcoes Admin-->
                 <div v-show="currPage == pages[1]">
                     <br>
                     <div class="seletor admin">
                         <h2>Admin's Dashboard</h2>
                         <button class="botao-menu">Manage Admins<br><br><img src="images/admin.png"></button>
                         <button class="botao-menu">Manage Clients<br><br><img src="images/cliente.png"></button>
-                        <button class="botao-menu">Manage Products<br><br><img src="images/osso.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('products')">Manage Products<br><br><img src="images/osso.png"></button>
                         <button class="botao-menu">Manage Services<br><br><img src="images/banho.png"></button>
                     </div>
+                </div>
+
+                <!--Pagina Administrar Produtos-->
+                <div v-show="currPage == pages[2]">
+                    <br>
+                    <div class="manage-products" style="margin-left: 9%;">
+                        <div id="editor">
+                            <h2>Editor</h2>
+                            <img class="produto-miniatura" src="images/osso.png">
+                            <input type="file" id="imagem-escolhida" name="myfile">
+                            <input id="nome-produto-editor" value="Product's name" type="text"></input>
+                            <input id="preço-editor" value="Price" type="text"></input>
+                            <textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
+                            </textarea>
+                            <label id="estoque-label" for="estoque">In Stock?</label>				
+                            <input type="checkbox" id="estoque-check" name="estoque" value="true">
+                            <button>Salvar</button>
+                        </div>
+                        <div id="product-inventory">
+                            <button class="closeButton" v-on:click="setPage('main')">X</button>
+                            <h2>Product Inventory</h2>
+                            <input type="search" id="site-search" name="q"
+                            aria-label="Search through site content">
+                            <button class="inventory-btn" id="search-btn"><img class="img-btn" src="images/loupe.png"></button>
+                            <button class="inventory-btn" id="add-btn"><img class="img-btn" src="images/plus.png"></button>
+                            <div class="lista-registros">
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button> 
+                                </div>												
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>  
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>
+                                <div class="registro-produto">
+                                    <p id="produto-nome">Product's name</p>
+                                    <button class="inventory-btn" id="btn-del"><img class="img-btn" src="images/trash.png"></button> 
+                                    <button class="inventory-btn" id="btn-edit"><img class="img-btn" src="images/edit.png"></button>
+                                </div>																								
+                            </div>	
+                        </div>
+                    </div>
+
                 </div>
 
             </div>              
