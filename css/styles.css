@@ -537,3 +537,49 @@ body{
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	float: top;
 }
+
+/*Estilo da janela de pop-up pequena*/
+.pop-up-peq{
+	background-color: #aa96da;
+	text-align: center;
+	padding: 20px;
+	width: 660px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	border-radius: 15px;
+}
+
+.pop-up-peq .btn-1.green{
+	margin-right: 10px;
+}
+
+.pop-up-peq .btn-1.red{
+	margin-left: 10px;
+}
+
+.pop-up-peq .closeButton{
+	margin-top: -15px;
+	margin-right: -15px;  
+}
+
+/*Estilo de botões gerais*/
+
+.btn-1{
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;	
+	background-color: transparent;
+	border-width: 2px;
+	border-radius: 15px;
+	padding: 10px 30px 10px;
+	width: 150px;		
+}
+
+.btn-1.red{
+	border-color: red;
+	color: red;
+}
+
+.btn-1.green{
+	border-color: green;
+	color: green;
+}
