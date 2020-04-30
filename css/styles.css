@@ -313,7 +313,11 @@ body{
 	border-color:black;
 	border-style: dashed;
 	background-color: #aa96da;
+	color: black;
 	font-family: 'Josefin Sans', sans-serif;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .regAnimal img{
@@ -335,11 +339,10 @@ body{
 }
 
 .regAnimal #list1{
-	list-style: none;  
-			  
+	list-style: none;  		  
 }
 
-.regAnimal .listItem{
+.regAnimal li{
 	padding: 3px;
 }
 
@@ -616,7 +619,30 @@ body{
 	margin-right: -15px;  
 }
 
-/*Estilo de botões gerais*/
+/* Estilo do div de registrar animais */
+
+#view-and-register #register-container{
+	margin-top: 70px;
+}
+
+#view-and-register #view-animals .regAnimal{
+	margin-bottom: 20px;
+}
+
+.container-2 .column input{
+	margin-bottom: 10px;
+	display: block;
+}
+
+.container-2 .column{
+	float: left;
+	margin-top: 45px;
+	margin-left: 25px;
+}
+
+/**************************************ESTILOS GERAIS********************************************/
+
+/*estilos de botões*/
 
 .btn-1{
 	font-family: 'Poppins', sans-serif;
@@ -636,4 +662,66 @@ body{
 .btn-1.green{
 	border-color: green;
 	color: green;
+}
+
+/*estilos de containers*/
+
+.container-1{
+	border: none;
+	border-radius: 10px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;
+	height: 1000px;		
+}
+
+.container-1.blue{
+	background-color: #252a34;
+	color: #8785a2;
+}
+
+.scroll-container{  
+	overflow: auto;
+	height: 600px;
+}
+
+.container-2{
+	width: 800px;
+	height: 220px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;	
+}
+
+.container-2.purple{
+	background-color: #aa96da;
+	color: black;
+}
+
+/*estilos de imagens*/
+
+.small-img{
+	max-width: auto; 
+	max-height: 120px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 5%;
+}
+
+/*estilos de inputs (para forms)*/
+
+.input-1{
+    font-family: 'Josefin Sans', sans-serif;
+	border-radius: 10px;
+	height: 25px;
+	width: 270px;
 }
