@@ -22,53 +22,57 @@
             <!--Divs Presentes no login/paginal inicial-->
             <div v-show="currUser == usertypes[2]">
                 <div class="whoarewe">
-                    <h1><u>Who are we:</u></h1>
+                    <h2><u>Who we are:</u></h2>
                     <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-                        Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.</p>
+                    </p>
 
                 </div>
                 <!--Div Para o login-->
-                <div class="loginform">
-                    <label style="float: left;">Login:</label>
-                    <br>
-                    <label>Username:</label>
-                    <input type="text" v-model="username">
-                    <br>
-                    <label>Password:</label>
-                    <input type="password" v-model="password">
-                    <br>
+                <div class="loginform">                    
+                    <table>
+                        <tr>
+                            <td><label>Username:</label></td>
+                            <td><input type="text" v-model="username"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Password:</label></td>
+                            <td><input type="password" v-model="password"></td>
+                        </tr>
+                    </table>
+
                     <label>Log In as Administrator:</label>
                     <input type="checkbox" v-model="admincheck">
                     <br>
-                    <button v-on:click="onlogin()">Log In</button>
-                    <button v-on:click="setPage('main')">Create Account</button>
+
+                    <button v-on:click="onlogin()">LOG IN</button>
+                    <button v-on:click="setPage('main')">SIGN UP</button>
+
+                    <div v-show="currPage == pages[1]">
+                        
+                        <div class="contrastbox" style="float:right; width: 30%; margin-right: 12%; margin-top: 20px;" >
+                            <label>Username:</label>
+                            <input type="text" v-model="username">
+                            <br>
+                            <label>Id:</label>
+                            <input type="text" value="123456">
+                            <br>
+                            <label>Phone Number:</label>
+                            <input type="text" value="1231231231">
+                            <br>
+                            <label>Adress:</label>
+                            <input type="text" value="location,123">
+                            <br>
+                            <label>Email:</label>
+                            <input type="text" value="Email@email.com">
+                            <br>
+                            <label>Password:</label>
+                            <input type="password" v-model="password">
+                            <br>
+                            <button v-on:click="onlogin()">Create Account</button>
+                        </div>
+                    </div>                    
                     
-                </div>
-                <div v-show="currPage == pages[1]">
-                    
-                    <div class="contrastbox" style="float:right; width: 30%; margin-right: 12%; margin-top: 20px;" >
-                        <label>Username:</label>
-                        <input type="text" v-model="username">
-                        <br>
-                        <label>Id:</label>
-                        <input type="text" value="123456">
-                        <br>
-                        <label>Phone Number:</label>
-                        <input type="text" value="1231231231">
-                        <br>
-                        <label>Adress:</label>
-                        <input type="text" value="location,123">
-                        <br>
-                        <label>Email:</label>
-                        <input type="text" value="Email@email.com">
-                        <br>
-                        <label>Password:</label>
-                        <input type="password" v-model="password">
-                        <br>
-                        <button v-on:click="onlogin()">Create Account</button>
-                    </div>
-                </div>
-                
+                </div>               
             </div>
 
             <!--Secao divs usuario-->

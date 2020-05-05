@@ -6,45 +6,47 @@ body{
 .whoarewe{
 	border: medium solid #222831;
 	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	background-image: url(../images/header-bckg.jpg);
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 20px;
+	color: white;
+	background: linear-gradient(90deg, rgba(34,40,49,1) 0%, rgba(65,83,97,1) 30%, rgba(125,172,188,1) 90%);
 	text-align: center;
 	float:left;
 	padding: 5%;
 	max-width: 30%;
 	margin-left: 9.6%;
-}
-
-.whoarewe h1{
-	font-size: large;
-	color: black;
+	line-height: 30px;
 }
 
 .whoarewe p{
-	color: #222831;
+	color: white;
+	text-align: justify;
 }
 
 /*--Tela Formulario de Login--*/
 .loginform{
 	border: medium solid #222831;
 	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	background-image: url(../images/header-bckg.jpg);
+	font-family: 'Josefin Sans', sans-serif;
+	color: white;
+	background-image: url(../images/labradors.jpg);
+	background-size: 130%;
 	text-align: center;
 	float:left;
 	margin-left: 20px;
-	padding: 5%;
+	height: 340px;  
+	padding: 5% 68px;
 	max-width: 30%;
 	margin-right: 9.6%;
 }
 
 .loginform button{
-	background-color: #aa96da;
-	border: thick dashed black;
+	background-color: transparent;
+	border: thick dashed white;
 	border-radius: 10px;
-	color: black;	
+	color: white;	
 	font-family: 'Poppins', sans-serif;
-	font-size: 15px;
+	font-size: 14px;
 	margin: 10px;
 	padding: 10px;
 	padding-left: 30px;
@@ -52,7 +54,7 @@ body{
 }
 
 .loginform button:hover{
-	border-color:white;
+	border-color: black;
 }
 
 /*--------Estilos do Cabeçalho*/
