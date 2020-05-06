@@ -1,3 +1,15 @@
+<!--
+    Alunos: 
+        Lucas Xavier Ebling Pereira - 10692183 
+        Lucas Gabriel Mendes Miranda - 10265892
+        Luís Fernando Martins Rodrigues de Araújo - 11275189
+
+    O código abaixo representa todos os DIVS presentes em nosso trabalho de forma "interativa", como se fosse o site sendo utilizado em si.
+    Se for desejado ver todos os divs ao mesmo tempo, acesse kernel.html, aonde a maioria dos divs se encontram. 
+-->
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,6 +32,7 @@
             <br>
             <!--Divs Presentes no login/paginal inicial-->
             <div v-show="currUser == usertypes[2]">
+                <!--Div de Apresentacao - "Quem Nós Somos"-->
                 <div class="whoarewe">
                     <h2><u>Who we are:</u></h2>
                     <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
@@ -83,10 +96,11 @@
                     
                 </div>               
             </div>
+            <!--Fim dos divs Pagina de Login-->
 
-            <!--Secao divs usuario-->
+            <!--Secao divs Usuario = Cliente-->
             <div v-show="currUser == usertypes[0]">
-                <!--Divs para clientes Aparece sempre que o usuario e cliente-->
+                <!--Div De usuário Aparece sempre que usuario = cliente-->
                 <div class="userDiv">
    
                     <img src="images/osso.png">
@@ -100,7 +114,7 @@
                 <div v-show="currPage == pages[1]">
                     <div class="seletor cliente">
                         <h2>Client's Dashboard</h2>
-                        <button class="botao-menu">Schedule Service<br><br><img src="images/calendar.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('service')">Schedule Service<br><br><img src="images/calendar.png"></button>
                         <button class="botao-menu" v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage1')">Edit Your Registration<br><br><img src="images/registration.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage2')">Register Animals<br><br><img src="images/carrier.png"></button>
@@ -111,6 +125,7 @@
                     <div class="container-1 blue view-and-register">
                         <h2>Register Pets</h2>
                         <div class="scroll-container view-animals">
+                            <!--Divs de Registro Animal-->
                             <div class="regAnimal">
                                 <img src="images/pet.png">
                                 <ul class="list-card">
@@ -121,7 +136,7 @@
                                     <li class="list-card-item">Age: 12</li>
                                 </ul>
                                 <ul class="list-card">
-                                    <p>Reservas:</p>
+                                    <p>Reserves:</p>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
@@ -139,7 +154,7 @@
                                     <li class="list-card-item">Age: 12</li>
                                 </ul>
                                 <ul class="list-card">
-                                    <p>Reservas:</p>
+                                    <p>Reserves:</p>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
@@ -157,7 +172,7 @@
                                     <li class="list-card-item">Age: 12</li>
                                 </ul>
                                 <ul class="list-card">
-                                    <p>Reservas:</p>
+                                    <p>Reserves:</p>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
@@ -175,7 +190,7 @@
                                     <li class="list-card-item">Age: 12</li>
                                 </ul>
                                 <ul class="list-card">
-                                    <p>Reservas:</p>
+                                    <p>Reserves:</p>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
@@ -193,7 +208,7 @@
                                     <li class="list-card-item">Age: 12</li>
                                 </ul>
                                 <ul class="list-card">
-                                    <p>Reservas:</p>
+                                    <p>Reserves:</p>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
                                     <li class="list-card-item"></li>
@@ -201,7 +216,8 @@
                                 <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
                             </div>
                         </div>
-                
+                		
+                		<!--Div de inserir Novo animal-->
                         <div class="container-2 blue register-container">
                             <div class="column">
                                 <img class="small-img" src="images/pet.png">
@@ -259,9 +275,10 @@
                         </div>
                     </div>
                 </div>
+
                 <!--Pagina comprar Produtos-->
                 <div v-show="currPage == pages[2]">
-                    <!--Modal, apenas para mostrar o produto grande-->
+                    <!--Modal, Div usado para mostrar a verão "grande" do produto-->
                     <div id="fancymodal" class="big-box-modal">
                         <div class="serv-grande">
                             <button class="closeButton" onclick="closer()">X</button>
@@ -288,6 +305,7 @@
                         <h2>Buy Products:</h2> 
                         <ul>
                           <li>
+                            <!--Div De produtos "pequeno"-->
                             <div class="serv-pequeno">
                                 <img class="prod-serv-miniatura" src="images/osso.png">
                                 <br>
@@ -416,8 +434,267 @@
                     </div>
                 </div>
 
+                <!--Pagina Comprar Servicos-->
+                <div v-show="currPage == pages[3]">
+                    <!--Similar A de Produtos, temos aqui um "servico" grande quando clicado-->
+                    <div id="bigmodal2" class="big-box-modal" style="display: none;">
+                        <div class="serv-grande" style="min-height: 900px;">
+                            <button class="closeButton" id="closem2"onclick="closer3()">X</button>
+                            <img src="images/banho.png">
+                            <br>
+                            <em>Service Name: Lorem Ipsum</em>
+                            <br>
+                            <em>Price: $00.00/h</em>
+                            <br>
+                            <br>
+                            <button class="buy-btn-big">BOOK</button>
+                            <br>
+                            <div id="descricao-servico">
+                                <h3>Product Description:</h3>
+                                <p>
+                                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+                                    Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.
+                                </p>
+                            </div>
+                            <div id="area-agendamento">
+                                <h3>Choose your time slot:</h3>				
+                                <!--Div para fazer o "calendario"-->
+                                <div class="time-slots">
+                                    <button class="week-selector"><</button>
+                                    <button class="week-selector">></button>
+                                    
+                                    <div class="tabela">						
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>04/05</th>
+                                                    <th>05/05</th>
+                                                    <th>06/05</th>
+                                                    <th>07/05</th>
+                                                    <th>08/05</th>
+                                                    <th>09/05</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="horario-dado">9h - 10h</td>
+                                                    <td><button class="selecionado">SELECTED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">10h - 11h</td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>							
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">11h - 12h</td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">13h - 14h</td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>							
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">14h - 15h</td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>							
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">15h - 16h</td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">16h - 17h</td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="liberado">FREE</button></td>							
+                                                </tr>							
+                                                <tr>
+                                                    <td class="horario-dado">17h - 18h</td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                    <td><button class="liberado">FREE</button></td>
+                                                    <td><button class="ocupado">RESERVED</button></td>
+                                                </tr>							
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                                        
+                    <div class="seletor">
+                        <h2>Buy Services:</h2> 
+                        <ul>
+                          <li>
+                            <!--Div Para os produtos Pequenos-->
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+ 
+                           </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+
+                          <li>
+                            <div class="serv-pequeno">
+                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <br>
+                                <em>Service name: Lorem Ipsum</em>
+                                <br>
+                                <em>Price: $00.00/h</em>
+                                <br>
+                                <br>
+                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                            </div>
+                        
+                          </li>
+                      </ul>  
+                    </div>
+                </div>
+
             </div>
-            <!--Paginas Usuario = Admin-->
+            <!--Fim Secao divs Usuario = Cliente-->
+
+            <!--Secao divs Usuario = Admin-->
             <div v-show="currUser == usertypes[1]">
                 <!--Div Admin, presente em todo momento em que user = admin-->
                 <div class="userDiv">
@@ -440,10 +717,12 @@
                         <button class="botao-menu" v-on:click="setPage('service')">Manage Services<br><br><img src="images/banho.png"></button>
                     </div>
                 </div>
+
                 <!--Div Pagina Inventario Produtos-->
                 <div v-show="currPage == pages[2]">
                     <br>
                     <div class="manager">
+                    		<!--Div Para edicao Usado, com leves variacoes em todos os menus de edicao-->
                             <div class="editor">
                                 <h2>Editor</h2>
                                 <img class="prod-serv-miniatura" src="images/osso.png">
@@ -456,6 +735,8 @@
                                 <input type="checkbox" id="estoque-check" name="estoque" value="true">
                                 <button class="save-btn">Save</button>
                             </div>
+
+                            <!--Div de Inventario - Permite Visualisar o produto de forma resumida-->
                             <div class="inventory">
                                 <button class="closeButton" v-on:click="setPage('main')">X</button>
                                 <h2>Product Inventory</h2>
@@ -508,10 +789,13 @@
                             </div>
                         </div>                    
                 </div>  
+
                 <!--Div Inventario Servicos-->
                 <div v-show="currPage == pages[3]">
                     <br>
                     <div class="manager">
+                    	<!--Div Editor-->
+
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura" src="images/banho.png">
@@ -520,9 +804,11 @@
                             <input id="preço-serviço-editor" value="Price" placeholder="Service's Price" type="text"></input>
                             <textarea placeholder="Service's Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
                             </textarea>
-                            <button class="time-slots-btn">Time Slots</button>
+                            <button class="time-slots-btn" v-on:click="setPage('special2')">Time Slots</button>
                             <button class="save-btn">Save</button>
                         </div>
+                    
+                        <!--Div de Inventario-->
                         <div class="inventory">
                             <button class="closeButton" v-on:click="setPage('main')">X</button>
                             <h2>Services List</h2>
@@ -580,6 +866,7 @@
                 <div v-show="currPage == pages[4]">
                     <br>
                     <div class="manager">
+                    	<!--Div Editor-->
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura pessoa-miniatura" src="images/admin2.png">
@@ -592,6 +879,7 @@
                             <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname" type="text"></input>
                             <button class="save-btn">Save</button>
                         </div>
+                        <!--Div Inventario-->
                         <div class="inventory">
                             <button class="closeButton" v-on:click="setPage('main')">X</button>
                             <h2>Admins List</h2>
@@ -649,6 +937,7 @@
                 <div v-show="currPage == pages[5]">
                     <br>
                     <div class="manager">
+                    	<!--Div Editor-->
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
@@ -662,6 +951,7 @@
                             <button class="view-pets-btn"v-on:click="setPage('special')">Pets</button>
                             <button class="save-btn">Save</button>
                         </div>
+                        <!--Div Inventario-->
                         <div class="inventory">
                             <button class="closeButton" v-on:click="setPage('main')">X</button>
                             <h2>Customers List</h2>
@@ -831,7 +1121,121 @@
                     </div>	
 
                 </div>
-            </div>              
+
+                <!--Div para mudar data Servicos-->
+                <div v-show="currPage == pages[7]">
+                    <br>
+                    <div class="container-1 light-purple" id="adm-time-slots">
+                        <button class="closeButton principal" v-on:click="setPage('service')">X</button>
+                        <h2>Pet Shop's Time Slots</h2>
+                
+                        <div class="time-slots">
+                            <button class="week-selector"><</button>
+                            <button class="week-selector">></button>
+                            
+                            <div class="tabela">						
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>04/05</th>
+                                            <th>05/05</th>
+                                            <th>06/05</th>
+                                            <th>07/05</th>
+                                            <th>08/05</th>
+                                            <th>09/05</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="horario-dado">9h - 10h</td>
+                                            <td><button class="selecionado">SELECTED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">10h - 11h</td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>							
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">11h - 12h</td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">13h - 14h</td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="liberado">FREE</button></td>							
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">14h - 15h</td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>							
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">15h - 16h</td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="horario-dado">16h - 17h</td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>						
+                                        </tr>							
+                                        <tr>
+                                            <td class="horario-dado">17h - 18h</td>
+                                            <td><button class="ocupado">RESERVED</button></td>
+                                            <td><button class="liberado">FREE</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                            <td><button class="associado">ASSOCIATED</button></td>
+                                        </tr>							
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="adm-btns">
+                            <button class="btn-1 blue">Associate Service</button>
+                            <button class="btn-1 red">Release Time Slot</button>
+                        </div>		
+
+                </div>
+
+
+                
+                
+            </div>
+
+            <!--Div "Voce tem certeza" Presente em varios divs diferentes-->              
             <div id="confirmmodal" class="big-box-modal" style="display: none;">
                 <div class="pop-up-peq">
                     <button class="closeButton" id="confirmclose" onclick="closer2()">X</button>
@@ -860,7 +1264,7 @@
 
                     //"base de dados"
                     //Paginas que temos
-                    pages:["login","main","products","service","manage1","manage2","special"],
+                    pages:["login","main","products","service","manage1","manage2","special","special2"],
                     //tipos de usuarios
                     usertypes:["Cli", "Adm", "N"],
                     //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
@@ -915,6 +1319,10 @@
             var modal2 = document.getElementById("confirmmodal");
             var closebtn2 = document.getElementById("confirmclose");
 
+            //javascripts para a tela grande de servicos
+            var modal3 = document.getElementById("bigmodal2");
+            var closebtn3 = document.getElementById("closem2");
+
 
             function showmodal(){
                 modal.style.display = "block";
@@ -938,12 +1346,26 @@
 
             }
 
+            window.onclick = function(event){
+                if(event.target == modal3){
+                    modal3.style.display = "none";
+                }
+            }
+
             function showmodal2(){
                 modal2.style.display = "block";
             }
 
             function closer2(){
                 modal2.style.display = "none";
+            }
+
+            function showmodal3(){
+                modal3.style.display = "block";
+            }
+
+            function closer3(){
+                modal3.style.display = "none";
             }
 
             closebtn.addEventListener("click", function(){
@@ -953,6 +1375,17 @@
             closebtn2.addEventListener("click", function(){
                 modal2.style.display = "none";
             })
-        </script>    
+
+            closebtn3.addEventListener("click", function(){
+                modal3.style.display = "none";
+            })
+        
+        </script>
+            
+
+
+       
+
+        
     </body>
 </html>
