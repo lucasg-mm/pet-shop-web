@@ -8,8 +8,6 @@
     Se for desejado ver todos os divs ao mesmo tempo, acesse kernel.html, aonde a maioria dos divs se encontram. 
 -->
 
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +26,7 @@
                 <header>
                     <h1 id="logo-text">Lorem ipsum dolor</h1>
                 </header>
-            </div>
+            </div>          
             <br>
             <!--Divs Presentes no login/paginal inicial-->
             <div v-show="currUser == usertypes[2]">
@@ -1125,7 +1123,7 @@
                 <!--Div para mudar data Servicos-->
                 <div v-show="currPage == pages[7]">
                     <br>
-                    <div class="container-1 light-purple" id="adm-time-slots">
+                    <div class="container-1 blue" id="adm-time-slots">
                         <button class="closeButton principal" v-on:click="setPage('service')">X</button>
                         <h2>Pet Shop's Time Slots</h2>
                 
@@ -1227,12 +1225,7 @@
                             <button class="btn-1 blue">Associate Service</button>
                             <button class="btn-1 red">Release Time Slot</button>
                         </div>		
-
-                </div>
-
-
-                
-                
+                </div>    
             </div>
 
             <!--Div "Voce tem certeza" Presente em varios divs diferentes-->              
@@ -1298,18 +1291,9 @@
                     {
                         this.setPage("login");
                         this.setUser("N");
-                    },
-
-                   
-
-                },
-
-
-
-
-
+                    }
+                }
             })
-
 
             //uns javascript normal, testar se funciona em conjunto com vue.
             var modal = document.getElementById("fancymodal");
@@ -1380,12 +1364,6 @@
                 modal3.style.display = "none";
             })
         
-        </script>
-            
-
-
-       
-
-        
+        </script>  
     </body>
 </html>
