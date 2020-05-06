@@ -10,12 +10,11 @@
     </head>
     <body>
 
-        <div id="app">
-            
+        <div id="app">         
             <!--Cabecalho, Presente em todas as Paginas-->
             <div class="cabecalho">
                 <header>
-                <h1 id="logo-text">Lorem ipsum dolor</h1>
+                    <h1 id="logo-text">Lorem ipsum dolor</h1>
                 </header>
             </div>
             <br>
@@ -24,19 +23,21 @@
                 <div class="whoarewe">
                     <h2><u>Who we are:</u></h2>
                     <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
+                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo.    
                     </p>
 
                 </div>
                 <!--Div Para o login-->
-                <div class="loginform">                    
+                <div class="loginform">
+                    <h2>Become Our Customer!</h2>                    
                     <table>
                         <tr>
                             <td><label>Username:</label></td>
-                            <td><input type="text" v-model="username"></td>
+                            <td><input class="input-1 transparent" type="text" v-model="username"></td>
                         </tr>
                         <tr>
                             <td><label>Password:</label></td>
-                            <td><input type="password" v-model="password"></td>
+                            <td><input class="input-1 transparent" type="password" v-model="password"></td>
                         </tr>
                     </table>
 
@@ -49,25 +50,33 @@
 
                     <div v-show="currPage == pages[1]">
                         
-                        <div class="contrastbox" style="float:right; width: 30%; margin-right: 12%; margin-top: 20px;" >
-                            <label>Username:</label>
-                            <input type="text" v-model="username">
-                            <br>
-                            <label>Id:</label>
-                            <input type="text" value="123456">
-                            <br>
-                            <label>Phone Number:</label>
-                            <input type="text" value="1231231231">
-                            <br>
-                            <label>Adress:</label>
-                            <input type="text" value="location,123">
-                            <br>
-                            <label>Email:</label>
-                            <input type="text" value="Email@email.com">
-                            <br>
-                            <label>Password:</label>
-                            <input type="password" v-model="password">
-                            <br>
+                        <div class="contrastbox">
+                            <table>
+                                <tr>
+                                    <td><label>Username:</label></td>
+                                    <td><input class="input-1 transparent" type="text" v-model="username"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Id:</label></td>
+                                    <td><input class="input-1 transparent" type="text" value="123456"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Phone Number:</label></td>
+                                    <td><input class="input-1 transparent" type="text" value="1231231231"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Address:</label></td>
+                                    <td><input class="input-1 transparent" type="text" value="location,123"></td>
+                                </tr>                                                                           
+                                <tr>
+                                    <td><label>Email:</label></td>
+                                    <td><input class="input-1 transparent" type="text" value="Email@email.com"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Password:</label></td>
+                                    <td><input class="input-1 transparent" type="password" v-model="password"></td>
+                                </tr>                                          
+                            </table>
                             <button v-on:click="onlogin()">Create Account</button>
                         </div>
                     </div>                    
@@ -81,9 +90,9 @@
                 <div class="userDiv">
    
                     <img src="images/osso.png">
-                    <p style="float: left;">{{username}}</p>  
+                    <p style="float: left;">{{username}}</p> 
+                    <button v-on:click="exite()">Exit</button> 
                     <div class="cart">My cart: U$ 00,00</div>
-                    <button v-on:click="exite()">Exit</button>
             
                 </div>
                 <br>
@@ -193,7 +202,7 @@
                             </div>
                         </div>
                 
-                        <div class="container-2 purple register-container">
+                        <div class="container-2 blue register-container">
                             <div class="column">
                                 <img class="small-img" src="images/pet.png">
                             </div>
@@ -214,39 +223,40 @@
                 <!--Pagina editar registro-->
                 <div v-show = "currPage ==pages[4]">
                     <div class="useReg">
-                        <h2 style="text-align: center;"><u>Edit your Registration:</u></h2>
-                        <div class="imagebutton">
-                            <h2>Choose Image:</h2>
+                        <h2>Edit Your Registration</h2>
+                        <br>                        
+                        <div class="container-3 blue">
+                            <img src="images/social.png">
                             <br>
-                            <img src="images/calendar.png">
-                            <br>
-                            <input type="file" id="imagem-escolhida" name="myfile">
+                            <input type="file" id="imagem-escolhida" name="myfile">                  
+                            <table>
+                                <tr>
+                                    <td><label>Username:</label></td>
+                                    <td><input class="input-1 white" type="text" v-model="username"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Id:</label></td>
+                                    <td><input class="input-1 white" type="text" value="123456"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Phone Number:</label></td>
+                                    <td><input class="input-1 white" type="text" value="1231231231"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Address:</label></td>
+                                    <td><input class="input-1 white" type="text" value="location,123"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Email:</label></td>
+                                    <td><input class="input-1 white" type="text" value="Email@email.com"></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Password:</label></td>
+                                    <td><input class="input-1 white" type="password" v-model="password"></td>
+                                </tr>    
+                            </table>
+                            <button class="btn-1 green">Confirm Changes</button>
                         </div>
-                        <br>
-                        <br>
-                        <div class="contrastbox">
-                            <label>Username:</label>
-                            <input type="text" v-model="username">
-                            <br>
-                            <label>Id:</label>
-                            <input type="text" value="123456">
-                            <br>
-                            <label>Phone Number:</label>
-                            <input type="text" value="1231231231">
-                            <br>
-                            <label>Adress:</label>
-                            <input type="text" value="location,123">
-                            <br>
-                            <label>Email:</label>
-                            <input type="text" value="Email@email.com">
-                            <br>
-                            <label>Password:</label>
-                            <input type="password" v-model="password">
-                            <br>
-                            <button>Confirm Changes</button>
-                        </div>
-
-
                     </div>
                 </div>
                 <!--Pagina comprar Produtos-->
@@ -433,7 +443,7 @@
                 <!--Div Pagina Inventario Produtos-->
                 <div v-show="currPage == pages[2]">
                     <br>
-                    <div class="manager" style="margin-left: 9%;">
+                    <div class="manager">
                             <div class="editor">
                                 <h2>Editor</h2>
                                 <img class="prod-serv-miniatura" src="images/osso.png">
@@ -501,7 +511,7 @@
                 <!--Div Inventario Servicos-->
                 <div v-show="currPage == pages[3]">
                     <br>
-                    <div class="manager" style="margin-left: 9%;">
+                    <div class="manager">
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura" src="images/banho.png">
@@ -569,7 +579,7 @@
                 <!--Div Manage Admins-->
                 <div v-show="currPage == pages[4]">
                     <br>
-                    <div class="manager" style="margin-left: 9%;">
+                    <div class="manager">
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura pessoa-miniatura" src="images/admin2.png">
@@ -638,7 +648,7 @@
                 <!--Div manage Clientes-->
                 <div v-show="currPage == pages[5]">
                     <br>
-                    <div class="manager" style="margin-left: 9%;">
+                    <div class="manager">
                         <div class="editor">
                             <h2>Editor</h2>
                             <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
@@ -708,7 +718,7 @@
                 <!--Div Animais resgistrados para o Usuario-->
                 <div v-show="currPage == pages[6]">
                     <br>
-                    <div class="container-1 purple view-and-register">
+                    <div class="container-1 blue view-and-register">
                         <button class="closeButton principal" v-on:click="setPage('manage2')">X</button>
                         <h2>User's pets</h2>
                         <div class="scroll-container view-animals">
@@ -803,7 +813,7 @@
                             </div>
                         </div>
                 
-                        <div class="container-2 purple register-container">
+                        <div class="container-2 blue register-container">
                             <div class="column">
                                 <img class="small-img" src="images/pet.png">
                             </div>
@@ -821,7 +831,6 @@
                     </div>	
 
                 </div>
-                <!--FIM!!!!!!!!!!!!!!!!!!!1     -->
             </div>              
             <div id="confirmmodal" class="big-box-modal" style="display: none;">
                 <div class="pop-up-peq">
@@ -830,9 +839,8 @@
                     <button class="btn-1 green">Sim</button>
                     <button class="btn-1 red">Não</button>
                 </div>	
-            </div>
+            </div>          
         </div>
-
 
         <!--Vou Usar o VUE para fazer a implementação do SPA-->
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -945,18 +953,6 @@
             closebtn2.addEventListener("click", function(){
                 modal2.style.display = "none";
             })
-
-        
-        </script>
-            
-
-
-       
-
-        
+        </script>    
     </body>
-
-
-
-
 </html>

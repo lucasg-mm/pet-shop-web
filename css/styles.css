@@ -13,9 +13,11 @@ body{
 	text-align: center;
 	float:left;
 	padding: 5%;
+	padding-top: 20px;
 	max-width: 30%;
 	margin-left: 9.6%;
 	line-height: 30px;
+	height: 606px;
 }
 
 .whoarewe p{
@@ -28,33 +30,45 @@ body{
 	border: medium solid #222831;
 	border-radius: 10px;
 	font-family: 'Josefin Sans', sans-serif;
-	color: white;
+	font-size: 20px;
+	color: black;
 	background-image: url(../images/labradors.jpg);
-	background-size: 130%;
+	background-size: 190%;
+	background-position: center;
 	text-align: center;
 	float:left;
 	margin-left: 20px;
-	height: 340px;  
-	padding: 5% 68px;
-	max-width: 30%;
-	margin-right: 9.6%;
+	height: 670px;
+	width: 486px;
+	padding-top: 20px;  
+}
+
+.loginform table{
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
 }
 
 .loginform button{
 	background-color: transparent;
-	border: thick dashed white;
+	border: thick dashed black;
 	border-radius: 10px;
-	color: white;	
+	color: black;	
 	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
-	margin: 10px;
+	margin-top: 20px;
+	margin-bottom: 30px;
 	padding: 10px;
 	padding-left: 30px;
-	padding-right: 30px;
+	padding-right: 30px;	
+}
+
+.loginform .contrastbox button{
+	margin-bottom: 5px;
 }
 
 .loginform button:hover{
-	border-color: black;
+	border-color: white;
 }
 
 /*--------Estilos do Cabeçalho*/
@@ -80,7 +94,7 @@ body{
 	background-color: #252a34;
 	border: none;
 	border-radius: 10px;
-	color: #8785a2;
+	color: #43d8c9;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 25px;
 	margin-left: auto;
@@ -91,7 +105,6 @@ body{
 }
 
 .useReg{
-	position:relative;
 	background-color: #252a34;
 	border: none;
 	border-radius: 10px;
@@ -101,55 +114,50 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 	padding: 5%;
-	text-align: left;
+	text-align: center;
 	width: 70%;	
-	min-height: 700px;
+}
+
+.useReg table{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
 } 
 
 .useReg h2{
 	color:#43d8c9;
 }
 
-.useReg input{
-	font-family: 'Josefin Sans', sans-serif;
+.useReg img{
+	width: 150px;
+	height: 150px;
+	border-style: solid;
 	border-radius: 10px;
-	background-color:white;
-	margin-right: 10px;
+	margin-bottom: 20px;
 }
 
 .contrastbox{
-	background-color:#8785a2;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: transparent;
+	opacity: 1;
 	color: black;
-	width: 45%;
+	width: 400px;
 	border-style: dashed;
 	border-radius: 10px;
-	padding: 30px;
+	padding: 3px;
 	border-radius: 15px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.useReg img{
-	width: 200px;
-	height: 200px;
-	border-style: solid;
-	border-radius: 10px;
+.contrastbox .input-1{
+	height: 25px;
 }
-
-.imagebutton {
-	border-style: solid;
-	border-color: black;
-	border-radius: 10px;
-	padding: 30px;
-	position: absolute;
-	right: 100px;
-	top: 150px;
-	text-align: center;
-	background-color:#8785a2;
-	color:black
-}
-
 
 .botao-menu{
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	border: thick dashed black;
 	border-radius: 10px;
 	color: black;	
@@ -157,6 +165,8 @@ body{
 	font-size: 20px;
 	margin: 50px;
 	padding: 50px;
+	height: 320px;
+	width: 320px;
 }
 
 .botao-menu:hover{
@@ -166,10 +176,6 @@ body{
 .botao-menu img{
 	width: 150px;
 	height: 150px;
-}
-
-.seletor h2{
-	color: #43d8c9;
 }
 
 /*--------Estilos do Serviço/Produto Pequeno*/
@@ -183,7 +189,7 @@ body{
 }
 
 .serv-pequeno{
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	border: none;
 	border-radius: 10px;	
 	font-family: 'Josefin Sans', sans-serif;
@@ -203,7 +209,7 @@ body{
 }
 
 .buy-btn-small, .buy-btn-big{
-	background-color: #88304e;
+	background-color: #415361;
 	border: none;
 	border-radius: 5px;
 	color: white;	
@@ -219,7 +225,7 @@ body{
 /*--------Estilos do Serviço/Produto Grande*/
 
 .serv-grande{
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	border: none;
 	border-radius: 10px;	
 	font-family: 'Josefin Sans', sans-serif;
@@ -324,7 +330,7 @@ body{
 	border-radius: 5px;
 	border-color:black;
 	border-style: dashed;
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	color: black;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 16px;
@@ -371,7 +377,7 @@ body{
 	border-radius: 5px;
 	border-color:black;
 	border-style: solid;
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	font-family: 'Josefin Sans', sans-serif;
 	margin-left: auto;
 	margin-right: auto;
@@ -389,44 +395,47 @@ body{
 }
 
 .userDiv button{
-	margin: 10px;
+	margin: 5px 8px 6px 8px;
 	border: 2px;
 	border-radius: 2px;
 	border-color: white;
-	background-color: #8e7cb8 ;
+	background-color: #415361;
 	float: right;
+	padding: 8px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: white;
 }
 
 .cart{
 	width: auto;
 	max-height: 30px;
 	margin: 10px;
-	border: 2px;
-	border-style: solid;
-	border-radius: 2px;
 	float: right;
+	padding: 2px;
 }
 
 /*Estilo do Gerenciador de Produtos*/
 
 .manager{
-	background-color: #aa96da;
+	background-color: transparent;
 	border: none;
 	border-radius: 10px;	
 	font-family: 'Poppins', sans-serif;
 	font-size: 20px;
 	height: 600px;
-	width: 1100px;
+	width: 81%;
 	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .manager .editor{
-	background-color: #2c003e;
+	background-color: #222831;
 	border-radius: 10px;
 	color: white;
 	float: left;
 	height: 600px;
-	width: 300px;
+	width: 30%;
 	text-align: center;
 	overflow: auto;
 }
@@ -500,13 +509,13 @@ body{
 }
 
 .manager .inventory{
-	background-color: #512b58;
+	background-color: #252a34;
 	border-radius: 10px;
 	color: white;
 	float: right;
 	height: 600px;
 	text-align: center;
-	width: 800px;
+	width: 70%;
 }
 
 .manager .search{
@@ -609,7 +618,7 @@ body{
 
 /*Estilo da janela de pop-up pequena*/
 .pop-up-peq{
-	background-color: #aa96da;
+	background-color: #7DACBC;
 	text-align: center;
 	padding: 20px;
 	width: 660px;
@@ -727,6 +736,10 @@ body{
 	padding-top: 50px;
 }
 
+footer{
+	float: bottom;
+}
+
 /**************************************ESTILOS GERAIS********************************************/
 
 /*estilos de botões*/
@@ -774,12 +787,7 @@ body{
 
 .container-1.blue{
 	background-color: #252a34;
-	color: #8785a2;
-}
-
-.container-1.purple{
-	background-color: #2c003e;
-	color: white;
+	color: #43d8c9;
 }
 
 .container-1.light-purple{
@@ -811,9 +819,24 @@ body{
 	margin-left: auto;	
 }
 
-.container-2.purple{
-	background-color: #aa96da;
+.container-2.blue{
+	background-color: #7DACBC;
 	color: black;
+}
+
+.container-3{
+	width: 80%;
+	border: dashed black;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;		
+}
+
+.container-3.blue{
+	background-color: #7DACBC;
+	color: black;	
 }
 
 /*estilos de imagens*/
@@ -834,4 +857,15 @@ body{
 	border-color: black;
 	height: 25px;
 	width: 270px;
+}
+
+.input-1.transparent{
+	border-color: black;
+	color: black;
+	background-color: transparent;
+}
+
+.input-1.white{
+	background-color: white;
+	color: black;
 }
