@@ -115,6 +115,7 @@ body{
 	margin-right: 10px;
 }
 
+/*-- Estilo Tela de Criar Conta / Editar Conta--*/
 .contrastbox{
 	background-color:#8785a2;
 	color: black;
@@ -194,6 +195,7 @@ body{
 	margin: 25px;
 }
 
+/*Versao Mini Produtos e Servicos da imagem*/
 .prod-serv-miniatura, .pessoa-miniatura{
 	width: 150px;
 	height: 150px;
@@ -590,7 +592,8 @@ body{
 	top: 5px;
 	right: 5px;
 }
-	
+
+/*--Estilo dos Modals--*/
 .big-box-modal{
 	display: none;
 	position: fixed;
