@@ -44,11 +44,11 @@
                     <table>
                         <tr>
                             <td><label>Username:</label></td>
-                            <td><input class="input-1 transparent" type="text" v-model="username"></td>
+                            <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
                         </tr>
                         <tr>
                             <td><label>Password:</label></td>
-                            <td><input class="input-1 transparent" type="password" v-model="password"></td>
+                            <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
                         </tr>
                     </table>
 
@@ -56,7 +56,7 @@
                     <input type="checkbox" v-model="admincheck">
                     <br>
 
-                    <button v-on:click="onlogin()">LOG IN</button>
+                    <button v-on:click="login">LOG IN</button>
                     <button v-on:click="setPage('main')">SIGN UP</button>
 
                     <div v-show="currPage == pages[1]">
@@ -65,30 +65,26 @@
                             <table>
                                 <tr>
                                     <td><label>Username:</label></td>
-                                    <td><input class="input-1 transparent" type="text" v-model="username"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Id:</label></td>
-                                    <td><input class="input-1 transparent" type="text" value="123456"></td>
+                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Phone Number:</label></td>
-                                    <td><input class="input-1 transparent" type="text" value="1231231231"></td>
+                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.phonenumber"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Address:</label></td>
-                                    <td><input class="input-1 transparent" type="text" value="location,123"></td>
+                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.address"></td>
                                 </tr>                                                                           
                                 <tr>
                                     <td><label>Email:</label></td>
-                                    <td><input class="input-1 transparent" type="text" value="Email@email.com"></td>
+                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.email"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Password:</label></td>
-                                    <td><input class="input-1 transparent" type="password" v-model="password"></td>
+                                    <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
                                 </tr>                                          
                             </table>
-                            <button v-on:click="onlogin()">Create Account</button>
+                            <button v-on:click="signin">Create Account</button>
                         </div>
                     </div>                    
                     
@@ -102,7 +98,7 @@
                 <div class="userDiv">
    
                     <img src="images/osso.png">
-                    <p style="float: left;">{{username}}</p> 
+                    <p style="float: left;">{{userInfo.username}}</p> 
                     <button v-on:click="exite()">Exit</button> 
                     <div class="cart">My cart: U$ 00,00</div>
             
@@ -246,7 +242,7 @@
                             <table>
                                 <tr>
                                     <td><label>Username:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="username"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfo.username"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Id:</label></td>
@@ -254,19 +250,19 @@
                                 </tr>
                                 <tr>
                                     <td><label>Phone Number:</label></td>
-                                    <td><input class="input-1 white" type="text" value="1231231231"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfo.phonenumber"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Address:</label></td>
-                                    <td><input class="input-1 white" type="text" value="location,123"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfo.address"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Email:</label></td>
-                                    <td><input class="input-1 white" type="text" value="Email@email.com"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfo.email"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Password:</label></td>
-                                    <td><input class="input-1 white" type="password" v-model="password"></td>
+                                    <td><input class="input-1 white" type="password" v-model="userInfo.password"></td>
                                 </tr>    
                             </table>
                             <button class="btn-1 green">Confirm Changes</button>
@@ -698,7 +694,7 @@
                 <div class="userDiv">
    
                     <img src="images/osso.png">
-                    <p style="float: left;">{{username}}</p>
+                    <p style="float: left;">{{userInfo.username}}</p>
                     <button v-on:click="exite()">Exit</button>  
                    
             
@@ -1246,10 +1242,32 @@
                 el:"#app",
 
                 data:{
+                    fetched:{},
+
+                    myCart: {
+                        total: 0,
+                        receipt:[]
+                    },
+
+                    userInfo: {
+
+                        _id:"",
+                        username:"",
+                        phonenumber: "",
+                        address: "",
+                        email:"",
+                        password:"",
+                        imageURL:"",
+                        realName: ""
+                    },
+
                     //Informacao login
-                    username:"",
-                    password:"",
                     admincheck: false,
+                    
+                    products:[],
+                    services:[],
+                    admins:[],
+                    users:[],
 
                     //informacao SPA
                     currPage:"login",
@@ -1261,10 +1279,139 @@
                     //tipos de usuarios
                     usertypes:["Cli", "Adm", "N"],
                     //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
+                    myerror:""
 
                 },
 
                 methods:{
+                    
+                    //usado para fazer o login verdadeiro
+                    //esse login leva em conta tanto usuarios quanto admins
+                    login: async function(){
+
+                        try {
+                            let getresquest = {
+                                method: 'GET'
+                            };
+                            if(!this.admincheck){
+                                this.fetched =  await fetch("http://localhost:3000/users/" + this.userInfo.username, getresquest);
+                                
+                                this.fetched = await this.fetched.json();
+
+                                console.log('resp:'+ JSON.stringify(this.fetched));
+
+                                if(this.fetched.username == "NOTFOUND"){
+                                    alert('User Not Found');
+                                    console.log('User not found, deal with it later');
+                                }
+                                else{
+                                    //se a senha esta correta, logamos o usuario na sua conta
+                                    if(this.fetched.password == this.userInfo.password){
+                                        this.userInfo._id = this.fetched._id;
+                                        this.userInfo.address = this.fetched.address;
+                                        this.userInfo.username = this.fetched.username;
+                                        this.userInfo.password = this.fetched.password;
+                                        this.userInfo.phonenumber = this.fetched.phonenumber;
+                                        this.userInfo.email = this.fetched.email;
+                                        this.userInfo.imageURL = this.fetched.imageURL;
+                                        
+                                        this.currUser = this.usertypes[0];
+                                        this.currPage = this.pages[1];
+                                        console.log('Success');
+                                    }
+                                    else{
+                                        alert('Wrong Password');
+                                        console.log(this.fetched.password);
+                                        console.log('User found, wrong password, deal with it later');
+                                    }
+                                }
+
+                            }
+                            else{
+                                this.fetched =  await fetch("http://localhost:3000/admins/" + this.userInfo.username, getresquest);
+                                
+                                this.fetched = await this.fetched.json();
+
+                                console.log('resp:'+ JSON.stringify(this.fetched));
+
+                                if(this.fetched.username == "NOTFOUND"){
+                                    alert('User not Found');
+                                    console.log('User not found, deal with it later');
+                                }
+                                else{
+                                    //se a senha esta correta, logamos o usuario na sua conta
+                                    if(this.fetched.password == this.userInfo.password){
+                                        
+                                        this.userInfo._id = this.fetched._id;
+                                        this.userInfo.address = this.fetched.address;
+                                        this.userInfo.username = this.fetched.username;
+                                        this.userInfo.password = this.fetched.password;
+                                        this.userInfo.phonenumber = this.fetched.phonenumber;
+                                        this.userInfo.email = this.fetched.email;
+                                        this.userInfo.imageURL = this.fetched.imageURL;
+                                        this.userInfo.realName = this.fetched.realName;
+
+                                        this.currUser = this.usertypes[1];
+                                        this.currPage = this.pages[1];
+                                        console.log('Success');
+                                    }
+                                    else{
+                                        alert('Wrong Password');
+                                        console.log(this.fetched.password);
+                                        console.log('User found, wrong password, deal with it later');
+                                    }
+                                }
+                                
+                            }
+                        }
+                        catch (error) {
+                            console.log(error);
+                        }
+                        
+                    },
+                    //signin cria apenas usuarios e nao admins 
+                    signin: async function(){
+                        try {
+                            
+                            //tentamos pegar um usuario ja com esse nome, se nao houver, seguimos
+                            this.fetched = await fetch("http://localhost:3000/users/" + this.userInfo.username, {method:'GET'});
+                            this.fetched = await this.fetched.json();
+                            
+                            console.log('Fetch result:' + JSON.stringify(this.fetched));
+
+                            //se nao achamos alguem com esse nome, eh valido    
+                            if(this.fetched.username == "NOTFOUND"){
+
+                                let myheaders = new Headers({"Content-Type":"application/json",});
+
+                                this.fetched = await fetch("http://localhost:3000/users/",{
+                                    method: 'POST',
+                                    headers: myheaders,
+                                    body: JSON.stringify({
+                                        "username": this.userInfo.username,
+                                        "email": this.userInfo.email,
+                                        "phonenumber": this.userInfo.phonenumber,
+                                        "password": this.userInfo.password,
+                                        "address": this.userInfo.address
+                                    })
+                                
+                                });
+
+                                console.log(this.fetched);
+                                
+                                
+                                this.currUser = this.usertypes[0];    
+                                this.currPage = this.pages[1];
+                                console.log('Success');
+                            }
+                            else{
+                                alert("Username Already in Use");
+                            }
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    },
 
                     onlogin(){
 
