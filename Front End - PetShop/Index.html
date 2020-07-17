@@ -110,7 +110,7 @@
                         <h2>Client's Dashboard</h2>
                         <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule Service<br><br><img src="images/calendar.png"></button>
                         <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy Products<br><br><img src="images/shopping-cart.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('manage1')">Edit Your Registration<br><br><img src="images/registration.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('manage1')">Update Info<br><br><img src="images/registration.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage2')">Register Animals<br><br><img src="images/carrier.png"></button>
                     </div>
                 </div>
@@ -233,7 +233,7 @@
                 <!--Pagina editar registro-->
                 <div v-show = "currPage ==pages[4]">
                     <div class="useReg">
-                        <h2>Edit Your Registration</h2>
+                        <h2>Update Info</h2>
                         <br>                        
                         <div class="container-3 blue">
                             <img src="images/social.png">
@@ -242,30 +242,26 @@
                             <table>
                                 <tr>
                                     <td><label>Username:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfo.username"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Id:</label></td>
-                                    <td><input class="input-1 white" type="text" value="123456"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.username"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Phone Number:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfo.phonenumber"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.phonenumber"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Address:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfo.address"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.address"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Email:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfo.email"></td>
+                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.email"></td>
                                 </tr>
                                 <tr>
                                     <td><label>Password:</label></td>
-                                    <td><input class="input-1 white" type="password" v-model="userInfo.password"></td>
+                                    <td><input class="input-1 white" type="password" v-model="userInfoUpdated.password"></td>
                                 </tr>    
                             </table>
-                            <button class="btn-1 green">Confirm Changes</button>
+                            <button class="btn-1 green" @click="updateUserInfo()">Confirm Changes</button>
                         </div>
                     </div>
                 </div>
@@ -1023,7 +1019,6 @@
                     },
 
                     userInfo: {
-
                         _id:"",
                         username:"",
                         phonenumber: "",
@@ -1032,6 +1027,15 @@
                         password:"",
                         imageURL:"",
                         realName: ""
+                    },
+
+                    // Para usar no form de atualização dos dados (página "Update Info" do cliente)
+                    userInfoUpdated: {
+	                    username: "",
+	                    password: "",
+	                    phonenumber: "",
+	                    address: "",
+	                    email: ""                    	                    	
                     },
 
                     //Informacao login
@@ -1060,6 +1064,42 @@
                 },
 
                 methods:{
+
+                	// Usado pelo cliente logado quando este deseja atualizar suas informações pessoais
+                	// na página "Update Info"
+                	updateUserInfo: async function(){
+                		try{
+			                let resp = await fetch("http://localhost:3000/users/update/" + this.userInfo._id, {
+			                  method: "PUT",
+			                  headers: {
+			                    'Content-type': 'application/json'
+			                  },
+			                  body: JSON.stringify({  // conteúdo enviado (do form)
+			                    username: this.userInfoUpdated.username,
+			                    password: this.userInfoUpdated.password,
+			                    phonenumber: this.userInfoUpdated.phonenumber,
+			                    address: this.userInfoUpdated.address,
+			                    email: this.userInfoUpdated.email
+			                  })
+                			});                			
+
+                			// se a requisição for bem sucedida
+                			if(resp.ok){
+                				this.userInfo.username = this.userInfoUpdated.username;
+                				this.userInfo.password = this.userInfoUpdated.password;
+                				this.userInfo.phonenumber = this.userInfoUpdated.phonenumber;
+                				this.userInfo.address = this.userInfoUpdated.address;
+                				this.userInfo.email = this.userInfoUpdated.email;
+                				alert("Your information has been succesfully updated!");
+                			}
+                			else{  // se não for...
+                				alert("Something went wrong. Try again later!");
+                			}
+                		}
+                		catch(e){
+                			alert("Error: " + e); 
+                		}
+                	},
 
                     // Define um serviço selecionado. Um serviço torna-se um serviço selecionado quando
                     // o usuário clica no botão BOOK de sua miniatura
@@ -1144,6 +1184,11 @@
                                         this.userInfo.phonenumber = this.fetched.phonenumber;
                                         this.userInfo.email = this.fetched.email;
                                         this.userInfo.imageURL = this.fetched.imageURL;
+					                    this.userInfoUpdated.username = this.fetched.username;
+					                    this.userInfoUpdated.password = this.fetched.password;
+					                    this.userInfoUpdated.phonenumber = this.fetched.phonenumber;
+					                    this.userInfoUpdated.address = this.fetched.address;
+					                    this.userInfoUpdated.email = this.fetched.email;                                         
                                         
                                         this.currUser = this.usertypes[0];
                                         this.currPage = this.pages[1];
