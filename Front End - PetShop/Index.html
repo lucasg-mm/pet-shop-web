@@ -109,7 +109,7 @@
                     <div class="seletor cliente">
                         <h2>Client's Dashboard</h2>
                         <button class="botao-menu" v-on:click="setPage('service')">Schedule Service<br><br><img src="images/calendar.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('products')">Buy Products<br><br><img src="images/shopping-cart.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy Products<br><br><img src="images/shopping-cart.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage1')">Edit Your Registration<br><br><img src="images/registration.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage2')">Register Animals<br><br><img src="images/carrier.png"></button>
                     </div>
@@ -278,19 +278,18 @@
                             <button class="closeButton" onclick="closer()">X</button>
                             <img src="images/osso.png">
                             <br>
-                            <em>Product Name: Lorem Ipsum</em>
+                            <em>Product Name: {{ selectedProduct.name }}</em>
                             <br>
-                            <em>In stock: Yes</em>
+                            <em>In stock: {{ selectedProduct.stock }}</em>
                             <br>
-                            <em>Price: $00.00</em>
+                            <em>Price: {{ selectedProduct.price }}</em>
                             <br>
                             <button class="buy-btn-big">BUY</button>
                             <br>
                             <div id="descricao-produto">
                                 <h3>Product Description:</h3>
                                 <p>
-                                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-                                    Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.
+                                    {{ selectedProduct.description }}
                                 </p>
                              </div>
                         </div>	
@@ -298,131 +297,19 @@
                     <div class="seletor">
                         <h2>Buy Products:</h2> 
                         <ul>
-                          <li>
+                          <li v-for="(product, index) in products">
                             <!--Div De produtos "pequeno"-->
                             <div class="serv-pequeno">
                                 <img class="prod-serv-miniatura" src="images/osso.png">
                                 <br>
-                                <em>Product Name: Lorem Ipsum</em>
+                                <em>Product Name: {{ product.name }}</em>
                                 <br>
-                                <em>In stock: Yes</em>
+                                <em>In stock: {{ product.stock }}</em>
                                 <br>
-                                <em>Price: $00.00</em>
+                                <em>Price: ${{ product.price }}</em>
                                 <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
+                                <button class="buy-btn-small" v-on:click="setSelectedProduct(index); showmodal();">BUY</button>
                             </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                            </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                                </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                                </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                                </div>
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <br>
-                                <em>Product Name: Lorem Ipsum</em>
-                                <br>
-                                <em>In stock: Yes</em>
-                                <br>
-                                <em>Price: $00.00</em>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal()">BUY</button>
-                                </div>
                           </li>
                       </ul>  
                     </div>
@@ -1269,6 +1156,8 @@
                     admins:[],
                     users:[],
 
+                    selectedProduct: {},
+
                     //informacao SPA
                     currPage:"login",
                     currUser:"N",
@@ -1284,7 +1173,34 @@
                 },
 
                 methods:{
+
+                    // Define um produto selecionado. Um produto torna-se um produto selecionado quando
+                    // o usuário clica no botão BUY de sua miniatura
+                    setSelectedProduct: function(index){
+                        this.selectedProduct = this.products[index];
+                    },
                     
+                    // obtém todos os produtos na base de dados
+                    getEveryProduct: async function(){
+                        try{
+                            // faz um get request para obter os produtos
+                            let resp = await fetch("http://localhost:3000/products/");
+
+                            // se a requisição for bem-sucedida
+                            if(resp.ok){
+                                this.products = await resp.json();
+                                console.log("recuperado: " + this.products);
+                                console.log(this.products[0]);
+                            }
+                            else{  // se não for...
+                                console.log("Erro durante a requisição!");
+                            }
+                        }
+                        catch(e){
+                            alert("Error: " + e);
+                        }
+                    },
+
                     //usado para fazer o login verdadeiro
                     //esse login leva em conta tanto usuarios quanto admins
                     login: async function(){
@@ -1366,8 +1282,7 @@
                         }
                         catch (error) {
                             console.log(error);
-                        }
-                        
+                        }                        
                     },
                     //signin cria apenas usuarios e nao admins 
                     signin: async function(){
@@ -1442,7 +1357,7 @@
                 }
             })
 
-            //uns javascript normal, testar se funciona em conjunto com vue.
+            //javascripts para a tela grande de produtos
             var modal = document.getElementById("fancymodal");
             var closebtn = document.getElementsByClassName("closeButton")[0];
 
@@ -1455,6 +1370,7 @@
             var closebtn3 = document.getElementById("closem2");
 
 
+            // mostra a janela grande de um produto
             function showmodal(){
                 modal.style.display = "block";
             }

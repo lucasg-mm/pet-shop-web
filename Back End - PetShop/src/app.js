@@ -22,7 +22,7 @@ app.use((req,res,next) =>{
 });
 
 const router = express.Router();
-mongoose.connect('mongodb+srv://user123:user123@cluster0-jfjoy.mongodb.net/<dbname>?retryWrites=true&w=majority');
+mongoose.connect('mongodb://localhost/');
 
 /* 
     Declaracao dos models vem aqui, mas tais ainda nao existem
