@@ -108,7 +108,7 @@
                 <div v-show="currPage == pages[1]">
                     <div class="seletor cliente">
                         <h2>Client's Dashboard</h2>
-                        <button class="botao-menu" v-on:click="setPage('service')">Schedule Service<br><br><img src="images/calendar.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule Service<br><br><img src="images/calendar.png"></button>
                         <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy Products<br><br><img src="images/shopping-cart.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage1')">Edit Your Registration<br><br><img src="images/registration.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage2')">Register Animals<br><br><img src="images/carrier.png"></button>
@@ -282,7 +282,7 @@
                             <br>
                             <em>In stock: {{ selectedProduct.stock }}</em>
                             <br>
-                            <em>Price: {{ selectedProduct.price }}</em>
+                            <em>Price: ${{ selectedProduct.price }}</em>
                             <br>
                             <button class="buy-btn-big">BUY</button>
                             <br>
@@ -323,9 +323,9 @@
                             <button class="closeButton" id="closem2"onclick="closer3()">X</button>
                             <img src="images/banho.png">
                             <br>
-                            <em>Service Name: Lorem Ipsum</em>
+                            <em>Service Name: {{ selectedService.name }}</em>
                             <br>
-                            <em>Price: $00.00/h</em>
+                            <em>Price: ${{ selectedService.price }}/h</em>
                             <br>
                             <br>
                             <button class="buy-btn-big">BOOK</button>
@@ -333,8 +333,7 @@
                             <div id="descricao-servico">
                                 <h3>Product Description:</h3>
                                 <p>
-                                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-                                    Detraxit consequat et quo num tendi nada. Sapien in monti palavris qui num significa nadis i pareci latim. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus.
+                                    {{ selectedService.description }}
                                 </p>
                             </div>
                             <div id="area-agendamento">
@@ -442,132 +441,19 @@
                     <div class="seletor">
                         <h2>Buy Services:</h2> 
                         <ul>
-                          <li>
-                            <!--Div Para os produtos Pequenos-->
+                          <li v-for="(service, index) in services">
+                            <!--Div Para os serviços pequenos-->
                             <div class="serv-pequeno">
                                 <img class="prod-serv-miniatura" src="images/banho.png">
                                 <br>
-                                <em>Service name: Lorem Ipsum</em>
+                                <em>Service name: {{ service.name }}</em>
                                 <br>
-                                <em>Price: $00.00/h</em>
+                                <em>Price: ${{ service.price }}/h</em>
                                 <br>
                                 <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
+                                <button class="buy-btn-small" v-on:click="setSelectedService(index); showmodal3();">BOOK</button>
                             </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
- 
-                           </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
-
-                          <li>
-                            <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
-                                <br>
-                                <em>Service name: Lorem Ipsum</em>
-                                <br>
-                                <em>Price: $00.00/h</em>
-                                <br>
-                                <br>
-                                <button class="buy-btn-small" onclick="showmodal3()">BOOK</button>
-                            </div>
-                        
-                          </li>
+                          </li>   
                       </ul>  
                     </div>
                 </div>
@@ -1157,6 +1043,7 @@
                     users:[],
 
                     selectedProduct: {},
+                    selectedService: {},
 
                     //informacao SPA
                     currPage:"login",
@@ -1173,6 +1060,33 @@
                 },
 
                 methods:{
+
+                    // Define um serviço selecionado. Um serviço torna-se um serviço selecionado quando
+                    // o usuário clica no botão BOOK de sua miniatura
+                    setSelectedService: function(index){
+                        this.selectedService = this.services[index];
+                    },                	
+
+                    // obtém todos os serviços na base de dados
+                    getEveryService: async function(){
+                        try{
+                            // faz um get request para obter os produtos
+                            let resp = await fetch("http://localhost:3000/services/");
+
+                            // se a requisição for bem-sucedida
+                            if(resp.ok){
+                                this.services = await resp.json();
+                                console.log("recuperado: " + this.services);
+                                console.log(this.services[0]);
+                            }
+                            else{  // se não for...
+                                console.log("Erro durante a requisição!");
+                            }
+                        }
+                        catch(e){
+                            alert("Error: " + e);
+                        }
+                    },                	
 
                     // Define um produto selecionado. Um produto torna-se um produto selecionado quando
                     // o usuário clica no botão BUY de sua miniatura
