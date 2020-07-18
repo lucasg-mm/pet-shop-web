@@ -1,6 +1,6 @@
 
 const express = require('express');
-const controller = require('../controllers/servicecontroller');
+const controller = require('../controllers/petcontroller');
 const router = express.Router();
 
 //infelizmente a rota de inserir imagem tera de ser feita aqui.
@@ -10,8 +10,7 @@ router.get('/', controller.get);
 router.get('/:name', controller.getbyname);
 router.get('/id/:id', controller.getbyId);
 router.put('/update/:id', controller.update);
-router.put('/appoint', controller.appoint);
-router.put('/disasociate', controller.disasociate);
-router.put('/free', controller.free);
+router.get('/owner/:id', controller.getbyOwnerId);
+router.put('/reserve', controller.addReserve);
 
 module.exports = router;

@@ -117,13 +117,64 @@ exports.appoint = (req, res, next) => {
             res.status(400).send({result: "FAILURE"});
         }
         else{
-            console.log(placement);
-            console.log(doc);
             doc.timeTable[placement].status = 2;
             doc.timeTable[placement].petid = req.body.petid;
+            doc.save();
             res.status(200).send({result: "SUCCESS"});
         }
-    })       
+    });
+    
+    
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.free = (req, res, next) => {
+    const iud = new objID(req.body.id);
+    const placement = ((req.body.j - 1)* 24) + req.body.i;
+    try {
+        
+    Service.findById(iud, function(err, doc) {
+        if(err){
+            res.status(401).send({result: "FAILURE2"});
+        }
+        else if(!doc){
+            res.status(400).send({result: "FAILURE"});
+        }
+        else{
+            doc.timeTable[placement].status = 1;
+            doc.timeTable[placement].petid = "";
+            doc.save();
+            res.status(200).send({result: "SUCCESS"});
+        }
+    });
+    
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.disasociate = (req, res, next) => {
+    const iud = new objID(req.body.id);
+    const placement = ((req.body.j - 1)* 24) + req.body.i;
+    try {
+        
+    Service.findById(iud, function(err, doc) {
+        if(err){
+            res.status(401).send({result: "FAILURE2"});
+        }
+        else if(!doc){
+            res.status(400).send({result: "FAILURE"});
+        }
+        else{
+            doc.timeTable[placement].status = 0;
+            doc.timeTable[placement].petid = "";
+            doc.save();
+            res.status(200).send({result: "SUCCESS"});
+        }
+    });
+    
     } catch (error) {
         console.log(error);
     }
