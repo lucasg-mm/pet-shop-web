@@ -23,6 +23,7 @@ app.use((req,res,next) =>{
 
 const router = express.Router();
 mongoose.connect('mongodb://localhost/');
+// , { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 
 /* 
     Declaracao dos models vem aqui, mas tais ainda nao existem
