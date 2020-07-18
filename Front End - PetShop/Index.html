@@ -100,7 +100,7 @@
                     <img src="images/osso.png">
                     <p style="float: left;">{{userInfo.username}}</p> 
                     <button v-on:click="exite()">Exit</button> 
-                    <div class="cart">My cart: U$ 00,00</div>
+                    <div class="cart">My cart: U$ {{ myCart.total.toFixed(2) }}</div>
             
                 </div>
                 <br>
@@ -280,7 +280,7 @@
                             <br>
                             <em>Price: ${{ selectedProduct.price }}</em>
                             <br>
-                            <button class="buy-btn-big">BUY</button>
+                            <button class="buy-btn-big" @click="addToCart(selectedProduct.price, selectedProduct._id, 'product')">BUY</button>
                             <br>
                             <div id="descricao-produto">
                                 <h3>Product Description:</h3>
@@ -324,7 +324,7 @@
                             <em>Price: ${{ selectedService.price }}/h</em>
                             <br>
                             <br>
-                            <button class="buy-btn-big">BOOK</button>
+                            <button class="buy-btn-big" @click="addToCart(selectedService.price, selectedService._id, 'service')">BOOK</button>
                             <br>
                             <div id="descricao-servico">
                                 <h3>Product Description:</h3>
@@ -1064,6 +1064,24 @@
                 },
 
                 methods:{
+
+                	// adiciona um produto ou serviço ao carrinho
+                	// value - valor do serviço/produto;
+                	// id - id do serviço/produto;
+                	// type - pode ser 'product' ou 'service'.
+                	addToCart: function (value, id, type){
+                		// atualiza o valor total de compras no carrinho:
+                		this.myCart.total += value;
+
+                		// adiciona um elemento (compra) ao vetor 'receipt':
+                		this.myCart.receipt.push({
+                			value: value,
+                			id: id,
+                			type: type
+                		});
+
+                		console.log("No carrinho: ", this.myCart.total);
+                	},
 
                 	// Usado pelo cliente logado quando este deseja atualizar suas informações pessoais
                 	// na página "Update Info"
