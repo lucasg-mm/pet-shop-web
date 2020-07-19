@@ -111,7 +111,7 @@
                         <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule Service<br><br><img src="images/calendar.png"></button>
                         <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy Products<br><br><img src="images/shopping-cart.png"></button>
                         <button class="botao-menu" v-on:click="setPage('manage1')">Update Info<br><br><img src="images/registration.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('manage2')">Register Animals<br><br><img src="images/carrier.png"></button>
+                        <button class="botao-menu" v-on:click="setPage('manage2'); getPets();">Register Pets<br><br><img src="images/carrier.png"></button>
                     </div>
                 </div>
                 <!--Pagina Registrar Animais-->
@@ -120,112 +120,52 @@
                         <h2>Register Pets</h2>
                         <div class="scroll-container view-animals">
                             <!--Divs de Registro Animal-->
-                            <div class="regAnimal">
+                            <div class="regAnimal" v-for="pet in pets">
                                 <img src="images/pet.png">
                                 <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
+                                    <li class="list-card-item">Name: {{ pet.name }}</li>
+                                    <li class="list-card-item">Species: {{ pet.species }}</li>
+                                    <li class="list-card-item">Breed: {{ pet.breed }}</li>
+                                    <li class="list-card-item">Age: {{ pet.age }}</li>
                                 </ul>
                                 <ul class="list-card">
                                     <p>Reserves:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
+                                    <li class="list-card-item" v-for="service in pets.services">
+                                    	{{ service.name }}: {{ service.day }}, {{ service.hour }}:00
+                                	</li>
                                 </ul>
                                 <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reserves:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reserves:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reserves:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>		    
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reserves:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
+                            </div>                           
                         </div>
                 		
                 		<!--Div de inserir Novo animal-->
                         <div class="container-2 blue register-container">
+			                <p v-if="erros.length">
+			                    <b>
+			                        Errors:
+			                    </b>
+			                    <ul>
+			                        <li v-for="erro in erros">
+			                            {{erro}}
+			                        </li>
+			                    </ul>
+			                </p>                        	
                             <div class="column">
                                 <img class="small-img" src="images/pet.png">
                             </div>
-                            <div class="column">
-                                <input class="input-1" type="text" name="pet-name" placeholder="Pet's name"> 	
-                                <input class="input-1" type="text" name="pet-id" placeholder="Pet's ID"> 
-                                <input class="input-1" type="text" name="pet-species" placeholder="Pet's Species"> 
-                            </div>
-                            <div class="column">
-                                <input class="input-1" type="text" name="pet-breed" placeholder="Pet's Breed"> 
-                                <input class="input-1" type="text" name="pet-age" placeholder="Pet's Age">
-                                <button class="btn-1 green">Add Pet</button> 			
-                            </div>
+                            <form @submit="validateFormAddPets($event); addPet();">
+	                            <div class="column">
+	                                <input class="input-1" type="text" name="pet-name" v-model="addPetForm.name"
+	                                placeholder="Pet's name">
+	                                <input class="input-1" type="text" name="pet-species" v-model="addPetForm.species" placeholder="Pet's species"> 
+	                            </div>
+	                            <div class="column">
+	                                <input class="input-1" type="text" name="pet-breed" v-model="addPetForm.breed" placeholder="Pet's breed"> 
+	                                <input class="input-1" type="text" name="pet-age" v-model="addPetForm.age"
+	                                placeholder="Pet's age">
+	                                <button type="submit" class="btn-1 green">Add Pet</button> 			
+	                            </div>
+                        	</form>
                         </div>			
                     </div>
                     
@@ -1013,6 +953,8 @@
                 data:{
                     fetched:{},
 
+                    erros: [],  // armazena erros de validação de formulário
+
                     myCart: {
                         total: 0,
                         receipt:[]
@@ -1027,6 +969,13 @@
                         password:"",
                         imageURL:"",
                         realName: ""
+                    },
+
+                    addPetForm: {
+                    	name: "",
+                    	species: "",
+                    	breed: "",
+                    	age: ""
                     },
 
                     // Para usar no form de atualização dos dados (página "Update Info" do cliente)
@@ -1045,6 +994,7 @@
                     services:[],
                     admins:[],
                     users:[],
+                    pets: [],  // pets do usuário
 
                     selectedProduct: {},
                     selectedService: {},
@@ -1064,6 +1014,101 @@
                 },
 
                 methods:{
+
+                	// valida o formulário de adição de pets
+                	validateFormAddPets: function(e){
+                		e.preventDefault();
+
+			            this.erros = []; // esvazia os erros
+			            // checa se deixou algum campo vazio:
+			            if (!this.addPetForm.name) {
+			                this.erros.push("Fill the pet's name field");
+			            }
+			            if (!this.addPetForm.species) {
+			                this.erros.push("Fill the pet's species field");
+			            }
+			            if (!this.addPetForm.breed) {
+			                this.erros.push("Fill the pet's breed field");
+			            } 
+			            if (!this.addPetForm.age) {
+			                this.erros.push("Fill the pet's age field");
+			            }
+			            else{
+			            	// checa se é número 
+				            if (isNaN(this.addPetForm.age)) {
+				                this.erros.push("Invalid age");
+				            }
+				            else{  // e se é maior que zero
+				            	if(this.addPetForm.age < 0){
+				            		this.erros.push("Invalid age");
+				            	}
+				            }			            	
+			            }
+
+			            if (!this.erros.length) {
+			            	e.preventDefault();
+			                return true;
+			            }
+                	},
+
+                	// adiciona um pet
+                	addPet: async function(){
+                		try{
+                			if(!this.erros.length){
+	                			// faz um post para registrar um pet na base
+				                let resp = await fetch("http://localhost:3000/pets/", {
+				                  method: "POST",
+				                  headers: {
+				                    'Content-type': 'application/json'
+				                  },
+				                  body: JSON.stringify({  // conteúdo enviado (do form)
+				                    name: this.addPetForm.name,
+				                    species: this.addPetForm.species,
+				                    breed: this.addPetForm.breed,
+				                    age: this.addPetForm.age,
+				                    ownerId: this.userInfo._id
+				                  })
+	                			});
+
+				                // se a requisição for bem-sucedida
+	                			if(resp.ok){
+	                				this.pets.push({
+					                    name: this.addPetForm.name,
+					                    species: this.addPetForm.species,
+					                    breed: this.addPetForm.breed,
+					                    age: this.addPetForm.age,
+					                    ownerId: this.userInfo._id                					
+	                				});
+	                				alert("Your pet has been succesfully added!");
+	                			}
+	                			else{  // se não for...
+	                				alert("Something went wrong. Try again later");
+	                			}
+                			}                			 
+                		}
+                		catch(e){
+                			alert("Error: " + e);
+                		}
+                	},
+
+                	// obtém todos os pets do usuário
+                	getPets: async function(){
+                        try{
+                            // faz um get request para obter os pets do usuário logado
+                            let resp = await fetch("http://localhost:3000/pets/owner/" + this.userInfo._id);
+
+                            // se a requisição for bem-sucedida
+                            if(resp.ok){
+                                this.pets = await resp.json();
+                            }
+                            else{  // se não for...
+                                alert("Something went wrong. Try again later");
+                            }
+                        }
+                        catch(e){
+                            alert("Error: " + e);
+                        }                		
+                	},
 
                 	// adiciona um produto ou serviço ao carrinho
                 	// value - valor do serviço/produto;
@@ -1134,11 +1179,9 @@
                             // se a requisição for bem-sucedida
                             if(resp.ok){
                                 this.services = await resp.json();
-                                console.log("recuperado: " + this.services);
-                                console.log(this.services[0]);
                             }
                             else{  // se não for...
-                                console.log("Erro durante a requisição!");
+                                alert("Something went wrong. Try again later!");
                             }
                         }
                         catch(e){
@@ -1161,11 +1204,9 @@
                             // se a requisição for bem-sucedida
                             if(resp.ok){
                                 this.products = await resp.json();
-                                console.log("recuperado: " + this.products);
-                                console.log(this.products[0]);
                             }
                             else{  // se não for...
-                                console.log("Erro durante a requisição!");
+                                alert("Something went wrong. Try again later!");
                             }
                         }
                         catch(e){
