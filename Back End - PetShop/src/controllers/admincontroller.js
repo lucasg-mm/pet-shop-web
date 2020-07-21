@@ -75,6 +75,22 @@ exports.getbyId = (req,res,next) =>{
     });
 }
 
+exports.delete = (req,res,next) =>{
+
+    const uid = new objID(req.params.id);
+    Admin.findByIdAndDelete(uid, function(err,doc){
+        if(err){
+            res.status(400).send({result:"FAILURE"});
+        }
+        else{
+            
+            res.status(200).send({result:"SUCCESS"})
+        }
+    })
+
+
+}
+
 exports.update = (req,res,next) => {
     const uid = new objID(req.params.id);
     

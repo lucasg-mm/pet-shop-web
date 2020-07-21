@@ -7,6 +7,9 @@ const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+//adicao para imagem
+app.use('/uploads',express.static('uploads'))
+//adicao para imagem
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 
@@ -23,7 +26,6 @@ app.use((req,res,next) =>{
 
 const router = express.Router();
 mongoose.connect('mongodb://localhost/');
-// , { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 
 /* 
     Declaracao dos models vem aqui, mas tais ainda nao existem

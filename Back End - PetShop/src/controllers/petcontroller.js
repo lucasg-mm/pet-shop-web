@@ -15,6 +15,22 @@ exports.get = (req,res,next) =>{
     console.log('Get request');
 };
 
+exports.delete = (req,res,next) =>{
+
+    const uid = new objID(req.params.id);
+    PET.findByIdAndDelete(uid, function(err,doc){
+        if(err){
+            res.status(400).send({result:"FAILURE"});
+        }
+        else{
+            
+            res.status(200).send({result:"SUCCESS"})
+        }
+    })
+
+
+}
+
 //versao basica, sem imagem, usada quando criamos o usuario
 exports.post = (req,res,next) =>{
     var newuser = new PET({
@@ -27,7 +43,7 @@ exports.post = (req,res,next) =>{
 
     newuser.save()
     .then(x =>{
-        res.status(201).send({msg : "Pet Created"});
+        res.status(201).send(x);  // envia o objeto que acabou de ser registrado na coleção
     })
     .catch(e=>{
         res.status(400).send(e);

@@ -130,6 +130,22 @@ exports.appoint = (req, res, next) => {
     }
 }
 
+exports.delete = (req,res,next) =>{
+
+    const uid = new objID(req.params.id);
+    Service.findByIdAndDelete(uid, function(err,doc){
+        if(err){
+            res.status(400).send({result:"FAILURE"});
+        }
+        else{
+            
+            res.status(200).send({result:"SUCCESS"})
+        }
+    })
+
+
+}
+
 exports.free = (req, res, next) => {
     const iud = new objID(req.body.id);
     const placement = ((req.body.j - 1)* 24) + req.body.i;

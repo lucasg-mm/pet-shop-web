@@ -97,7 +97,7 @@
                 <!--Div De usuário Aparece sempre que usuario = cliente-->
                 <div class="userDiv">
    
-                    <img src="images/osso.png">
+                    <img :src="'http://localhost:3000/' + userInfo.imageURL">
                     <p style="float: left;">{{userInfo.username}}</p> 
                     <button v-on:click="exite()">Exit</button> 
                     <div class="cart">My cart: U$ {{ myCart.total.toFixed(2) }}</div>
@@ -176,9 +176,9 @@
                         <h2>Update Info</h2>
                         <br>                        
                         <div class="container-3 blue">
-                            <img src="images/social.png">
+                            <img :src="'http://localhost:3000/' + userInfo.imageURL">
                             <br>
-                            <input type="file" id="imagem-escolhida" name="myfile">                  
+                            <input type="file" id="imagem-escolhida" name="myfile" @change="updateProfilePic($event)">                  
                             <table>
                                 <tr>
                                     <td><label>Username:</label></td>
@@ -984,7 +984,8 @@
 	                    password: "",
 	                    phonenumber: "",
 	                    address: "",
-	                    email: ""                    	                    	
+	                    email: "",
+                        profilePic: ""                     	                    	
                     },
 
                     //Informacao login
@@ -1014,6 +1015,35 @@
                 },
 
                 methods:{
+                    // faz um POST request para atualizar a imagem de um usuário
+                    updateProfilePic: async function(evt){
+                        try{
+                            if(!this.erros.length){
+                                let form = new FormData();
+                                form.append('Image', evt.target.files[0]);
+
+                                // faz um post para registrar um pet na base
+                                let resp = await fetch("http://localhost:3000/users/image/" + this.userInfo._id, {
+                                  method: "POST",
+                                  body: form 
+                                });
+
+                                // se a requisição for bem-sucedida
+                                if(resp.ok){
+                                    let url = await resp.json();
+                                    this.userInfo.imageURL = url.profileImage;
+                                    console.log("Image succesfully uploaded: " + this.userInfo.imageURL);
+                                }
+                                else{  // se não for...
+                                    alert("Could not upload the image");
+                                }
+                            }                            
+                        }
+                        catch(e){
+                            alert("Error: " + e);
+                        }
+                    },
+
                     // deleta um determinado pet dentre aqueles no vetor de pets
                     deletePet: async function(index){
                         try{
@@ -1258,7 +1288,7 @@
                                         this.userInfo.password = this.fetched.password;
                                         this.userInfo.phonenumber = this.fetched.phonenumber;
                                         this.userInfo.email = this.fetched.email;
-                                        this.userInfo.imageURL = this.fetched.imageURL;
+                                        this.userInfo.imageURL = this.fetched.profileImage;
 					                    this.userInfoUpdated.username = this.fetched.username;
 					                    this.userInfoUpdated.password = this.fetched.password;
 					                    this.userInfoUpdated.phonenumber = this.fetched.phonenumber;
@@ -1298,12 +1328,13 @@
                                         this.userInfo.password = this.fetched.password;
                                         this.userInfo.phonenumber = this.fetched.phonenumber;
                                         this.userInfo.email = this.fetched.email;
-                                        this.userInfo.imageURL = this.fetched.imageURL;
+                                        this.userInfo.imageURL = this.fetched.profileImage;
                                         this.userInfo.realName = this.fetched.realName;
 
                                         this.currUser = this.usertypes[1];
                                         this.currPage = this.pages[1];
                                         console.log('Success');
+
                                     }
                                     else{
                                         alert('Wrong Password');
