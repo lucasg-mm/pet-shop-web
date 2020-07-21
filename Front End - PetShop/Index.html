@@ -120,7 +120,7 @@
                         <h2>Register Pets</h2>
                         <div class="scroll-container view-animals">
                             <!--Divs de Registro Animal-->
-                            <div class="regAnimal" v-for="pet in pets">
+                            <div class="regAnimal" v-for="(pet, index) in pets">
                                 <img src="images/pet.png">
                                 <ul class="list-card">
                                     <li class="list-card-item">Name: {{ pet.name }}</li>
@@ -134,7 +134,7 @@
                                     	{{ service.name }}: {{ service.day }}, {{ service.hour }}:00
                                 	</li>
                                 </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                                <button class="closeButton" class="button2" @click="showmodal2(); deletePet(index);">X</button>
                             </div>                           
                         </div>
                 		
@@ -1014,6 +1014,28 @@
                 },
 
                 methods:{
+                    // deleta um determinado pet dentre aqueles no vetor de pets
+                    deletePet: async function(index){
+                        try{
+
+                            let resp = await fetch("http://localhost:3000/pets/" + this.pets[index]._id,{
+                              method: "DELETE"
+                            });
+
+                            // se a requisição foi bem-sucedida:
+                            if(resp.ok){
+                                this.pets.splice(index, 1);
+
+                                alert("Pet deleted succesfully!")
+                            }
+                            else{  // se não for, exibe a mensagem no console
+                                alert("Something went wrong. Try again later!")
+                            }                            
+                        }
+                        catch(e){
+                            alert("Error: " + e);
+                        }
+                    },
 
                 	// valida o formulário de adição de pets
                 	validateFormAddPets: function(e){
@@ -1072,13 +1094,7 @@
 
 				                // se a requisição for bem-sucedida
 	                			if(resp.ok){
-	                				this.pets.push({
-					                    name: this.addPetForm.name,
-					                    species: this.addPetForm.species,
-					                    breed: this.addPetForm.breed,
-					                    age: this.addPetForm.age,
-					                    ownerId: this.userInfo._id                					
-	                				});
+	                				this.pets.push(await resp.json());
 	                				alert("Your pet has been succesfully added!");
 	                			}
 	                			else{  // se não for...
