@@ -37,7 +37,7 @@ const theschema = new mySchema({
         }
     }],
 
-    //Imagem de perfil sera implementada em breve
+    //Imagem de perfil 
     ServiceImage: {
         type: String,
         required: true,

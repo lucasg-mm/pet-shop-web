@@ -10,232 +10,255 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-	    <link rel="stylesheet" href="css/styles.css">
-	    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-	    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-	    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-	    <title>The Animal House</title>
-    </head>
-    <body>
 
-        <div id="app">         
-            <!--Cabecalho, Presente em todas as Paginas-->
-            <div class="cabecalho">
-                <header>
-                    <h1 id="logo-text">The Animal House</h1>
-                </header>
-            </div>          
-            <br>
-            <!--Divs Presentes no login/paginal inicial-->
-            <div v-show="currUser == usertypes[2]">
-                <!--Div de Apresentacao - "Quem Nós Somos"-->
-                <div class="whoarewe">
-                    <h2><u>Who we are:</u></h2>
-                    <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.
-                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose.Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça. Aenean aliquam molestie leo.    
-                    </p>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>The Animal House</title>
+</head>
 
-                </div>
-                <!--Div Para o login-->
-                <div class="loginform">
-                    <h2>Become Our Customer!</h2>                    
-                    <table>
-                        <tr>
-                            <td><label>Username:</label></td>
-                            <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
-                        </tr>
-                        <tr>
-                            <td><label>Password:</label></td>
-                            <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
-                        </tr>
-                    </table>
+<body>
 
-                    <label>Log In as Administrator:</label>
-                    <input type="checkbox" v-model="admincheck">
-                    <br>
+    <div id="app">
+        <!--Cabecalho, Presente em todas as Paginas-->
+        <div class="cabecalho">
+            <header>
+                <h1 id="logo-text">The Animal House</h1>
+            </header>
+        </div>
+        <br>
+        <!--Divs Presentes no login/paginal inicial-->
+        <div v-show="currUser == usertypes[2]">
+            <!--Div de Apresentacao - "Quem Nós Somos"-->
+            <div class="whoarewe">
+                <h2><u>Who we are:</u></h2>
+                <p>Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça.
+                    Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh
+                    non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo
+                    pose.
+                    Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem cabeça.
+                    Aenean aliquam molestie leo, vitae iaculis nisl. Vehicula non. Ut sed ex eros. Vivamus sit amet nibh
+                    non tellus tristique interdum. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo
+                    pose.Mussum Ipsum, cacilds vidis litro abertis. Leite de capivaris, leite de mula manquis sem
+                    cabeça. Aenean aliquam molestie leo.
+                </p>
 
-                    <button v-on:click="login">LOG IN</button>
-                    <button v-on:click="setPage('main')">SIGN UP</button>
-
-                    <div v-show="currPage == pages[1]">
-                        
-                        <div class="contrastbox">
-                            <table>
-                                <tr>
-                                    <td><label>Username:</label></td>
-                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Phone Number:</label></td>
-                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.phonenumber"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Address:</label></td>
-                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.address"></td>
-                                </tr>                                                                           
-                                <tr>
-                                    <td><label>Email:</label></td>
-                                    <td><input class="input-1 transparent" type="text" v-model="userInfo.email"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Password:</label></td>
-                                    <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
-                                </tr>                                          
-                            </table>
-                            <button v-on:click="signin">Create Account</button>
-                        </div>
-                    </div>                    
-                    
-                </div>               
             </div>
-            <!--Fim dos divs Pagina de Login-->
+            <!--Div Para o login-->
+            <div class="loginform">
+                <h2>Become Our Customer!</h2>
+                <table>
+                    <tr>
+                        <td><label>Username:</label></td>
+                        <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Password:</label></td>
+                        <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
+                    </tr>
+                </table>
 
-            <!--Secao divs Usuario = Cliente-->
-            <div v-show="currUser == usertypes[0]">
-                <!--Div De usuário Aparece sempre que usuario = cliente-->
-                <div class="userDiv">
-   
-                    <img :src="'http://localhost:3000/' + userInfo.imageURL">
-                    <p style="float: left;">{{userInfo.username}}</p> 
-                    <button v-on:click="exite()">Exit</button> 
-                    <button @click="checkout()">Checkout</button>
-                    <button @click="setPage('main')">Dashboard</button>                    
-                    <div class="cart">My Cart: U$ {{ myCart.total.toFixed(2) }}</div>
-            
-                </div>
+                <label>Log In as Administrator:</label>
+                <input type="checkbox" v-model="admincheck">
                 <br>
-                <!--Pagina Menu de opcoes cliente-->
+
+                <button v-on:click="login">LOG IN</button>
+                <button v-on:click="setPage('main')">SIGN UP</button>
+
                 <div v-show="currPage == pages[1]">
-                    <div class="seletor cliente">
-                        <h2>Client's Dashboard</h2>
-                        <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule Service<br><br><img src="images/calendar.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy Products<br><br><img src="images/shopping-cart.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('manage1')">Update Info<br><br><img src="images/registration.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('manage2'); getPets();">Register Pets<br><br><img src="images/carrier.png"></button>
-                    </div>
-                </div>
-                <!--Pagina Registrar Animais-->
-                <div v-show ="currPage == pages[5]">
-                    <div class="container-1 blue view-and-register">
-                        <h2>Register Pets</h2>
-                        <div class="scroll-container view-animals">
-                            <!--Divs de Registro Animal-->
-                            <div class="regAnimal" v-for="(pet, index) in pets">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: {{ pet.name }}</li>
-                                    <li class="list-card-item">Species: {{ pet.species }}</li>
-                                    <li class="list-card-item">Breed: {{ pet.breed }}</li>
-                                    <li class="list-card-item">Age: {{ pet.age }}</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reserves:</p>
-                                    <li class="list-card-item" v-for="service in pets.services">
-                                    	{{ service.name }}: {{ service.day }}, {{ service.hour }}:00
-                                	</li>
-                                </ul>
-                                <button class="closeButton" class="button2" @click="showmodal2(); deletePet(index);">X</button>
-                            </div>                           
-                        </div>
-                		
-                		<!--Div de inserir Novo animal-->
-                        <div class="container-2 blue register-container">
-			                <p v-if="erros.length">
-			                    <b>
-			                        Errors:
-			                    </b>
-			                    <ul>
-			                        <li v-for="erro in erros">
-			                            {{erro}}
-			                        </li>
-			                    </ul>
-			                </p>                        	
-                            <div class="column">
-                                <img class="small-img" src="images/pet.png">
-                            </div>
-                            <form @submit="validateFormAddPets($event); addPet();">
-	                            <div class="column">
-	                                <input class="input-1" type="text" name="pet-name" v-model="addPetForm.name"
-	                                placeholder="Pet's name">
-	                                <input class="input-1" type="text" name="pet-species" v-model="addPetForm.species" placeholder="Pet's species"> 
-	                            </div>
-	                            <div class="column">
-	                                <input class="input-1" type="text" name="pet-breed" v-model="addPetForm.breed" placeholder="Pet's breed"> 
-	                                <input class="input-1" type="text" name="pet-age" v-model="addPetForm.age"
-	                                placeholder="Pet's age">
-	                                <button type="submit" class="btn-1 green">Add Pet</button> 			
-	                            </div>
-                        	</form>
-                        </div>			
-                    </div>
-                    
-                </div>
-                <!--Pagina editar registro-->
-                <div v-show = "currPage ==pages[4]">
-                    <div class="useReg">
-                        <h2>Update Info</h2>
-                        <br>                        
-                        <div class="container-3 blue">
-                            <img :src="'http://localhost:3000/' + userInfo.imageURL">
-                            <br>
-                            <input type="file" id="imagem-escolhida" name="myfile" @change="updateProfilePic($event)">                  
-                            <table>
-                                <tr>
-                                    <td><label>Username:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.username"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Phone Number:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.phonenumber"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Address:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.address"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Email:</label></td>
-                                    <td><input class="input-1 white" type="text" v-model="userInfoUpdated.email"></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Password:</label></td>
-                                    <td><input class="input-1 white" type="password" v-model="userInfoUpdated.password"></td>
-                                </tr>    
-                            </table>
-                            <button class="btn-1 green" @click="updateUserInfo()">Confirm Changes</button>
-                        </div>
+
+                    <div class="contrastbox">
+                        <table>
+                            <tr>
+                                <td><label>Username:</label></td>
+                                <td><input class="input-1 transparent" type="text" v-model="userInfo.username"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Phone Number:</label></td>
+                                <td><input class="input-1 transparent" type="text" v-model="userInfo.phonenumber"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Address:</label></td>
+                                <td><input class="input-1 transparent" type="text" v-model="userInfo.address"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Email:</label></td>
+                                <td><input class="input-1 transparent" type="text" v-model="userInfo.email"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Password:</label></td>
+                                <td><input class="input-1 transparent" type="password" v-model="userInfo.password"></td>
+                            </tr>
+                        </table>
+                        <button v-on:click="signin">Create Account</button>
                     </div>
                 </div>
 
-                <!--Pagina comprar Produtos-->
-                <div v-show="currPage == pages[2]">
-                    <!--Modal, Div usado para mostrar a verão "grande" do produto-->
-                    <div id="fancymodal" class="big-box-modal">
-                        <div class="serv-grande">
-                            <button class="closeButton" onclick="closer()">X</button>
-                            <img src="images/osso.png">
-                            <br>
-                            <em>Product Name: {{ selectedProduct.name }}</em>
-                            <br>
-                            <em>In stock: {{ selectedProduct.stock }}</em>
-                            <br>
-                            <em>Price: ${{ selectedProduct.price }}</em>
-                            <br>
-                            <button class="buy-btn-big" @click="addToCart(selectedProduct.name, selectedProduct.price, selectedProduct._id, 'product')">BUY</button>
-                            <br>
-                            <div id="descricao-produto">
-                                <h3>Product Description:</h3>
-                                <p>
-                                    {{ selectedProduct.description }}
-                                </p>
-                             </div>
-                        </div>	
+            </div>
+        </div>
+        <!--Fim dos divs Pagina de Login-->
+
+        <!--Secao divs Usuario = Cliente-->
+        <div v-show="currUser == usertypes[0]">
+            <!--Div De usuário Aparece sempre que usuario = cliente-->
+            <div class="userDiv">
+
+                <img :src="'http://localhost:3000/' + userInfo.imageURL">
+                <p style="float: left;">{{userInfo.username}}</p>
+                <button v-on:click="exite()">Exit</button>
+                <button @click="emptyCart()">Empty Cart</button>
+                <button @click="checkout()">Checkout</button>
+                <button @click="setPage('main')">Dashboard</button>
+                <div class="cart">My Cart: U$ {{ myCart.total.toFixed(2) }}</div>
+
+            </div>
+            <br>
+            <!--Pagina Menu de opcoes cliente-->
+            <div v-show="currPage == pages[1]">
+                <div class="seletor cliente">
+                    <h2>Client's Dashboard</h2>
+                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule
+                        Service<br><br><img src="images/calendar.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy
+                        Products<br><br><img src="images/shopping-cart.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('manage1')">Update Info<br><br><img
+                            src="images/registration.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('manage2'); getPets();">Register Pets<br><br><img
+                            src="images/carrier.png"></button>
+                </div>
+            </div>
+            <!--Pagina Registrar Animais-->
+            <div v-show="currPage == pages[5]">
+                <div class="container-1 blue view-and-register">
+                    <h2>Register Pets</h2>
+                    <div class="scroll-container view-animals">
+                        <!--Divs de Registro Animal-->
+                        <div class="regAnimal" v-for="(pet, index) in pets">
+                            <img class="small-img" :src="'http://localhost:3000/' + pet.petImage">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: {{ pet.name }}</li>
+                                <li class="list-card-item">Species: {{ pet.species }}</li>
+                                <li class="list-card-item">Breed: {{ pet.breed }}</li>
+                                <li class="list-card-item">Age: {{ pet.age }}</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reserves:</p>
+                                <li class="list-card-item" v-for="service in pets.services">
+                                    {{ service.name }}: {{ service.day }}, {{ service.hour }}:00
+                                </li>
+                            </ul>
+                            <button class="closeButton" class="button2"
+                                @click="showmodal2(); deletePet(index);">X</button>
+                        </div>
                     </div>
-                    <div class="seletor">
-                        <h2>Buy Products:</h2> 
+
+                    <!--Div de inserir Novo animal-->
+                    <div class="container-2 blue register-container">
+                        <p v-if="erros.length">
+                            <b>
+                                Errors:
+                            </b>
                         <ul>
-                          <li v-for="(product, index) in products">
+                            <li v-for="erro in erros">
+                                {{erro}}
+                            </li>
+                        </ul>
+                        </p>
+                        <div class="column">
+                            <img v-if="!urlPreview" class="small-img" src="images/pet.png">
+                            <img v-if="urlPreview" class="small-img" :src="urlPreview">
+                        </div>
+                        <form @submit="validateFormAddPets($event); addPet();">
+                            <div class="column">
+                                <input class="input-1" type="text" name="pet-name" v-model="addPetForm.name"
+                                    placeholder="Pet's name">
+                                <input class="input-1" type="text" name="pet-species" v-model="addPetForm.species"
+                                    placeholder="Pet's species">
+                                <input v-model="petImage" type="file" @change="previewImage">    
+                            </div>
+                            <div class="column">
+                                <input class="input-1" type="text" name="pet-breed" v-model="addPetForm.breed"
+                                    placeholder="Pet's breed">
+                                <input class="input-1" type="text" name="pet-age" v-model="addPetForm.age"
+                                    placeholder="Pet's age">
+                                <button type="submit" class="btn-1 green">Add Pet</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <!--Pagina editar registro-->
+            <div v-show="currPage ==pages[4]">
+                <div class="useReg">
+                    <h2>Update Info</h2>
+                    <br>
+                    <div class="container-3 blue">
+                        <img v-if="urlPreview" :src="urlPreview">                        
+                        <img v-if="!urlPreview" :src="'http://localhost:3000/' + userInfo.imageURL">
+                        <br>
+                        <input type="file" @change="previewImage">
+                        <table>
+                            <tr>
+                                <td><label>Username:</label></td>
+                                <td><input class="input-1 white" type="text" v-model="userInfoUpdated.username"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Phone Number:</label></td>
+                                <td><input class="input-1 white" type="text" v-model="userInfoUpdated.phonenumber"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Address:</label></td>
+                                <td><input class="input-1 white" type="text" v-model="userInfoUpdated.address"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Email:</label></td>
+                                <td><input class="input-1 white" type="text" v-model="userInfoUpdated.email"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Password:</label></td>
+                                <td><input class="input-1 white" type="password" v-model="userInfoUpdated.password">
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="btn-1 green" @click="updateUserInfo()">Confirm Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Pagina comprar Produtos-->
+            <div v-show="currPage == pages[2]">
+                <!--Modal, Div usado para mostrar a verão "grande" do produto-->
+                <div id="fancymodal" class="big-box-modal">
+                    <div class="serv-grande">
+                        <button class="closeButton" onclick="closer()">X</button>
+                        <img src="images/osso.png">
+                        <br>
+                        <em>Product Name: {{ selectedProduct.name }}</em>
+                        <br>
+                        <em>In stock: {{ selectedProduct.stock }}</em>
+                        <br>
+                        <em>Price: ${{ selectedProduct.price }}</em>
+                        <br>
+                        <button v-if="selectedProduct.stock > 0" class="buy-btn-big"
+                            @click="addToCart(selectedProduct.name, selectedProduct.price, selectedProduct._id, 'product', selectedProduct.index)">ADD TO CART</button>
+                        <input v-model="qtdSelected" type="number" min="1" :max="selectedProduct.stock">
+                        <br>
+                        <div id="descricao-produto">
+                            <h3>Product Description:</h3>
+                            <p>
+                                {{ selectedProduct.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="seletor">
+                    <h2>Buy Products:</h2>
+                    <ul>
+                        <li v-for="(product, index) in products">
                             <!--Div De produtos "pequeno"-->
                             <div class="serv-pequeno">
                                 <img class="prod-serv-miniatura" src="images/osso.png">
@@ -246,140 +269,143 @@
                                 <br>
                                 <em>Price: ${{ product.price }}</em>
                                 <br>
-                                <button class="buy-btn-small" v-on:click="setSelectedProduct(index); showmodal();">BUY</button>
+                                <button v-if="product.stock > 0" class="buy-btn-small"
+                                    v-on:click="setSelectedProduct(index); showmodal();">BUY</button>
                             </div>
-                          </li>
-                      </ul>  
-                    </div>
+                        </li>
+                    </ul>
                 </div>
+            </div>
 
-                <!--Pagina Comprar Servicos-->
-                <div v-show="currPage == pages[3]">
-                    <!--Similar A de Produtos, temos aqui um "servico" grande quando clicado-->
-                    <div id="bigmodal2" class="big-box-modal" style="display: none;">
-                        <div class="serv-grande" style="min-height: 900px;">
-                            <button class="closeButton" id="closem2"onclick="closer3()">X</button>
-                            <img src="images/banho.png">
-                            <br>
-                            <em>Service Name: {{ selectedService.name }}</em>
-                            <br>
-                            <em>Price: ${{ selectedService.price }}/h</em>
-                            <br>
-                            <br>
-                            <button class="buy-btn-big" @click="addToCart(selectedService.name, selectedService.price, selectedService._id, 'service')">BOOK</button>
-                            <br>
-                            <div id="descricao-servico">
-                                <h3>Product Description:</h3>
-                                <p>
-                                    {{ selectedService.description }}
-                                </p>
-                            </div>
-                            <div id="area-agendamento">
-                                <h3>Choose your time slot:</h3>				
-                                <!--Div para fazer o "calendario"-->
-                                <div class="time-slots">
-                                    <button class="week-selector"><</button>
-                                    <button class="week-selector">></button>
-                                    
-                                    <div class="tabela">						
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>04/05</th>
-                                                    <th>05/05</th>
-                                                    <th>06/05</th>
-                                                    <th>07/05</th>
-                                                    <th>08/05</th>
-                                                    <th>09/05</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="horario-dado">9h - 10h</td>
-                                                    <td><button class="selecionado">SELECTED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">10h - 11h</td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>							
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">11h - 12h</td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">13h - 14h</td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>							
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">14h - 15h</td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>							
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">15h - 16h</td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="horario-dado">16h - 17h</td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="liberado">FREE</button></td>							
-                                                </tr>							
-                                                <tr>
-                                                    <td class="horario-dado">17h - 18h</td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                    <td><button class="liberado">FREE</button></td>
-                                                    <td><button class="ocupado">RESERVED</button></td>
-                                                </tr>							
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+            <!--Pagina Comprar Servicos-->
+            <div v-show="currPage == pages[3]">
+                <!--Similar A de Produtos, temos aqui um "servico" grande quando clicado-->
+                <div id="bigmodal2" class="big-box-modal" style="display: none;">
+                    <div class="serv-grande" style="min-height: 900px;">
+                        <button class="closeButton" id="closem2" onclick="closer3()">X</button>
+                        <img src="images/banho.png">
+                        <br>
+                        <em>Service Name: {{ selectedService.name }}</em>
+                        <br>
+                        <em>Price: ${{ selectedService.price }}/h</em>
+                        <br>
+                        <br>
+                        <button class="buy-btn-big"
+                            @click="addToCart(selectedService.name, selectedService.price, selectedService._id, 'service', selectedService.index)">BOOK</button>
+                        <br>
+                        <div id="descricao-servico">
+                            <h3>Product Description:</h3>
+                            <p>
+                                {{ selectedService.description }}
+                            </p>
+                        </div>
+                        <div id="area-agendamento">
+                            <h3>Choose your time slot:</h3>
+                            <!--Div para fazer o "calendario"-->
+                            <div class="time-slots">
+                                <button class="week-selector">
+                                    << /button>
+                                        <button class="week-selector">></button>
+
+                                        <div class="tabela">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>04/05</th>
+                                                        <th>05/05</th>
+                                                        <th>06/05</th>
+                                                        <th>07/05</th>
+                                                        <th>08/05</th>
+                                                        <th>09/05</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="horario-dado">9h - 10h</td>
+                                                        <td><button class="selecionado">SELECTED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">10h - 11h</td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">11h - 12h</td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">13h - 14h</td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">14h - 15h</td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">15h - 16h</td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">16h - 17h</td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">17h - 18h</td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                                        
-                    <div class="seletor">
-                        <h2>Buy Services:</h2> 
-                        <ul>
-                          <li v-for="(service, index) in services">
+
+                <div class="seletor">
+                    <h2>Buy Services:</h2>
+                    <ul>
+                        <li v-for="(service, index) in services">
                             <!--Div Para os serviços pequenos-->
                             <div class="serv-pequeno">
                                 <img class="prod-serv-miniatura" src="images/banho.png">
@@ -389,662 +415,784 @@
                                 <em>Price: ${{ service.price }}/h</em>
                                 <br>
                                 <br>
-                                <button class="buy-btn-small" v-on:click="setSelectedService(index); showmodal3();">BOOK</button>
+                                <button class="buy-btn-small"
+                                    v-on:click="setSelectedService(index); showmodal3();">BOOK</button>
                             </div>
-                          </li>   
-                      </ul>  
-                    </div>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+
+        </div>
+        <!--Fim Secao divs Usuario = Cliente-->
+
+        <!--Secao divs Usuario = Admin-->
+        <div v-show="currUser == usertypes[1]">
+            <!--Div Admin, presente em todo momento em que user = admin-->
+            <div class="userDiv">
+
+                <img src="images/osso.png">
+                <p style="float: left;">{{userInfo.username}}</p>
+                <button v-on:click="exite()">Exit</button>
+
 
             </div>
-            <!--Fim Secao divs Usuario = Cliente-->
 
-            <!--Secao divs Usuario = Admin-->
-            <div v-show="currUser == usertypes[1]">
-                <!--Div Admin, presente em todo momento em que user = admin-->
-                <div class="userDiv">
-   
-                    <img src="images/osso.png">
-                    <p style="float: left;">{{userInfo.username}}</p>
-                    <button v-on:click="exite()">Exit</button>  
-                   
-            
+            <!--Menu de opcoes Admin-->
+            <div v-show="currPage == pages[1]">
+                <br>
+                <div class="seletor admin">
+                    <h2>Admin's Dashboard</h2>
+                    <button class="botao-menu" v-on:click="setPage('manage1')">Manage Admins<br><br><img
+                            src="images/admin.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('manage2')">Manage Clients<br><br><img
+                            src="images/cliente.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('products')">Manage Products<br><br><img
+                            src="images/osso.png"></button>
+                    <button class="botao-menu" v-on:click="setPage('service')">Manage Services<br><br><img
+                            src="images/banho.png"></button>
                 </div>
+            </div>
 
-                <!--Menu de opcoes Admin-->
-                <div v-show="currPage == pages[1]">
-                    <br>
-                    <div class="seletor admin">
-                        <h2>Admin's Dashboard</h2>
-                        <button class="botao-menu" v-on:click="setPage('manage1')">Manage Admins<br><br><img src="images/admin.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('manage2')">Manage Clients<br><br><img src="images/cliente.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('products')">Manage Products<br><br><img src="images/osso.png"></button>
-                        <button class="botao-menu" v-on:click="setPage('service')">Manage Services<br><br><img src="images/banho.png"></button>
-                    </div>
-                </div>
-
-                <!--Div Pagina Inventario Produtos-->
-                <div v-show="currPage == pages[2]">
-                    <br>
-                    <div class="manager">
-                    		<!--Div Para edicao Usado, com leves variacoes em todos os menus de edicao-->
-                            <div class="editor">
-                                <h2>Editor</h2>
-                                <img class="prod-serv-miniatura" src="images/osso.png">
-                                <input type="file" id="imagem-escolhida-prod" name="myfile">
-                                <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name" placeholder="Product's name" type="text"></input>
-                                <input id="preço-produto-editor" value="Price" placeholder="Product's price" type="text"></input>
-                                <textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo   minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
+            <!--Div Pagina Inventario Produtos-->
+            <div v-show="currPage == pages[2]">
+                <br>
+                <div class="manager">
+                    <!--Div Para edicao Usado, com leves variacoes em todos os menus de edicao-->
+                    <div class="editor">
+                        <h2>Editor</h2>
+                        <img class="prod-serv-miniatura" src="images/osso.png">
+                        <input type="file" id="imagem-escolhida-prod" name="myfile">
+                        <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name"
+                            placeholder="Product's name" type="text"></input>
+                        <input id="preço-produto-editor" value="Price" placeholder="Product's price"
+                            type="text"></input>
+                        <textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo   minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
                                 </textarea>
-                                <label id="estoque-label" for="estoque">In Stock?</label>               
-                                <input type="checkbox" id="estoque-check" name="estoque" value="true">
-                                <button class="save-btn">Save</button>
-                            </div>
+                        <label id="estoque-label" for="estoque">In Stock?</label>
+                        <input type="checkbox" id="estoque-check" name="estoque" value="true">
+                        <button class="save-btn">Save</button>
+                    </div>
 
-                            <!--Div de Inventario - Permite Visualisar o produto de forma resumida-->
-                            <div class="inventory">
-                                <button class="closeButton" v-on:click="setPage('main')">X</button>
-                                <h2>Product Inventory</h2>
-                                <input type="search" class="search" id="product-search" name="q"
-                                aria-label="Search through site content">
-                                <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                                <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                                <div class="lista-registros">
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button> 
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button> 
-                                    </div>                                              
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>  
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>
-                                    <div class="registro">
-                                        <p class="registro-nome">Product's name</p>
-                                        <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                        <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                    </div>                                                                                              
-                                </div>  
-                            </div>
-                        </div>                    
-                </div>  
-
-                <!--Div Inventario Servicos-->
-                <div v-show="currPage == pages[3]">
-                    <br>
-                    <div class="manager">
-                    	<!--Div Editor-->
-
-                        <div class="editor">
-                            <h2>Editor</h2>
-                            <img class="prod-serv-miniatura" src="images/banho.png">
-                            <input type="file" id="imagem-escolhida-serviço" name="myfile">
-                            <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name" placeholder="Service's name" type="text"></input>
-                            <input id="preço-serviço-editor" value="Price" placeholder="Service's Price" type="text"></input>
-                            <textarea placeholder="Service's Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
-                            </textarea>
-                            <button class="time-slots-btn" v-on:click="setPage('special2')">Time Slots</button>
-                            <button class="save-btn">Save</button>
-                        </div>
-                    
-                        <!--Div de Inventario-->
-                        <div class="inventory">
-                            <button class="closeButton" v-on:click="setPage('main')">X</button>
-                            <h2>Services List</h2>
-                            <input type="search" class="search" id="service-search" name="q"
+                    <!--Div de Inventario - Permite Visualisar o produto de forma resumida-->
+                    <div class="inventory">
+                        <button class="closeButton" v-on:click="setPage('main')">X</button>
+                        <h2>Product Inventory</h2>
+                        <input type="search" class="search" id="product-search" name="q"
                             aria-label="Search through site content">
-                            <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                            <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                            <div class="lista-registros">
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>												
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Service's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>																						
-                            </div>	
+                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+                        <div class="lista-registros">
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Product's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                <!--Div Manage Admins-->
-                <div v-show="currPage == pages[4]">
-                    <br>
-                    <div class="manager">
-                    	<!--Div Editor-->
-                        <div class="editor">
-                            <h2>Editor</h2>
-                            <img class="prod-serv-miniatura pessoa-miniatura" src="images/admin2.png">
-                            <input type="file" id="imagem-escolhida-admin" name="myfile">
-                            <input class="nome-prod-serv" id="nome-admin-editor" value="Admin's name" placeholder="Admin's Name" type="text"></input>
-                            <input id="admin-id" value="Admin's ID" placeholder="Admin's ID" type="text"></input>
-                            <input id="admin-address" value="Admin's Address" placeholder="Admin's Address" type="text"></input>
-                            <input id="admin-phone" value="Admin's Phone" placeholder="Admin's Phone" type="text"></input>
-                            <input id="admin-email" value="Admin's E-mail" placeholder="Admin's E-mail" type="text"></input>
-                            <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname" type="text"></input>
-                            <button class="save-btn">Save</button>
-                        </div>
-                        <!--Div Inventario-->
-                        <div class="inventory">
-                            <button class="closeButton" v-on:click="setPage('main')">X</button>
-                            <h2>Admins List</h2>
-                            <input type="search" class="search" id="service-search" name="q"
-                            aria-label="Search through site content">
-                            <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                            <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                            <div class="lista-registros">
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>												
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Admin's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>																						
-                            </div>	
-                        </div>
-                    </div>
-                </div>
-
-                <!--Div manage Clientes-->
-                <div v-show="currPage == pages[5]">
-                    <br>
-                    <div class="manager">
-                    	<!--Div Editor-->
-                        <div class="editor">
-                            <h2>Editor</h2>
-                            <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
-                            <input type="file" id="imagem-escolhida-cliente" name="myfile">
-                            <input class="nome-prod-serv" id="nome-serviço-editor" value="Customer's name" placeholder="Customer's Name" type="text"></input>
-                            <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" type="text"></input>
-                            <input id="customer-address" value="Customer's Address" placeholder="Customer's Address" type="text"></input>
-                            <input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone" type="text"></input>
-                            <input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail" type="text"></input>
-                            <input id="customer-nickname" value="Customer's Nickname" placeholder="Customer's Nickname" type="text"></input>
-                            <button class="view-pets-btn"v-on:click="setPage('special')">Pets</button>
-                            <button class="save-btn">Save</button>
-                        </div>
-                        <!--Div Inventario-->
-                        <div class="inventory">
-                            <button class="closeButton" v-on:click="setPage('main')">X</button>
-                            <h2>Customers List</h2>
-                            <input type="search" class="search" id="service-search" name="q"
-                            aria-label="Search through site content">
-                            <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                            <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                            <div class="lista-registros">
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>												
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>
-                                <div class="registro">
-                                    <p class="registro-nome">Customer's name</p>
-                                    <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn" src="images/trash.png"></button>
-                                    <button class="inventory-btn btn-edit"><img class="img-btn" src="images/edit.png"></button>
-                                </div>																						
-                            </div>	
-                        </div>
-                    </div>
-                </div>
-
-                <!--Div Animais resgistrados para o Usuario-->
-                <div v-show="currPage == pages[6]">
-                    <br>
-                    <div class="container-1 blue view-and-register">
-                        <button class="closeButton principal" v-on:click="setPage('manage2')">X</button>
-                        <h2>User's pets</h2>
-                        <div class="scroll-container view-animals">
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reservas:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reservas:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reservas:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reservas:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>		    
-                
-                            <div class="regAnimal">
-                                <img src="images/pet.png">
-                                <ul class="list-card">
-                                    <li class="list-card-item">Name: oqlaoqlao</li>
-                                    <li class="list-card-item">ID: 10292389110</li>
-                                    <li class="list-card-item">Species: ahshahsash</li>
-                                    <li class="list-card-item">Breed: kjndckan</li>
-                                    <li class="list-card-item">Age: 12</li>
-                                </ul>
-                                <ul class="list-card">
-                                    <p>Reservas:</p>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                    <li class="list-card-item"></li>
-                                </ul>
-                                <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                            </div>
-                        </div>
-                
-                        <div class="container-2 blue register-container">
-                            <div class="column">
-                                <img class="small-img" src="images/pet.png">
-                            </div>
-                            <div class="column">
-                                <input class="input-1" type="text" name="pet-name" placeholder="Pet's name"> 	
-                                <input class="input-1" type="text" name="pet-id" placeholder="Pet's ID"> 
-                                <input class="input-1" type="text" name="pet-species" placeholder="Pet's Species"> 
-                            </div>
-                            <div class="column">
-                                <input class="input-1" type="text" name="pet-breed" placeholder="Pet's Breed"> 
-                                <input class="input-1" type="text" name="pet-age" placeholder="Pet's Age">
-                                <button class="btn-1 green">Add Pet</button> 			
-                            </div>
-                        </div>			
-                    </div>	
-
-                </div>
-
-                <!--Div para mudar data Servicos-->
-                <div v-show="currPage == pages[7]">
-                    <br>
-                    <div class="container-1 blue" id="adm-time-slots">
-                        <button class="closeButton principal" v-on:click="setPage('service')">X</button>
-                        <h2>Pet Shop's Time Slots</h2>
-                
-                        <div class="time-slots">
-                            <button class="week-selector"><</button>
-                            <button class="week-selector">></button>
-                            
-                            <div class="tabela">						
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>04/05</th>
-                                            <th>05/05</th>
-                                            <th>06/05</th>
-                                            <th>07/05</th>
-                                            <th>08/05</th>
-                                            <th>09/05</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="horario-dado">9h - 10h</td>
-                                            <td><button class="selecionado">SELECTED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">10h - 11h</td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>							
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">11h - 12h</td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">13h - 14h</td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="liberado">FREE</button></td>							
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">14h - 15h</td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>							
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">15h - 16h</td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="horario-dado">16h - 17h</td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>						
-                                        </tr>							
-                                        <tr>
-                                            <td class="horario-dado">17h - 18h</td>
-                                            <td><button class="ocupado">RESERVED</button></td>
-                                            <td><button class="liberado">FREE</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                            <td><button class="associado">ASSOCIATED</button></td>
-                                        </tr>							
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div id="adm-btns">
-                            <button class="btn-1 blue">Associate Service</button>
-                            <button class="btn-1 red">Release Time Slot</button>
-                        </div>		
-                </div>    
             </div>
 
-            <!--Div "Voce tem certeza" Presente em varios divs diferentes-->              
+            <!--Div Inventario Servicos-->
+            <div v-show="currPage == pages[3]">
+                <br>
+                <div class="manager">
+                    <!--Div Editor-->
+
+                    <div class="editor">
+                        <h2>Editor</h2>
+                        <img class="prod-serv-miniatura" src="images/banho.png">
+                        <input type="file" id="imagem-escolhida-serviço" name="myfile">
+                        <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name"
+                            placeholder="Service's name" type="text"></input>
+                        <input id="preço-serviço-editor" value="Price" placeholder="Service's Price"
+                            type="text"></input>
+                        <textarea placeholder="Service's Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
+                            </textarea>
+                        <button class="time-slots-btn" v-on:click="setPage('special2')">Time Slots</button>
+                        <button class="save-btn">Save</button>
+                    </div>
+
+                    <!--Div de Inventario-->
+                    <div class="inventory">
+                        <button class="closeButton" v-on:click="setPage('main')">X</button>
+                        <h2>Services List</h2>
+                        <input type="search" class="search" id="service-search" name="q"
+                            aria-label="Search through site content">
+                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+                        <div class="lista-registros">
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Service's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Div Manage Admins-->
+            <div v-show="currPage == pages[4]">
+                <br>
+                <div class="manager">
+                    <!--Div Editor-->
+                    <div class="editor">
+                        <h2>Editor</h2>
+                        <img class="prod-serv-miniatura pessoa-miniatura" src="images/admin2.png">
+                        <input type="file" id="imagem-escolhida-admin" name="myfile">
+                        <input class="nome-prod-serv" id="nome-admin-editor" value="Admin's name"
+                            placeholder="Admin's Name" type="text"></input>
+                        <input id="admin-id" value="Admin's ID" placeholder="Admin's ID" type="text"></input>
+                        <input id="admin-address" value="Admin's Address" placeholder="Admin's Address"
+                            type="text"></input>
+                        <input id="admin-phone" value="Admin's Phone" placeholder="Admin's Phone" type="text"></input>
+                        <input id="admin-email" value="Admin's E-mail" placeholder="Admin's E-mail" type="text"></input>
+                        <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname"
+                            type="text"></input>
+                        <button class="save-btn">Save</button>
+                    </div>
+                    <!--Div Inventario-->
+                    <div class="inventory">
+                        <button class="closeButton" v-on:click="setPage('main')">X</button>
+                        <h2>Admins List</h2>
+                        <input type="search" class="search" id="service-search" name="q"
+                            aria-label="Search through site content">
+                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+                        <div class="lista-registros">
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Admin's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Div manage Clientes-->
+            <div v-show="currPage == pages[5]">
+                <br>
+                <div class="manager">
+                    <!--Div Editor-->
+                    <div class="editor">
+                        <h2>Editor</h2>
+                        <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
+                        <input type="file" id="imagem-escolhida-cliente" name="myfile">
+                        <input class="nome-prod-serv" id="nome-serviço-editor" value="Customer's name"
+                            placeholder="Customer's Name" type="text"></input>
+                        <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" type="text"></input>
+                        <input id="customer-address" value="Customer's Address" placeholder="Customer's Address"
+                            type="text"></input>
+                        <input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone"
+                            type="text"></input>
+                        <input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail"
+                            type="text"></input>
+                        <input id="customer-nickname" value="Customer's Nickname" placeholder="Customer's Nickname"
+                            type="text"></input>
+                        <button class="view-pets-btn" v-on:click="setPage('special')">Pets</button>
+                        <button class="save-btn">Save</button>
+                    </div>
+                    <!--Div Inventario-->
+                    <div class="inventory">
+                        <button class="closeButton" v-on:click="setPage('main')">X</button>
+                        <h2>Customers List</h2>
+                        <input type="search" class="search" id="service-search" name="q"
+                            aria-label="Search through site content">
+                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
+                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
+                        <div class="lista-registros">
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                            <div class="registro">
+                                <p class="registro-nome">Customer's name</p>
+                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
+                                        src="images/trash.png"></button>
+                                <button class="inventory-btn btn-edit"><img class="img-btn"
+                                        src="images/edit.png"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Div Animais resgistrados para o Usuario-->
+            <div v-show="currPage == pages[6]">
+                <br>
+                <div class="container-1 blue view-and-register">
+                    <button class="closeButton principal" v-on:click="setPage('manage2')">X</button>
+                    <h2>User's pets</h2>
+                    <div class="scroll-container view-animals">
+                        <div class="regAnimal">
+                            <img src="images/pet.png">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: oqlaoqlao</li>
+                                <li class="list-card-item">ID: 10292389110</li>
+                                <li class="list-card-item">Species: ahshahsash</li>
+                                <li class="list-card-item">Breed: kjndckan</li>
+                                <li class="list-card-item">Age: 12</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reservas:</p>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                            </ul>
+                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                        </div>
+
+                        <div class="regAnimal">
+                            <img src="images/pet.png">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: oqlaoqlao</li>
+                                <li class="list-card-item">ID: 10292389110</li>
+                                <li class="list-card-item">Species: ahshahsash</li>
+                                <li class="list-card-item">Breed: kjndckan</li>
+                                <li class="list-card-item">Age: 12</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reservas:</p>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                            </ul>
+                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                        </div>
+
+                        <div class="regAnimal">
+                            <img src="images/pet.png">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: oqlaoqlao</li>
+                                <li class="list-card-item">ID: 10292389110</li>
+                                <li class="list-card-item">Species: ahshahsash</li>
+                                <li class="list-card-item">Breed: kjndckan</li>
+                                <li class="list-card-item">Age: 12</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reservas:</p>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                            </ul>
+                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                        </div>
+
+                        <div class="regAnimal">
+                            <img src="images/pet.png">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: oqlaoqlao</li>
+                                <li class="list-card-item">ID: 10292389110</li>
+                                <li class="list-card-item">Species: ahshahsash</li>
+                                <li class="list-card-item">Breed: kjndckan</li>
+                                <li class="list-card-item">Age: 12</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reservas:</p>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                            </ul>
+                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                        </div>
+
+                        <div class="regAnimal">
+                            <img src="images/pet.png">
+                            <ul class="list-card">
+                                <li class="list-card-item">Name: oqlaoqlao</li>
+                                <li class="list-card-item">ID: 10292389110</li>
+                                <li class="list-card-item">Species: ahshahsash</li>
+                                <li class="list-card-item">Breed: kjndckan</li>
+                                <li class="list-card-item">Age: 12</li>
+                            </ul>
+                            <ul class="list-card">
+                                <p>Reservas:</p>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                                <li class="list-card-item"></li>
+                            </ul>
+                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                        </div>
+                    </div>
+
+                    <div class="container-2 blue register-container">
+                        <div class="column">
+                            <img class="small-img" src="images/pet.png">
+                        </div>
+                        <div class="column">
+                            <input class="input-1" type="text" name="pet-name" placeholder="Pet's name">
+                            <input class="input-1" type="text" name="pet-id" placeholder="Pet's ID">
+                            <input class="input-1" type="text" name="pet-species" placeholder="Pet's Species">
+                        </div>
+                        <div class="column">
+                            <input class="input-1" type="text" name="pet-breed" placeholder="Pet's Breed">
+                            <input class="input-1" type="text" name="pet-age" placeholder="Pet's Age">
+                            <button class="btn-1 green">Add Pet</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Div para mudar data Servicos-->
+            <div v-show="currPage == pages[7]">
+                <br>
+                <div class="container-1 blue" id="adm-time-slots">
+                    <button class="closeButton principal" v-on:click="setPage('service')">X</button>
+                    <h2>Pet Shop's Time Slots</h2>
+
+                    <div class="time-slots">
+                        <button class="week-selector">
+                            << /button>
+                                <button class="week-selector">></button>
+
+                                <div class="tabela">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>04/05</th>
+                                                <th>05/05</th>
+                                                <th>06/05</th>
+                                                <th>07/05</th>
+                                                <th>08/05</th>
+                                                <th>09/05</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="horario-dado">9h - 10h</td>
+                                                <td><button class="selecionado">SELECTED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">10h - 11h</td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">11h - 12h</td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">13h - 14h</td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">14h - 15h</td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">15h - 16h</td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">16h - 17h</td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="horario-dado">17h - 18h</td>
+                                                <td><button class="ocupado">RESERVED</button></td>
+                                                <td><button class="liberado">FREE</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                                <td><button class="associado">ASSOCIATED</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                    </div>
+                    <div id="adm-btns">
+                        <button class="btn-1 blue">Associate Service</button>
+                        <button class="btn-1 red">Release Time Slot</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Div "Voce tem certeza" Presente em varios divs diferentes-->
             <div id="confirmmodal" class="big-box-modal" style="display: none;">
                 <div class="pop-up-peq">
                     <button class="closeButton" id="confirmclose" onclick="closer2()">X</button>
                     <p>Tem certeza que deseja realizar essa ação?</p>
                     <button class="btn-1 green">Sim</button>
                     <button class="btn-1 red">Não</button>
-                </div>	
-            </div>          
+                </div>
+            </div>
         </div>
 
         <!--Vou Usar o VUE para fazer a implementação do SPA-->
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script>
             new Vue({
-                el:"#app",
+                el: "#app",
 
-                data:{
-                    fetched:{},
+                data: {
+                    // two-way data binding com o seletor da imagem do pet a ser registrado
+                    petImage: "",
+
+                    // armazena um arquivo imagem
+                    imageFile: null,
+
+                    // URL do preview de uma imagem
+                    urlPreview: null,
+
+                    qtdSelected: 1,  // quantidade do produto selecionado que o usuário vai comprar
+
+                    fetched: {},
 
                     erros: [],  // armazena erros de validação de formulário
 
                     myCart: {
                         total: 0,
-                        receipt:[]
+                        receipt: []
                     },
 
                     userInfo: {
-                        _id:"",
-                        username:"",
+                        _id: "",
+                        username: "",
                         phonenumber: "",
                         address: "",
-                        email:"",
-                        password:"",
-                        imageURL:"",
+                        email: "",
+                        password: "",
+                        imageURL: "",
                         realName: ""
                     },
 
                     addPetForm: {
-                    	name: "",
-                    	species: "",
-                    	breed: "",
-                    	age: ""
+                        name: "",
+                        species: "",
+                        breed: "",
+                        age: ""
                     },
 
                     // Para usar no form de atualização dos dados (página "Update Info" do cliente)
                     userInfoUpdated: {
-	                    username: "",
-	                    password: "",
-	                    phonenumber: "",
-	                    address: "",
-	                    email: "",
-                        profilePic: ""                     	                    	
+                        username: "",
+                        password: "",
+                        phonenumber: "",
+                        address: "",
+                        email: "",
+                        profilePic: ""
                     },
 
                     //Informacao login
                     admincheck: false,
-                    
-                    products:[],
-                    services:[],
-                    admins:[],
-                    users:[],
+
+                    products: [],
+                    services: [],
+                    admins: [],
+                    users: [],
                     pets: [],  // pets do usuário
 
                     selectedProduct: {},
                     selectedService: {},
 
                     //informacao SPA
-                    currPage:"login",
-                    currUser:"N",
+                    currPage: "login",
+                    currUser: "N",
 
                     //"base de dados"
                     //Paginas que temos
-                    pages:["login","main","products","service","manage1","manage2","special","special2"],
+                    pages: ["login", "main", "products", "service", "manage1", "manage2", "special", "special2"],
                     //tipos de usuarios
-                    usertypes:["Cli", "Adm", "N"],
+                    usertypes: ["Cli", "Adm", "N"],
                     //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
-                    myerror:""
+                    myerror: ""
 
                 },
 
-                methods:{
+                methods: {
+                    // cria uma object URL para usar como prévia de uma imagem que será upada
+                    previewImage: function(e){
+                        const file = e.target.files[0];
+                        this.urlPreview = URL.createObjectURL(file);
+                        this.imageFile = file;                        
+                    },
+
+                    // esvazia o carrinho do usuário e restaura os valores de "stock" de cada produto
+                    emptyCart: function(){
+                        if(this.myCart.total != 0){
+                            // restaura os valores de "stock" de cada produto e libera appointments (a fazer)
+                            for(var i = 0; i < this.myCart.receipt.length; i++){
+                                // restaura valores de "stock"
+                                if(this.myCart.receipt[i].type === "product"){
+                                    this.products[this.myCart.receipt[i].index].stock = this.products[this.myCart.receipt[i].index].stock + 1;
+                                }
+
+                                // libera appointments (a fazer)
+                            }
+
+                            // esvazia o carrinho
+                            this.myCart.total = 0;
+                            this.myCart.receipt = [];
+                        }
+                        else{
+                            alert("Your cart is already empty!");
+                        }
+                    },
+
                     // faz o checkout dos produtos/serviços que estão no carrinho
                     // serviço - marca o dia e a hora no backend
                     // produto - subtrai a quantidade disponível
-                    checkout: async function(){
-                        if(this.myCart.total === 0){  // carrinho vazio
+                    checkout: async function () {
+                        if (this.myCart.total === 0) {  // carrinho vazio
                             alert("Your cart is empty!");
                         }
-                        else{ 
+                        else {
                             // para cada elemento no carrinho
-                            for(var i = 0; i < this.myCart.receipt.length; i++){
-                                if(this.myCart.receipt[i].type === "product"){  // se o item for um produto...
-                                    try{
+                            for (var i = 0; i < this.myCart.receipt.length; i++) {
+                                if (this.myCart.receipt[i].type === "product") {  // se o item for um produto...
+                                    try {
                                         // faz uma requisição para descontar as qtds dos produtos na base de dados
                                         let resp = await fetch("http://localhost:3000/products/sell/" + this.myCart.receipt[i].id);
 
                                         // se a requisição for bem-sucedida
-                                        if(resp.ok){
+                                        if (resp.ok) {
                                             console.log("Success!")
                                         }
-                                        else{  // se não for...
+                                        else {  // se não for...
                                             alert("Couldn't finish the transaction of the following item: " + this.myCart.receipt[i].name);
-                                        }                                        
+                                        }
                                     }
-                                    catch(e){
+                                    catch (e) {
                                         alert("Error " + e);
                                     }
                                 }
-                                if(this.myCart.receipt[i].type === "service"){  // se o item for um serviço...
+                                if (this.myCart.receipt[i].type === "service") {  // se o item for um serviço...
                                     console.log("serviços - a ser implementado");
                                 }
 
@@ -1055,274 +1203,325 @@
                         }
                     },
 
-                    // faz um POST request para atualizar a imagem de um usuário
-                    updateProfilePic: async function(evt){
-                        try{
-                            if(!this.erros.length){
-                                let form = new FormData();
-                                form.append('Image', evt.target.files[0]);
-
-                                // faz um post para registrar um pet na base
-                                let resp = await fetch("http://localhost:3000/users/image/" + this.userInfo._id, {
-                                  method: "POST",
-                                  body: form 
-                                });
-
-                                // se a requisição for bem-sucedida
-                                if(resp.ok){
-                                    let url = await resp.json();
-                                    this.userInfo.imageURL = url.profileImage;
-                                    console.log("Image succesfully uploaded: " + this.userInfo.imageURL);
-                                }
-                                else{  // se não for...
-                                    alert("Could not upload the image");
-                                }
-                            }                            
-                        }
-                        catch(e){
-                            alert("Error: " + e);
-                        }
-                    },
-
                     // deleta um determinado pet dentre aqueles no vetor de pets
-                    deletePet: async function(index){
-                        try{
+                    deletePet: async function (index) {
+                        try {
 
-                            let resp = await fetch("http://localhost:3000/pets/" + this.pets[index]._id,{
-                              method: "DELETE"
+                            let resp = await fetch("http://localhost:3000/pets/" + this.pets[index]._id, {
+                                method: "DELETE"
                             });
 
                             // se a requisição foi bem-sucedida:
-                            if(resp.ok){
+                            if (resp.ok) {
                                 this.pets.splice(index, 1);
 
                                 alert("Pet deleted succesfully!")
                             }
-                            else{  // se não for, exibe a mensagem no console
+                            else {  // se não for, exibe a mensagem no console
                                 alert("Something went wrong. Try again later!")
-                            }                            
+                            }
                         }
-                        catch(e){
+                        catch (e) {
                             alert("Error: " + e);
                         }
                     },
 
-                	// valida o formulário de adição de pets
-                	validateFormAddPets: function(e){
-                		e.preventDefault();
+                    // valida o formulário de adição de pets
+                    validateFormAddPets: function (e) {
+                        e.preventDefault();
 
-			            this.erros = []; // esvazia os erros
-			            // checa se deixou algum campo vazio:
-			            if (!this.addPetForm.name) {
-			                this.erros.push("Fill the pet's name field");
-			            }
-			            if (!this.addPetForm.species) {
-			                this.erros.push("Fill the pet's species field");
-			            }
-			            if (!this.addPetForm.breed) {
-			                this.erros.push("Fill the pet's breed field");
-			            } 
-			            if (!this.addPetForm.age) {
-			                this.erros.push("Fill the pet's age field");
-			            }
-			            else{
-			            	// checa se é número 
-				            if (isNaN(this.addPetForm.age)) {
-				                this.erros.push("Invalid age");
-				            }
-				            else{  // e se é maior que zero
-				            	if(this.addPetForm.age < 0){
-				            		this.erros.push("Invalid age");
-				            	}
-				            }			            	
-			            }
+                        this.erros = []; // esvazia os erros
+                        // checa se deixou algum campo vazio:
+                        if (!this.addPetForm.name) {
+                            this.erros.push("Fill the pet's name field");
+                        }
+                        if (!this.addPetForm.species) {
+                            this.erros.push("Fill the pet's species field");
+                        }
+                        if (!this.addPetForm.breed) {
+                            this.erros.push("Fill the pet's breed field");
+                        }
+                        if (!this.addPetForm.age) {
+                            this.erros.push("Fill the pet's age field");
+                        }
+                        else {
+                            // checa se é número 
+                            if (isNaN(this.addPetForm.age)) {
+                                this.erros.push("Invalid age");
+                            }
+                            else {  // e se é maior que zero
+                                if (this.addPetForm.age < 0) {
+                                    this.erros.push("Invalid age");
+                                }
+                            }
+                        }
 
-			            if (!this.erros.length) {
-			            	e.preventDefault();
-			                return true;
-			            }
-                	},
+                        if (!this.erros.length) {
+                            e.preventDefault();
+                            return true;
+                        }
+                    },
 
-                	// adiciona um pet
-                	addPet: async function(){
-                		try{
-                			if(!this.erros.length){
-	                			// faz um post para registrar um pet na base
-				                let resp = await fetch("http://localhost:3000/pets/", {
-				                  method: "POST",
-				                  headers: {
-				                    'Content-type': 'application/json'
-				                  },
-				                  body: JSON.stringify({  // conteúdo enviado (do form)
-				                    name: this.addPetForm.name,
-				                    species: this.addPetForm.species,
-				                    breed: this.addPetForm.breed,
-				                    age: this.addPetForm.age,
-				                    ownerId: this.userInfo._id
-				                  })
-	                			});
+                    // adiciona um pet
+                    addPet: async function () {
+                        // primeiro adiciona as informações do pet
+                        try {
+                            if (!this.erros.length) {
+                                // faz um post para registrar um pet na base
+                                let resp = await fetch("http://localhost:3000/pets/", {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-type': 'application/json'
+                                    },
+                                    body: JSON.stringify({  // conteúdo enviado (do form)
+                                        name: this.addPetForm.name,
+                                        species: this.addPetForm.species,
+                                        breed: this.addPetForm.breed,
+                                        age: this.addPetForm.age,
+                                        ownerId: this.userInfo._id
+                                    })
+                                });
 
-				                // se a requisição for bem-sucedida
-	                			if(resp.ok){
-	                				this.pets.push(await resp.json());
-	                				alert("Your pet has been succesfully added!");
-	                			}
-	                			else{  // se não for...
-	                				alert("Something went wrong. Try again later");
-	                			}
-                			}                			 
-                		}
-                		catch(e){
-                			alert("Error: " + e);
-                		}
-                	},
+                                // se a requisição for bem-sucedida
+                                if (resp.ok) {
+                                    this.pets.push(await resp.json());
+                                    alert("Your pet has been succesfully added!");
+                                }
+                                else {  // se não for...
+                                    alert("Something went wrong. Try again later");
+                                }
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
 
-                	// obtém todos os pets do usuário
-                	getPets: async function(){
-                        try{
+                        // depois, adiciona a imagem dele
+                        if(this.imageFile != null){
+                            try {
+                                if (!this.erros.length) {
+                                    let form = new FormData();
+                                    form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/pets/image/" + this.pets[this.pets.length - 1]._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.pets[this.pets.length - 1].petImage = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.pets[this.pets.length - 1].petImage);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;
+                            this.petImage = "";
+                        }                        
+                    },
+
+                    // obtém todos os pets do usuário
+                    getPets: async function () {
+                        try {
                             // faz um get request para obter os pets do usuário logado
                             let resp = await fetch("http://localhost:3000/pets/owner/" + this.userInfo._id);
 
                             // se a requisição for bem-sucedida
-                            if(resp.ok){
+                            if (resp.ok) {
                                 this.pets = await resp.json();
+                                console.log(this.pets);
                             }
-                            else{  // se não for...
+                            else {  // se não for...
                                 alert("Something went wrong. Try again later");
                             }
                         }
-                        catch(e){
+                        catch (e) {
                             alert("Error: " + e);
-                        }                		
-                	},
+                        }
+                    },
 
-                	// adiciona um produto ou serviço ao carrinho
-                	// value - valor do serviço/produto;
-                	// id - id do serviço/produto;
-                	// type - pode ser 'product' ou 'service'.
-                	addToCart: function (name, value, id, type){
-                		// atualiza o valor total de compras no carrinho:
-                		this.myCart.total += value;
+                    // adiciona um produto ou serviço ao carrinho
+                    // value - valor do serviço/produto;
+                    // id - id do serviço/produto;
+                    // type - pode ser 'product' ou 'service'.
+                    addToCart: function (name, value, id, type, index) {
+                        for (var i = 0; i < this.qtdSelected; i++) {  // repete de acordo com o número de produtos que o usuário pretende comprar
+                            // atualiza o valor total de compras no carrinho:
+                            this.myCart.total += value;
 
-                		// adiciona um elemento (compra) ao vetor 'receipt':
-                		this.myCart.receipt.push({
-                            name: name, 
-                			value: value,
-                			id: id,
-                			type: type
-                		});
+                            // adiciona um elemento (compra) ao vetor 'receipt':
+                            this.myCart.receipt.push({
+                                name: name,
+                                value: value,
+                                id: id,
+                                type: type,
+                                index: index
+                            });
 
-                		console.log("No carrinho: ", this.myCart.total);
-                	},
+                            // atualiza a quantidade do produto
+                            if (type === "product") {
+                                this.products[index].stock = this.products[index].stock - 1;
+                            }
 
-                	// Usado pelo cliente logado quando este deseja atualizar suas informações pessoais
-                	// na página "Update Info"
-                	updateUserInfo: async function(){
-                		try{
-			                let resp = await fetch("http://localhost:3000/users/update/" + this.userInfo._id, {
-			                  method: "PUT",
-			                  headers: {
-			                    'Content-type': 'application/json'
-			                  },
-			                  body: JSON.stringify({  // conteúdo enviado (do form)
-			                    username: this.userInfoUpdated.username,
-			                    password: this.userInfoUpdated.password,
-			                    phonenumber: this.userInfoUpdated.phonenumber,
-			                    address: this.userInfoUpdated.address,
-			                    email: this.userInfoUpdated.email
-			                  })
-                			});                			
+                            console.log("No carrinho: ", this.myCart.total);
+                        }
+                        this.qtdSelected = 1;
+                    },
 
-                			// se a requisição for bem sucedida
-                			if(resp.ok){
-                				this.userInfo.username = this.userInfoUpdated.username;
-                				this.userInfo.password = this.userInfoUpdated.password;
-                				this.userInfo.phonenumber = this.userInfoUpdated.phonenumber;
-                				this.userInfo.address = this.userInfoUpdated.address;
-                				this.userInfo.email = this.userInfoUpdated.email;
-                				alert("Your information has been succesfully updated!");
-                			}
-                			else{  // se não for...
-                				alert("Something went wrong. Try again later!");
-                			}
-                		}
-                		catch(e){
-                			alert("Error: " + e); 
-                		}
-                	},
+                    // Usado pelo cliente logado quando este deseja atualizar suas informações pessoais
+                    // na página "Update Info"
+                    updateUserInfo: async function () {
+                        // atualiza as informações colocados no formulário
+                        try {
+                            let resp = await fetch("http://localhost:3000/users/update/" + this.userInfo._id, {
+                                method: "PUT",
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({  // conteúdo enviado (do form)
+                                    username: this.userInfoUpdated.username,
+                                    password: this.userInfoUpdated.password,
+                                    phonenumber: this.userInfoUpdated.phonenumber,
+                                    address: this.userInfoUpdated.address,
+                                    email: this.userInfoUpdated.email
+                                })
+                            });
+
+                            // se a requisição for bem sucedida
+                            if (resp.ok) {
+                                this.userInfo.username = this.userInfoUpdated.username;
+                                this.userInfo.password = this.userInfoUpdated.password;
+                                this.userInfo.phonenumber = this.userInfoUpdated.phonenumber;
+                                this.userInfo.address = this.userInfoUpdated.address;
+                                this.userInfo.email = this.userInfoUpdated.email;
+                                alert("Your information has been succesfully updated!");
+                            }
+                            else {  // se não for...
+                                alert("Something went wrong. Try again later!");
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+
+                        // atualiza a imagem do usuário
+                        if(this.imageFile != null){
+                            try {
+                                if (!this.erros.length) {
+                                        let form = new FormData();
+                                        form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/users/image/" + this.userInfo._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.userInfo.imageURL = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.userInfo.imageURL);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;
+                            this.petImage = "";                            
+                        }
+                    },
 
                     // Define um serviço selecionado. Um serviço torna-se um serviço selecionado quando
                     // o usuário clica no botão BOOK de sua miniatura
-                    setSelectedService: function(index){
+                    setSelectedService: function (index) {
                         this.selectedService = this.services[index];
-                    },                	
+                        this.selectedService.index = index;
+                    },
 
                     // obtém todos os serviços na base de dados
-                    getEveryService: async function(){
-                        try{
+                    getEveryService: async function () {
+                        try {
                             // faz um get request para obter os produtos
                             let resp = await fetch("http://localhost:3000/services/");
 
                             // se a requisição for bem-sucedida
-                            if(resp.ok){
+                            if (resp.ok) {
                                 this.services = await resp.json();
                             }
-                            else{  // se não for...
+                            else {  // se não for...
                                 alert("Something went wrong. Try again later!");
                             }
                         }
-                        catch(e){
+                        catch (e) {
                             alert("Error: " + e);
                         }
-                    },                	
+                    },
 
                     // Define um produto selecionado. Um produto torna-se um produto selecionado quando
                     // o usuário clica no botão BUY de sua miniatura
-                    setSelectedProduct: function(index){
+                    setSelectedProduct: function (index) {
                         this.selectedProduct = this.products[index];
+                        this.selectedProduct.index = index;
                     },
-                    
+
                     // obtém todos os produtos na base de dados
-                    getEveryProduct: async function(){
-                        try{
+                    getEveryProduct: async function () {
+                        try {
                             // faz um get request para obter os produtos
                             let resp = await fetch("http://localhost:3000/products/");
 
                             // se a requisição for bem-sucedida
-                            if(resp.ok){
+                            if (resp.ok) {
                                 this.products = await resp.json();
                             }
-                            else{  // se não for...
+                            else {  // se não for...
                                 alert("Something went wrong. Try again later!");
                             }
                         }
-                        catch(e){
+                        catch (e) {
                             alert("Error: " + e);
                         }
                     },
 
                     //usado para fazer o login verdadeiro
                     //esse login leva em conta tanto usuarios quanto admins
-                    login: async function(){
+                    login: async function () {
 
                         try {
                             let getresquest = {
                                 method: 'GET'
                             };
-                            if(!this.admincheck){
-                                this.fetched =  await fetch("http://localhost:3000/users/" + this.userInfo.username, getresquest);
-                                
+                            if (!this.admincheck) {
+                                this.fetched = await fetch("http://localhost:3000/users/" + this.userInfo.username, getresquest);
+
                                 this.fetched = await this.fetched.json();
 
-                                console.log('resp:'+ JSON.stringify(this.fetched));
+                                console.log('resp:' + JSON.stringify(this.fetched));
 
-                                if(this.fetched.username == "NOTFOUND"){
+                                if (this.fetched.username == "NOTFOUND") {
                                     alert('User Not Found');
                                     console.log('User not found, deal with it later');
                                 }
-                                else{
+                                else {
                                     //se a senha esta correta, logamos o usuario na sua conta
-                                    if(this.fetched.password == this.userInfo.password){
+                                    if (this.fetched.password == this.userInfo.password) {
                                         this.userInfo._id = this.fetched._id;
                                         this.userInfo.address = this.fetched.address;
                                         this.userInfo.username = this.fetched.username;
@@ -1330,17 +1529,17 @@
                                         this.userInfo.phonenumber = this.fetched.phonenumber;
                                         this.userInfo.email = this.fetched.email;
                                         this.userInfo.imageURL = this.fetched.profileImage;
-					                    this.userInfoUpdated.username = this.fetched.username;
-					                    this.userInfoUpdated.password = this.fetched.password;
-					                    this.userInfoUpdated.phonenumber = this.fetched.phonenumber;
-					                    this.userInfoUpdated.address = this.fetched.address;
-					                    this.userInfoUpdated.email = this.fetched.email;                                         
-                                        
+                                        this.userInfoUpdated.username = this.fetched.username;
+                                        this.userInfoUpdated.password = this.fetched.password;
+                                        this.userInfoUpdated.phonenumber = this.fetched.phonenumber;
+                                        this.userInfoUpdated.address = this.fetched.address;
+                                        this.userInfoUpdated.email = this.fetched.email;
+
                                         this.currUser = this.usertypes[0];
                                         this.currPage = this.pages[1];
                                         console.log('Success');
                                     }
-                                    else{
+                                    else {
                                         alert('Wrong Password');
                                         console.log(this.fetched.password);
                                         console.log('User found, wrong password, deal with it later');
@@ -1348,21 +1547,21 @@
                                 }
 
                             }
-                            else{
-                                this.fetched =  await fetch("http://localhost:3000/admins/" + this.userInfo.username, getresquest);
-                                
+                            else {
+                                this.fetched = await fetch("http://localhost:3000/admins/" + this.userInfo.username, getresquest);
+
                                 this.fetched = await this.fetched.json();
 
-                                console.log('resp:'+ JSON.stringify(this.fetched));
+                                console.log('resp:' + JSON.stringify(this.fetched));
 
-                                if(this.fetched.username == "NOTFOUND"){
+                                if (this.fetched.username == "NOTFOUND") {
                                     alert('User not Found');
                                     console.log('User not found, deal with it later');
                                 }
-                                else{
+                                else {
                                     //se a senha esta correta, logamos o usuario na sua conta
-                                    if(this.fetched.password == this.userInfo.password){
-                                        
+                                    if (this.fetched.password == this.userInfo.password) {
+
                                         this.userInfo._id = this.fetched._id;
                                         this.userInfo.address = this.fetched.address;
                                         this.userInfo.username = this.fetched.username;
@@ -1377,35 +1576,35 @@
                                         console.log('Success');
 
                                     }
-                                    else{
+                                    else {
                                         alert('Wrong Password');
                                         console.log(this.fetched.password);
                                         console.log('User found, wrong password, deal with it later');
                                     }
                                 }
-                                
+
                             }
                         }
                         catch (error) {
                             console.log(error);
-                        }                        
+                        }
                     },
                     //signin cria apenas usuarios e nao admins 
-                    signin: async function(){
+                    signin: async function () {
                         try {
-                            
+
                             //tentamos pegar um usuario ja com esse nome, se nao houver, seguimos
-                            this.fetched = await fetch("http://localhost:3000/users/" + this.userInfo.username, {method:'GET'});
+                            this.fetched = await fetch("http://localhost:3000/users/" + this.userInfo.username, { method: 'GET' });
                             this.fetched = await this.fetched.json();
-                            
+
                             console.log('Fetch result:' + JSON.stringify(this.fetched));
 
                             //se nao achamos alguem com esse nome, eh valido    
-                            if(this.fetched.username == "NOTFOUND"){
+                            if (this.fetched.username == "NOTFOUND") {
 
-                                let myheaders = new Headers({"Content-Type":"application/json",});
+                                let myheaders = new Headers({ "Content-Type": "application/json", });
 
-                                this.fetched = await fetch("http://localhost:3000/users/",{
+                                this.fetched = await fetch("http://localhost:3000/users/", {
                                     method: 'POST',
                                     headers: myheaders,
                                     body: JSON.stringify({
@@ -1415,17 +1614,17 @@
                                         "password": this.userInfo.password,
                                         "address": this.userInfo.address
                                     })
-                                
+
                                 });
 
                                 console.log(this.fetched);
-                                
-                                
-                                this.currUser = this.usertypes[0];    
+
+
+                                this.currUser = this.usertypes[0];
                                 this.currPage = this.pages[1];
                                 console.log('Success');
                             }
-                            else{
+                            else {
                                 alert("Username Already in Use");
                             }
 
@@ -1434,29 +1633,35 @@
                         }
                     },
 
-                    onlogin(){
+                    onlogin() {
 
-                        if(this.admincheck)
-                        {
+                        if (this.admincheck) {
                             this.currUser = this.usertypes[1];
                         }
-                        else{
+                        else {
                             this.currUser = this.usertypes[0];
                         }
 
                         this.currPage = this.pages[1];
                     },
 
-                    setUser(sstring){
+                    setUser(sstring) {
                         this.currUser = sstring;
                     },
 
-                    setPage(sstring){
+                    setPage(sstring) {
+                        this.imageFile = null;
+                        this.urlPreview = null;
+                        this.petImage = "";                        
+
                         this.currPage = sstring;
                     },
 
-                    exite()
-                    {
+                    exite() {
+                        this.imageFile = null;
+                        this.urlPreview = null;
+                        this.petImage = "";
+
                         this.setPage("login");
                         this.setUser("N");
                     }
@@ -1477,62 +1682,63 @@
 
 
             // mostra a janela grande de um produto
-            function showmodal(){
+            function showmodal() {
                 modal.style.display = "block";
             }
 
-            function closer(){
+            function closer() {
                 modal.style.display = "none";
             }
 
-            window.onclick = function(event){
-                if(event.target == modal){
+            window.onclick = function (event) {
+                if (event.target == modal) {
                     modal.style.display = "none";
                 }
             }
 
 
-            window.onclick = function(event){
-                if(event.target == modal2){
+            window.onclick = function (event) {
+                if (event.target == modal2) {
                     modal2.style.display = "none";
                 }
 
             }
 
-            window.onclick = function(event){
-                if(event.target == modal3){
+            window.onclick = function (event) {
+                if (event.target == modal3) {
                     modal3.style.display = "none";
                 }
             }
 
-            function showmodal2(){
+            function showmodal2() {
                 modal2.style.display = "block";
             }
 
-            function closer2(){
+            function closer2() {
                 modal2.style.display = "none";
             }
 
-            function showmodal3(){
+            function showmodal3() {
                 modal3.style.display = "block";
             }
 
-            function closer3(){
+            function closer3() {
                 modal3.style.display = "none";
             }
 
-            closebtn.addEventListener("click", function(){
+            closebtn.addEventListener("click", function () {
                 modal.style.display = "none";
             })
 
-            closebtn2.addEventListener("click", function(){
+            closebtn2.addEventListener("click", function () {
                 modal2.style.display = "none";
             })
 
-            closebtn3.addEventListener("click", function(){
+            closebtn3.addEventListener("click", function () {
                 modal3.style.display = "none";
             })
-        
-        </script>  
-    </body>
+
+        </script>
+</body>
+
 </html>

@@ -54,7 +54,7 @@ const theschema = new mySchema({
     petImage: {
         type: String,
         required: true,
-        default: "http://localhost:3000/uploads/Default.png"
+        default: "uploads/Default.png"
     }
 });
 

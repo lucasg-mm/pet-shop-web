@@ -53,7 +53,7 @@ router.post('/image/:id',upload.single('Image'), (req,res,next) =>{
             res.status(400).send({result: "FAIL"});
         }
         else{
-            res.status(202).send({result: "SUCCESS"});
+            res.status(202).send({profileImage: req.file.path});
             console.log("Sucess" + result);
         }
     })
