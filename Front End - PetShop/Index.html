@@ -16,7 +16,7 @@
 	    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-	    <title>Pet Shop</title>
+	    <title>The Animal House</title>
     </head>
     <body>
 
@@ -24,7 +24,7 @@
             <!--Cabecalho, Presente em todas as Paginas-->
             <div class="cabecalho">
                 <header>
-                    <h1 id="logo-text">Lorem ipsum dolor</h1>
+                    <h1 id="logo-text">The Animal House</h1>
                 </header>
             </div>          
             <br>
@@ -100,7 +100,9 @@
                     <img :src="'http://localhost:3000/' + userInfo.imageURL">
                     <p style="float: left;">{{userInfo.username}}</p> 
                     <button v-on:click="exite()">Exit</button> 
-                    <div class="cart">My cart: U$ {{ myCart.total.toFixed(2) }}</div>
+                    <button @click="checkout()">Checkout</button>
+                    <button @click="setPage('main')">Dashboard</button>                    
+                    <div class="cart">My Cart: U$ {{ myCart.total.toFixed(2) }}</div>
             
                 </div>
                 <br>
@@ -220,7 +222,7 @@
                             <br>
                             <em>Price: ${{ selectedProduct.price }}</em>
                             <br>
-                            <button class="buy-btn-big" @click="addToCart(selectedProduct.price, selectedProduct._id, 'product')">BUY</button>
+                            <button class="buy-btn-big" @click="addToCart(selectedProduct.name, selectedProduct.price, selectedProduct._id, 'product')">BUY</button>
                             <br>
                             <div id="descricao-produto">
                                 <h3>Product Description:</h3>
@@ -264,7 +266,7 @@
                             <em>Price: ${{ selectedService.price }}/h</em>
                             <br>
                             <br>
-                            <button class="buy-btn-big" @click="addToCart(selectedService.price, selectedService._id, 'service')">BOOK</button>
+                            <button class="buy-btn-big" @click="addToCart(selectedService.name, selectedService.price, selectedService._id, 'service')">BOOK</button>
                             <br>
                             <div id="descricao-servico">
                                 <h3>Product Description:</h3>
@@ -1015,6 +1017,44 @@
                 },
 
                 methods:{
+                    // faz o checkout dos produtos/serviços que estão no carrinho
+                    // serviço - marca o dia e a hora no backend
+                    // produto - subtrai a quantidade disponível
+                    checkout: async function(){
+                        if(this.myCart.total === 0){  // carrinho vazio
+                            alert("Your cart is empty!");
+                        }
+                        else{ 
+                            // para cada elemento no carrinho
+                            for(var i = 0; i < this.myCart.receipt.length; i++){
+                                if(this.myCart.receipt[i].type === "product"){  // se o item for um produto...
+                                    try{
+                                        // faz uma requisição para descontar as qtds dos produtos na base de dados
+                                        let resp = await fetch("http://localhost:3000/products/sell/" + this.myCart.receipt[i].id);
+
+                                        // se a requisição for bem-sucedida
+                                        if(resp.ok){
+                                            console.log("Success!")
+                                        }
+                                        else{  // se não for...
+                                            alert("Couldn't finish the transaction of the following item: " + this.myCart.receipt[i].name);
+                                        }                                        
+                                    }
+                                    catch(e){
+                                        alert("Error " + e);
+                                    }
+                                }
+                                if(this.myCart.receipt[i].type === "service"){  // se o item for um serviço...
+                                    console.log("serviços - a ser implementado");
+                                }
+
+                                this.myCart.total = this.myCart.total - this.myCart.receipt[i].value;
+                            }
+
+                            this.myCart.receipt = [];  // esvazia o carrinho
+                        }
+                    },
+
                     // faz um POST request para atualizar a imagem de um usuário
                     updateProfilePic: async function(evt){
                         try{
@@ -1160,12 +1200,13 @@
                 	// value - valor do serviço/produto;
                 	// id - id do serviço/produto;
                 	// type - pode ser 'product' ou 'service'.
-                	addToCart: function (value, id, type){
+                	addToCart: function (name, value, id, type){
                 		// atualiza o valor total de compras no carrinho:
                 		this.myCart.total += value;
 
                 		// adiciona um elemento (compra) ao vetor 'receipt':
                 		this.myCart.receipt.push({
+                            name: name, 
                 			value: value,
                 			id: id,
                 			type: type
