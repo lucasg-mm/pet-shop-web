@@ -110,7 +110,7 @@
                 <p style="float: left;">{{userInfo.username}}</p>
                 <button v-on:click="exite()">Exit</button>
                 <button @click="emptyCart()">Empty Cart</button>
-                <button @click="checkout()">Checkout</button>
+                <button @click="setPage('checkout')">Checkout</button>
                 <button @click="setPage('main')">Dashboard</button>
                 <div class="cart">My Cart: U$ {{ myCart.total.toFixed(2) }}</div>
 
@@ -422,7 +422,38 @@
                     </ul>
                 </div>
             </div>
-
+            
+            <div v-show="currPage == pages[8]">
+                <!-- div para inserir informações de cartão de crédito -->
+                <div class="useReg">
+                    <h2>Check Out</h2>
+                    <br>
+                    <div class="container-3 blue">
+                        <p>
+                            Please, enter your credit card information:
+                        </p>
+                        <table>
+                            <tr>
+                                <td><label>Name:</label></td>
+                                <td><input class="input-1 white" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Number:</label></td>
+                                <td><input class="input-1 white" type="number"></td>
+                            </tr>
+                            <tr>
+                                <td><label>CVV:</label></td>
+                                <td><input class="input-1 white" type="number"></td>
+                            </tr>
+                            <tr>
+                                <td><label>Expiration Date:</label></td>
+                                <td><input class="input-1 white" type="month"></td>
+                            </tr>                
+                        </table>
+                        <button class="btn-1 green" @click="checkout()">Finish Purchase</button>
+                    </div>
+                </div>  
+            </div>    
         </div>
         <!--Fim Secao divs Usuario = Cliente-->
 
@@ -1127,7 +1158,7 @@
 
                     //"base de dados"
                     //Paginas que temos
-                    pages: ["login", "main", "products", "service", "manage1", "manage2", "special", "special2"],
+                    pages: ["login", "main", "products", "service", "manage1", "manage2", "special", "special2", "checkout"],
                     //tipos de usuarios
                     usertypes: ["Cli", "Adm", "N"],
                     //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
@@ -1143,17 +1174,14 @@
                         this.imageFile = file;                        
                     },
 
-                    // esvazia o carrinho do usuário e restaura os valores de "stock" de cada produto
+                    // esvazia o carrinho do usuário e libera appointments
                     emptyCart: function(){
                         if(this.myCart.total != 0){
-                            // restaura os valores de "stock" de cada produto e libera appointments (a fazer)
+                            // libera appointments (a fazer)
                             for(var i = 0; i < this.myCart.receipt.length; i++){
-                                // restaura valores de "stock"
-                                if(this.myCart.receipt[i].type === "product"){
-                                    this.products[this.myCart.receipt[i].index].stock = this.products[this.myCart.receipt[i].index].stock + 1;
-                                }
 
                                 // libera appointments (a fazer)
+                                console.log("a fazer")
                             }
 
                             // esvazia o carrinho
@@ -1367,11 +1395,6 @@
                                 type: type,
                                 index: index
                             });
-
-                            // atualiza a quantidade do produto
-                            if (type === "product") {
-                                this.products[index].stock = this.products[index].stock - 1;
-                            }
 
                             console.log("No carrinho: ", this.myCart.total);
                         }
