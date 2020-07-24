@@ -22,26 +22,17 @@ const theschema = new mySchema({
         trim: true
     },
 
-    //o nosso servico tera uma array de 168 membros para simular a array
-    timeTable:[{
-        status:{
-            type: Number,
-            required: true,
-            default: 0
-        },
-
-        //colocamos tambem o nome de um pet
-        petid: {
-            type: String,
-            trim: true
-        }
-    }],
-
     //Imagem de perfil 
     ServiceImage: {
         type: String,
         required: true,
-        default: "http://localhost:3000/uploads/Default.png"
+        default: "uploads/Default.png"
+    },
+
+    bought: {
+        type: Number,
+        required: true,
+        default: 0
     }
 });
 

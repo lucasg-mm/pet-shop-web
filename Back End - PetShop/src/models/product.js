@@ -32,7 +32,13 @@ const theschema = new mySchema({
     productImage: {
         type: String,
         required: true,
-        default: "http://localhost:3000/uploads/Default.png"
+        default: "uploads/Default.png"
+    },
+
+    bought: {
+        type: Number,
+        required: true,
+        default: 0
     }
 });
 

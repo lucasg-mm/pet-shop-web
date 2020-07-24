@@ -41,7 +41,7 @@ const theschema = new mySchema({
     profileImage: {
         type: String,
         required: true,
-        default: "http://localhost:3000/uploads/Default.png"
+        default: "uploads/Default.png"
     }
 });
 

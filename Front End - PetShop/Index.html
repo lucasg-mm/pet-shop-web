@@ -116,11 +116,12 @@
 
             </div>
             <br>
+
             <!--Pagina Menu de opcoes cliente-->
             <div v-show="currPage == pages[1]">
                 <div class="seletor cliente">
                     <h2>Client's Dashboard</h2>
-                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService();">Schedule
+                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService(); getAppointments()">Schedule
                         Service<br><br><img src="images/calendar.png"></button>
                     <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy
                         Products<br><br><img src="images/shopping-cart.png"></button>
@@ -200,7 +201,7 @@
                         <img v-if="urlPreview" :src="urlPreview">                        
                         <img v-if="!urlPreview" :src="'http://localhost:3000/' + userInfo.imageURL">
                         <br>
-                        <input type="file" @change="previewImage">
+                        <input v-model="userImage" type="file" @change="previewImage">
                         <table>
                             <tr>
                                 <td><label>Username:</label></td>
@@ -261,7 +262,7 @@
                         <li v-for="(product, index) in products">
                             <!--Div De produtos "pequeno"-->
                             <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/osso.png">
+                                <img class="prod-serv-miniatura" :src="'http://localhost:3000/' + product.productImage">
                                 <br>
                                 <em>Product Name: {{ product.name }}</em>
                                 <br>
@@ -303,21 +304,28 @@
                             <h3>Choose your time slot:</h3>
                             <!--Div para fazer o "calendario"-->
                             <div class="time-slots">
-                                <button class="week-selector">
-                                    << /button>
-                                        <button class="week-selector">></button>
-
-                                        <div class="tabela">
+                                <button @click="previousCalendarPage" class="week-selector"><</button>
+                                        <button @click="nextCalendarPage" class="week-selector">></button>
+                                        <!-- a fazer -->    
+                                        <div v-if="dates" class="tabela">
                                             <table>
                                                 <thead>
+                                                    <!-- a fazer -->
                                                     <tr>
                                                         <th></th>
-                                                        <th>04/05</th>
-                                                        <th>05/05</th>
-                                                        <th>06/05</th>
-                                                        <th>07/05</th>
-                                                        <th>08/05</th>
-                                                        <th>09/05</th>
+                                                        <th>{{ dates[0 + calendarPage * 7].getDate() + '/' + (Number(dates[0 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[1 + calendarPage * 7].getDate() + '/' + (Number(dates[1 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[2 + calendarPage * 7].getDate() + '/' + (Number(dates[2 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[3 + calendarPage * 7].getDate() + '/' + (Number(dates[3 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[4 + calendarPage * 7].getDate() + '/' + (Number(dates[4 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[5 + calendarPage * 7].getDate() + '/' + (Number(dates[5 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                        <th>{{ dates[6 + calendarPage * 7].getDate() + '/' + (Number(dates[6 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -403,12 +411,12 @@
 
 
                 <div class="seletor">
-                    <h2>Buy Services:</h2>
+                    <h2>Schedule Services:</h2>
                     <ul>
                         <li v-for="(service, index) in services">
                             <!--Div Para os serviços pequenos-->
                             <div class="serv-pequeno">
-                                <img class="prod-serv-miniatura" src="images/banho.png">
+                                <img class="prod-serv-miniatura" :src="'http://localhost:3000/' + service.ServiceImage">
                                 <br>
                                 <em>Service name: {{ service.name }}</em>
                                 <br>
@@ -974,7 +982,7 @@
 
                     <div class="time-slots">
                         <button class="week-selector">
-                            << /button>
+                            < </button>
                                 <button class="week-selector">></button>
 
                                 <div class="tabela">
@@ -1092,6 +1100,15 @@
                 el: "#app",
 
                 data: {
+                    // vetor com as datas dos próximos 700 dias
+                    dates: null,
+
+                    // indica a semana do calendário que está sendo visualizada no momento
+                    calendarPage: 0,  
+
+                    // two-way data binding com o seletor da imagem do pet a ser registrado                    
+                    userImage: "",
+
                     // two-way data binding com o seletor da imagem do pet a ser registrado
                     petImage: "",
 
@@ -1148,6 +1165,7 @@
                     admins: [],
                     users: [],
                     pets: [],  // pets do usuário
+                    appointments: [],  // appointments marcados
 
                     selectedProduct: {},
                     selectedService: {},
@@ -1167,6 +1185,54 @@
                 },
 
                 methods: {
+                    // vai para a página anterior do calendário
+                    nextCalendarPage: function(){
+                        if(this.calendarPage < 9){
+                            this.calendarPage++;
+                        }
+                    },
+
+                    // vai para a próxima página do calendário
+                    previousCalendarPage: function(){
+                        if(this.calendarPage > 0){
+                            this.calendarPage--;    
+                        }
+                    },
+
+                    // obtém as datas dos próximos 700 dias e coloca no vetor "dates"
+                    getDates: function(){
+                        this.dates = [];
+
+                        for(var i = 0; i < 70; i++){
+                            this.dates.push(new Date());                           
+                            this.dates[i].setDate(this.dates[0].getDate() + i);    
+                        }
+                    },
+
+                    // obtém todos os appointments do pethop
+                    getAppointments: async function () {
+                        this.getDates()
+
+                        try {
+                            // faz um get request para obter os produtos
+                            let resp = await fetch("http://localhost:3000/appointments/");
+
+                            // se a requisição for bem-sucedida
+                            if (resp.ok) {
+                                this.appointments = await resp.json();
+                                if(this.appointments.name === "NOTFOUND"){  // vetor vazio
+                                    this.appointments = [];
+                                }                                
+                            }
+                            else {  // se não for...
+                                console.log("Couldn't get the appointments");
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+
                     // cria uma object URL para usar como prévia de uma imagem que será upada
                     previewImage: function(e){
                         const file = e.target.files[0];
@@ -1228,6 +1294,9 @@
                             }
 
                             this.myCart.receipt = [];  // esvazia o carrinho
+                            if(this.myCart.total === -0){  // detecta e evita zeros negativos
+                                this.myCart.total = 0;  
+                            }
                         }
                     },
 
@@ -1340,7 +1409,7 @@
                                     // se a requisição for bem-sucedida
                                     if (resp.ok) {
                                         let url = await resp.json();
-                                        this.pets[this.pets.length - 1].petImage = url.profileImage;
+                                        this.pets[this.pets.length - 1].petImage = url.petImage;
                                         console.log("Image succesfully uploaded: " + this.pets[this.pets.length - 1].petImage);
                                     }
                                     else {  // se não for...
@@ -1367,7 +1436,9 @@
                             // se a requisição for bem-sucedida
                             if (resp.ok) {
                                 this.pets = await resp.json();
-                                console.log(this.pets);
+                                if(this.pets.name === "NOTFOUND"){  // vetor vazio
+                                    this.pets = [];
+                                }
                             }
                             else {  // se não for...
                                 alert("Something went wrong. Try again later");
@@ -1467,7 +1538,7 @@
 
                             this.imageFile = null;
                             this.urlPreview = null;
-                            this.petImage = "";                            
+                            this.userImage = "";                            
                         }
                     },
 
@@ -1487,6 +1558,9 @@
                             // se a requisição for bem-sucedida
                             if (resp.ok) {
                                 this.services = await resp.json();
+                                if(this.services.name === "NOTFOUND"){  // vetor vazio
+                                    this.services = [];
+                                }                                
                             }
                             else {  // se não for...
                                 alert("Something went wrong. Try again later!");
@@ -1513,6 +1587,9 @@
                             // se a requisição for bem-sucedida
                             if (resp.ok) {
                                 this.products = await resp.json();
+                                if(this.products.name === "NOTFOUND"){  // vetor vazio
+                                    this.products = [];
+                                }                                
                             }
                             else {  // se não for...
                                 alert("Something went wrong. Try again later!");
@@ -1536,8 +1613,6 @@
 
                                 this.fetched = await this.fetched.json();
 
-                                console.log('resp:' + JSON.stringify(this.fetched));
-
                                 if (this.fetched.username == "NOTFOUND") {
                                     alert('User Not Found');
                                     console.log('User not found, deal with it later');
@@ -1560,7 +1635,6 @@
 
                                         this.currUser = this.usertypes[0];
                                         this.currPage = this.pages[1];
-                                        console.log('Success');
                                     }
                                     else {
                                         alert('Wrong Password');
@@ -1642,10 +1716,32 @@
 
                                 console.log(this.fetched);
 
+                                if(this.fetched.ok){
+                                    // atualiza as informações do usuário logado
+                                    this.fetched = await this.fetched.json();
 
-                                this.currUser = this.usertypes[0];
-                                this.currPage = this.pages[1];
-                                console.log('Success');
+                                    this.userInfo._id = this.fetched._id;
+                                    this.userInfo.address = this.fetched.address;
+                                    this.userInfo.username = this.fetched.username;
+                                    this.userInfo.password = this.fetched.password;
+                                    this.userInfo.phonenumber = this.fetched.phonenumber;
+                                    this.userInfo.email = this.fetched.email;
+                                    this.userInfo.imageURL = this.fetched.profileImage;
+                                    this.userInfo.realName = this.fetched.realName;
+                                    this.userInfoUpdated.username = this.fetched.username;
+                                    this.userInfoUpdated.password = this.fetched.password;
+                                    this.userInfoUpdated.phonenumber = this.fetched.phonenumber;
+                                    this.userInfoUpdated.address = this.fetched.address;
+                                    this.userInfoUpdated.email = this.fetched.email;                                    
+
+                                    // altera a página
+                                    this.currUser = this.usertypes[0];
+                                    this.currPage = this.pages[1];
+                                    console.log('Success');                                    
+                                }
+                                else{
+                                    alert("Something went wrong!");
+                                }
                             }
                             else {
                                 alert("Username Already in Use");
@@ -1675,15 +1771,22 @@
                     setPage(sstring) {
                         this.imageFile = null;
                         this.urlPreview = null;
-                        this.petImage = "";                        
+                        this.petImage = "";
+                        this.userImage = "";
+                        this.calendarPage = 0;                        
 
                         this.currPage = sstring;
                     },
 
                     exite() {
+                        this.myCart.total = 0;
+                        this.myCart.receipt = [];
+
                         this.imageFile = null;
                         this.urlPreview = null;
                         this.petImage = "";
+                        this.userImage = "";
+                        this.calendarPage = 0; 
 
                         this.setPage("login");
                         this.setUser("N");

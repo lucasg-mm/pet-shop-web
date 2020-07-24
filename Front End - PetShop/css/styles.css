@@ -395,8 +395,8 @@ body{
 }
 
 .userDiv img{
-	width: auto; 
-	max-height: 32px; 
+	width: 32px; 
+	height: 32px; 
 	margin: 4px; 
 	border:1px; 
 	border-style: none; 
@@ -822,7 +822,8 @@ footer{
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 16px;
 	margin-right: auto;
-	margin-left: auto;	
+	margin-left: auto;
+	overflow: auto;	
 }
 
 .container-2.blue{

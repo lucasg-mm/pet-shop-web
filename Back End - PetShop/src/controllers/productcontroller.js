@@ -129,6 +129,7 @@ exports.sell = (req,res,next) =>{
             
             else{
                 doc.stock = doc.stock - 1;
+                doc.bought = doc.bought + 1;
                 doc.save();
                 res.status(200).send({result: "SUCCESS"});
             }

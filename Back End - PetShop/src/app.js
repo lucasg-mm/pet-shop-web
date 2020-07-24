@@ -35,6 +35,7 @@ const Admin = require('./models/admin');
 const Product = require('./models/product');
 const Service = require('./models/service');
 const PET = require('./models/pet');
+const Appointment = require('./models/appointment');
 
 /*
     Declaracao de rotas vem aqui, mas nao temos ainda
@@ -44,7 +45,9 @@ const adminindex = require('./routes/adminrouter');
 const productindex = require('./routes/productrouter');
 const serviceindex = require('./routes/servicerouter');
 const petindex = require('./routes/petrouter');
+const appointmentindex = require('./routes/appointmentrouter');
 
+app.use('/appointments',appointmentindex);
 app.use('/services', serviceindex);
 app.use('/products', productindex);
 app.use('/admins', adminindex);

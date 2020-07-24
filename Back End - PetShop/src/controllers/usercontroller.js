@@ -27,7 +27,7 @@ exports.post = (req,res,next) =>{
 
     newuser.save()
     .then(x =>{
-        res.status(201).send({msg : "User Created"});
+        res.status(201).send(x);
     })
     .catch(e=>{
         res.status(400).send(e);

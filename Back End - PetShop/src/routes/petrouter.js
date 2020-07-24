@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const PET = mongoose.model('Pet');
 const objID = require('mongodb').ObjectID;
+const fs = require('fs');
 
 const storage = multer.diskStorage({
 
@@ -43,20 +44,34 @@ router.post('/image/:id',upload.single('Image'), (req,res,next) =>{
         
     const uid = new objID(req.params.id);
     
-    PET.findByIdAndUpdate(uid,{
-        $set:{
-            petImage: req.file.path
-        }
-    }, function(err, result){
+    PET.findById(uid, function(err,result){
         if(err){
             console.log("Error" + err);
             res.status(400).send({result: "FAIL"});
         }
         else{
-            res.status(202).send({profileImage: req.file.path});
-            console.log("Sucess" + result);
+            var str = result.petImage;
+            if(str.localeCompare("uploads/Default.png") == 0){
+                result.petImage = req.file.path;
+                result.save();
+                res.status(202).send({petImage: req.file.path});
+                console.log("Sucess - Default image\n" + result);
+            
+            }
+            else{
+                result.petImage = req.file.path;
+                result.save();
+                //agora deletamos a imagem 
+                fs.unlink("./"+str, function(err){
+                    if(err){
+                        console.log("erro em deletar" + err);
+                    }
+                });
+                res.status(202).send({petImage: req.file.path});
+                console.log("Sucess - Not Default\n" + result);
+            }
         }
-    })
+    });
 });
 
 module.exports = router;
