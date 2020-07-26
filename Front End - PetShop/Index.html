@@ -706,7 +706,7 @@
                             type="text"></input>
                         <textarea placeholder="Service's Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo 	minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
                             </textarea>
-                        <button class="time-slots-btn" v-on:click="setPage('special2')">Time Slots</button>
+                        <button class="time-slots-btn" @click="setPage('special2'); getAppointments();">Time Slots</button>
                         <button class="save-btn">Save</button>
                     </div>
 
@@ -936,104 +936,258 @@
                     <button class="closeButton principal" v-on:click="setPage('service')">X</button>
                     <h2>Pet Shop's Time Slots</h2>
 
-                    <div class="time-slots">
-                        <button class="week-selector">
-                            < </button>
-                                <button class="week-selector">></button>
+                            <div class="time-slots">
+                                <button @click="previousCalendarPage" class="week-selector"><</button>
+                                    <button @click="nextCalendarPage" class="week-selector">></button>
+                                           
+                                    <div v-if="dates && appointments" class="tabela">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>{{ dates[0 + calendarPage * 7].getDate() + '/' + (Number(dates[0 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
 
-                                <div class="tabela">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>04/05</th>
-                                                <th>05/05</th>
-                                                <th>06/05</th>
-                                                <th>07/05</th>
-                                                <th>08/05</th>
-                                                <th>09/05</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="horario-dado">9h - 10h</td>
-                                                <td><button class="selecionado">SELECTED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">10h - 11h</td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">11h - 12h</td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">13h - 14h</td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">14h - 15h</td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">15h - 16h</td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">16h - 17h</td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="horario-dado">17h - 18h</td>
-                                                <td><button class="ocupado">RESERVED</button></td>
-                                                <td><button class="liberado">FREE</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                                <td><button class="associado">ASSOCIATED</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                    </div>
+                                                    <th>{{ dates[1 + calendarPage * 7].getDate() + '/' + (Number(dates[1 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                    <th>{{ dates[2 + calendarPage * 7].getDate() + '/' + (Number(dates[2 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                    <th>{{ dates[3 + calendarPage * 7].getDate() + '/' + (Number(dates[3 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                    <th>{{ dates[4 + calendarPage * 7].getDate() + '/' + (Number(dates[4 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                    <th>{{ dates[5 + calendarPage * 7].getDate() + '/' + (Number(dates[5 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+
+                                                    <th>{{ dates[6 + calendarPage * 7].getDate() + '/' + (Number(dates[6 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="horario-dado">9h - 10h</td>
+                                                    <!-- renderiza cada linha do calendário de acordo com o vetor de appointments -->
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 1)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 1)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>        
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">10h - 11h</td>
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 2)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 2)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>    
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">11h - 12h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 3)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 3)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>       
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">12h - 13h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 4)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 4)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>    
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">13h - 14h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 5)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button click="toggleSelect(index, 5)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>    
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">14h - 15h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 6)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 6)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>       
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">15h - 16h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 7)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 7)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>     
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">16h - 17h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 8)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 8)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>       
+                                                </tr>
+                                                <tr>
+                                                    <td class="horario-dado">17h - 18h</td>
+
+                                                     <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 9)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 9)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>        
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="horario-dado">18h - 19h</td>
+
+                                                    <td v-for="index in 7" :key="index">
+                                                        <button @click="toggleSelect(index, 10)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected,
+                                                         'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].status">
+                                                            LIVRE
+                                                        </button>
+
+                                                        <button @click="toggleSelect(index, 10)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected,
+                                                         'ocupado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected}" v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].status">
+                                                          
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].servicename}}<br>
+
+                                                          <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].imageurl"><br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].petname}}<br>
+
+                                                          {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].ownername}}<br>
+                                                        </button>                                                            
+                                                    </td>       
+                                                </tr>                                                                                                        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                    
                     <div id="adm-btns">
-                        <button class="btn-1 blue">Associate Service</button>
-                        <button class="btn-1 red">Release Time Slot</button>
+                        <button @click="freeAppointment(); getAppointments();" class="btn-1 red">Release Time Slot</button>
                     </div>
                 </div>
             </div>
@@ -1184,6 +1338,36 @@
                 },
 
                 methods: {
+
+                    // função para liberar o appointment selecionado 
+                    freeAppointment: async function(){
+                        // registra um appointment na coleção de appointments                                    
+                        try{
+                            // fazer request para registrar um appointment
+                            // a fazer
+                            let resp = await fetch("http://localhost:3000/appointments/free/", {
+                                method: "POST",
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({  // conteúdo enviado (do form)
+                                    day: this.selectedAppointment.day,
+                                    hour: this.selectedAppointment.hour
+                                })                                            
+                            });
+
+                            //se a requisição for bem sucedida
+                            if (resp.ok){
+                                console.log("The appointment is now free");                               
+                            }
+                            else{
+                                alert("Something went wrong. Try again later");
+                            }
+                        }
+                        catch(e){
+                            alert("Error " + e);
+                        }                        
+                    },
                     
                     //Funcoes do Luis
                     addProduct: async function(){

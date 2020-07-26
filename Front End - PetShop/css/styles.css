@@ -722,19 +722,19 @@ body{
 }
 
 .time-slots td .liberado{
-	background-color: green;
+	background-color: #4d826c;
 }
 
 .time-slots td .ocupado{
-	background-color: red;
+	background-color: #a83a3a;
 }
 
 .time-slots td .associado{
-	background-color: blue;
+	background-color: #517ea0;
 }
 
 .time-slots td .selecionado{
-	background-color: #512b58;
+	background-color: #a083a6;
 }
 
 .time-slots .week-selector{
@@ -748,6 +748,7 @@ body{
 
 #adm-time-slots{
 	height: 550px;
+	overflow: auto;
 }
 
 .container-1 .time-slots{
