@@ -1,0 +1,894 @@
+/*Lucas Xavier Ebling Pereira - 10692183 
+Lucas Gabriel Mendes Miranda - 10265892
+Luís Fernando Martins Rodrigues de Araújo - 11275189*/
+
+body{
+	background-color: #769fcd;
+}
+
+/*--Estilo Blocos Iniciais--*/
+.whoarewe{
+	border-style: none;
+	border-radius: 10px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 20px;
+	color: white;
+	background: linear-gradient(90deg, rgba(34,40,49,1) 0%, rgba(65,83,97,1) 30%, rgba(125,172,188,1) 90%);
+	text-align: center;
+	float:left;
+	padding: 5%;
+	padding-top: 20px;
+	max-width: 30%;
+	margin-left: 10.1%;
+	line-height: 30px;
+	height: 606px;
+}
+
+.whoarewe p{
+	color: white;
+	text-align: justify;
+}
+
+/*--Tela Formulario de Login--*/
+.loginform{
+	border-style: none;
+	border-radius: 10px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 20px;
+	color: black;
+	background-image: url(../images/labradors.jpg);
+	background-size: 190%;
+	background-position: center;
+	text-align: center;
+	float:left;
+	margin-left: 20px;
+	height: 670px;
+	width: 38.4%;
+	padding-top: 20px;  
+}
+
+.loginform table{
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 20px;
+}
+
+.loginform button{
+	background-color: transparent;
+	border: thick dashed black;
+	border-radius: 10px;
+	color: black;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;	
+}
+
+.loginform .contrastbox button{
+	margin-bottom: 5px;
+}
+
+.loginform button:hover{
+	border-color: white;
+}
+
+/*--------Estilos do Cabeçalho*/
+
+.cabecalho header{
+	background-image: url(../images/header-bckg.jpg);
+	background-size: 100%;
+	border-style: none;
+	border-radius: 10px;
+	color: #222831;
+	font-family: 'Pacifico', cursive;
+	font-size: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;
+}
+
+/*--------Estilos do Seletor*/
+
+.seletor{
+	background-color: #252a34;
+	border: none;
+	border-radius: 10px;
+	color: #43d8c9;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;	
+}
+
+.useReg{
+	background-color: #252a34;
+	border: none;
+	border-radius: 10px;
+	color: #8785a2;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;	
+}
+
+.useReg table{
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+} 
+
+.useReg h2{
+	color:#43d8c9;
+}
+
+.useReg img{
+	width: 150px;
+	height: 150px;
+	border-style: solid;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+/*-- Estilo Tela de Criar Conta / Editar Conta--*/
+.contrastbox{
+	font-size: 16px;
+	font-weight: bold;
+	background-color: transparent;
+	opacity: 1;
+	color: black;
+	width: 400px;
+	border-style: dashed;
+	border-radius: 10px;
+	padding: 3px;
+	border-radius: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.contrastbox .input-1{
+	height: 25px;
+}
+
+.botao-menu{
+	background-color: #7DACBC;
+	border: thick dashed black;
+	border-radius: 10px;
+	color: black;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin: 50px;
+	padding: 50px;
+	height: 320px;
+	width: 320px;
+}
+
+.botao-menu:hover{
+	border-color: white;
+}
+
+.botao-menu img{
+	width: 150px;
+	height: 150px;
+}
+
+/*--------Estilos do Serviço/Produto Pequeno*/
+
+.seletor ul{
+	display: inline-block;
+	list-style: none;
+}
+.seletor li{
+	float: left;
+}
+
+.serv-pequeno{
+	background-color: #7DACBC;
+	border: none;
+	border-radius: 10px;	
+	font-family: 'Josefin Sans', sans-serif;
+	color: black;
+	font-size: 25px;
+	padding: 5%;
+	text-align: center;
+	width: 230px;	
+	height: 400px;	
+	margin: 25px;
+}
+
+/*Versao Mini Produtos e Servicos da imagem*/
+.prod-serv-miniatura, .pessoa-miniatura{
+	width: 150px;
+	height: 150px;
+	margin-bottom: 30px;
+}
+
+.buy-btn-small, .buy-btn-big{
+	background-color: #415361;
+	border: none;
+	border-radius: 5px;
+	color: white;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin-top: 20px;
+	padding: 20px;
+	width: 200px;
+	margin-right: auto;	
+	margin-left: auto;
+}
+
+/*--------Estilos do Serviço/Produto Grande*/
+
+.serv-grande{
+	background-color: #7DACBC;
+	border: none;
+	border-radius: 10px;	
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 35px;
+	min-height: 50%;
+	max-height: 100%;
+	width: 45%;
+	padding: 5%;
+	position: relative;
+	margin: 25%;
+	overflow: auto;
+}
+
+.serv-grande img{
+	float: left;
+	height: 200px;
+	margin-right: 30px;
+	width: 200px;
+}
+
+.serv-grande .closeButton{
+	position: relative;
+	top: -55px;
+	right: -55px;
+}
+
+.serv-grande .buy-btn-big{
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+}
+
+.serv-grande #descricao-produto, .serv-grande #descricao-servico{
+	margin-top: 40px;
+	font-size: 15px;
+	overflow: auto;
+}
+
+.time-slots .tabela{
+	overflow: auto;	
+}
+
+.serv-grande #area-agendamento{
+	margin-top: 40px;
+	font-size: 15px;
+}
+
+#area-agendamento{
+	overflow: auto;
+} 
+
+.serv-grande p{
+	text-align: justify;	
+}
+/*--Estilo Registro do Admin--*/
+
+.regAdmin{
+	width: 800px;
+	height: 120px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	background-color: #aa96da;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.regAdmin img{
+	width: auto; 
+	max-height: 80px; 
+	margin: 20px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 52%;
+	float: left;
+}
+
+.regAdmin ul{
+	list-style: none;
+	margin: 10px;
+	padding: 15px;
+	margin-top: 20px;
+}
+
+.regAdmin li{
+	margin: 5px;
+}
+
+.regAdmin #list1{
+	float: left ;
+}
+.closeButton{
+	width: 30px;
+	height: 30px;
+	background-color: rgba(221, 29, 29, 0.63);
+	float:right;
+	border-radius: 50%;
+}
+
+/*-- Estilo Registro de Animal--*/
+
+.regAnimal{
+	width: 800px;
+	height: 220px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	background-color: #7DACBC;
+	color: black;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: auto;
+}
+
+.regAnimal img{
+	max-width: auto; 
+	max-height: 120px; 
+	margin: 20px;
+	margin-top: 45px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 5%;
+	float: left;
+}
+
+.regAnimal ul{
+	margin: 10px;
+	padding: 15px;
+	margin: 30px;
+	float:left
+}
+
+.regAnimal #list1{
+	list-style: none;  		  
+}
+
+.regAnimal li{
+	padding: 3px;
+}
+
+.regAnimal .button2{
+	float:top ;
+}
+
+/*-- Estilo Registro do Usuario Cliente--*/
+
+.userDiv{
+	width: 79.7%;
+	height: 40px;
+	border: 3px;
+	border-radius: 10px;
+	border-color:black;
+	border-style: none;
+	background-color: #5d8a94;
+	font-family: 'Josefin Sans', sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -14px;
+	margin-bottom: -14px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 4px;
+}
+
+.userDiv img{
+	width: 32px; 
+	height: 32px; 
+	margin: 4px; 
+	border:1px; 
+	border-style: none; 
+	border-radius: 2px;
+	float: left;
+}
+
+.tabela img{
+	width: 32px; 
+	height: 32px; 
+}
+
+.userDiv button{
+	margin: 5px 8px 6px 8px;
+	border: 2px;
+	border-radius: 2px;
+	border-color: white;
+	background-color: #415361;
+	float: right;
+	padding: 8px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: white;
+}
+
+.cart{
+	width: auto;
+	max-height: 30px;
+	margin: 10px;
+	float: right;
+	padding: 2px;
+}
+
+/*Estilo do Gerenciador de Produtos*/
+
+.manager{
+	background-color: transparent;
+	border: none;
+	border-radius: 10px;	
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	height: 600px;
+	width: 81%;
+	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.manager .editor{
+	background-color: #222831;
+	border-radius: 10px;
+	color: white;
+	float: left;
+	height: 600px;
+	width: 30%;
+	text-align: center;
+	overflow: auto;
+}
+
+.manager .editor input{
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;	
+	color: white;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: transparent;
+	border-style: none;
+	width: 200px;
+}
+
+.manager .editor input.nome-prod-serv{
+	margin-top: 35px;
+}
+
+.manager .editor textarea{
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;	
+	color: white;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: transparent;
+	border-style: none;
+	width: 230px;
+	height: 300px;
+	text-align: justify;
+	margin-top: 35px;
+}
+
+.manager .editor #estoque-check{
+	width: 20px;
+	margin-top: 40px;
+	margin-bottom: 10px;
+	margin-right: 85px;
+}
+
+.manager .editor #estoque-label{
+	float: left;
+	margin-left: 60px;
+	margin-right: 20px;
+	margin-top: 31px;
+}
+
+.manager .editor button{
+	display: block;
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;	
+	background-color: transparent;
+	border-width: 2px;
+	border-radius: 15px;
+	clear: left;
+	margin: 35px auto 10px;
+	padding: 10px 30px 10px;
+	width: 150px;
+}
+
+.save-btn{
+	border-color: green;
+	color: green;	
+}
+
+.time-slots-btn, .view-pets-btn{
+	border-color: blue;
+	color: blue;
+}
+
+.manager .inventory{
+	background-color: #252a34;
+	border-radius: 10px;
+	color: white;
+	float: right;
+	height: 600px;
+	text-align: center;
+	width: 70%;
+}
+
+.manager .search{
+	background-color: transparent;
+	border-radius: 15px;
+	border: solid yellow 2px;
+	color: yellow;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin-right: 10px;
+}
+
+.search-btn{
+	border-color: yellow;
+}
+
+.manager h2{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Estilo da lista de registros */
+.lista-registros{
+	overflow: auto;
+	height: 400px;
+}
+
+/*Estilo Registro do Produto*/
+
+.registro{
+	height: 60px;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.registro-nome{
+	float: left;
+	border: solid 2px;
+	border-radius: 15px;
+	width: 505px;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.btn-del{
+	border-color: red;
+	float: right;
+}
+
+.btn-edit{
+	border-color: blue;
+	float: right;
+}
+
+/*Estilo para botões dentro da área do inventário (geral -- cores estão especificadas acima)*/
+
+.img-btn{
+	height: 20px;
+	width: 20px;
+}
+
+.inventory-btn{
+	background-color: transparent;
+	border-width: 2px;
+	height: 34px;
+	width: 34px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-left: 5px;
+	border-radius: 100%;
+}
+
+.add-btn{
+	border-color: green;
+}
+
+.inventory .closeButton{
+	position: relative;
+	top: 5px;
+	right: 5px;
+}
+
+/*--Estilo dos Modals--*/
+.big-box-modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	float: top;
+}
+
+/*Estilo da janela de pop-up pequena*/
+.pop-up-peq{
+	background-color: #7DACBC;
+	text-align: center;
+	padding: 20px;
+	width: 660px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	border-radius: 15px;
+	margin: 25%;
+}
+
+.pop-up-peq .btn-1.green{
+	margin-right: 10px;
+}
+
+.pop-up-peq .btn-1.red{
+	margin-left: 10px;
+}
+
+.pop-up-peq .closeButton{
+	margin-top: -15px;
+	margin-right: -15px;  
+}
+
+/* Estilo do div de registrar animais */
+
+.view-and-register .register-container{
+	margin-top: 70px;
+}
+
+.view-and-register .view-animals .regAnimal{
+	margin-bottom: 20px;
+}
+
+.container-2 .column input{
+	margin-bottom: 10px;
+	display: block;
+}
+
+.container-2 .column{
+	float: left;
+	margin-top: 45px;
+	margin-left: 25px;
+}
+
+/*Estilo do time slots*/
+.time-slots{
+	font-size: 16px;
+}
+
+.time-slots th{
+	padding: 10px 40px;	
+	background-color: #415361;
+	color: white;
+	border-radius: 5px;
+}
+
+.time-slots .horario-dado{
+	background-color: #415361;
+	color: white;
+	border-radius: 5px;
+	font-weight: bold;	
+}
+
+.time-slots td{
+	padding: 0;
+	height: 30px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.time-slots td button, .time-slots .week-selector{
+	font-family: 'Josefin Sans', sans-serif;
+	width: 100%;
+	height: 150px;
+	border-style: none;
+	border-radius: 5px;
+	color: white;
+	overflow: hidden;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.time-slots td .liberado{
+	background-color: #4d826c;
+}
+
+.time-slots td .ocupado{
+	background-color: #a83a3a;
+}
+
+.time-slots td .associado{
+	background-color: #517ea0;
+}
+
+.time-slots td .selecionado{
+	background-color: #a083a6;
+}
+
+.time-slots .week-selector{
+	background-color: #415361;
+	margin-bottom: 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 30px;
+}
+
+/*Estilo do div que aparece ao clicar "time slots"*/
+
+#adm-time-slots{
+	height: 550px;
+	overflow: auto;
+}
+
+.container-1 .time-slots{
+	width: 837px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+#adm-btns{
+	padding-top: 50px;
+}
+
+footer{
+	float: bottom;
+}
+
+/**************************************ESTILOS GERAIS********************************************/
+
+/*estilos de botões*/
+
+.btn-1{
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	font-weight: bold;	
+	background-color: transparent;
+	border-width: 4px;
+	border-radius: 15px;
+	padding: 10px 30px 10px;
+	width: 150px;		
+}
+
+.btn-1.red{
+	border-color: red;
+	color: red;
+}
+
+.btn-1.green{
+	border-color: green;
+	color: green;
+}
+
+.btn-1.blue{
+	border-color: blue;
+	color: blue;
+}
+
+/*estilos de containers*/
+
+.container-1{
+	border: none;
+	border-radius: 10px;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5%;
+	text-align: center;
+	width: 70%;
+	height: 1000px;		
+}
+
+.container-1.blue{
+	background-color: #252a34;
+	color: #43d8c9;
+}
+
+.container-1 .closeButton.principal{
+	position: relative;
+	top: -58px;
+	right: -58px;	
+}
+
+.scroll-container{  
+	overflow: auto;
+	height: 600px;
+}
+
+.container-2{
+	width: 800px;
+	height: 220px;
+	border: 3px;
+	border-radius: 5px;
+	border-color:black;
+	border-style: dashed;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: auto;	
+}
+
+.container-2.blue{
+	background-color: #7DACBC;
+	color: black;
+}
+
+.container-3{
+	width: 80%;
+	border: dashed black;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-size: 16px;
+	margin-right: auto;
+	margin-left: auto;		
+}
+
+.container-3.blue{
+	background-color: #7DACBC;
+	color: black;	
+}
+
+/*estilos de imagens*/
+
+.small-img{
+	width: 120px; 
+	height: 120px; 
+	border:1px; 
+	border-style: solid; 
+	border-radius: 5%;
+}
+
+/*estilos de inputs (para forms)*/
+
+.input-1{
+    font-family: 'Josefin Sans', sans-serif;
+	border-radius: 10px;
+	border-color: black;
+	height: 25px;
+	width: 270px;
+}
+
+.input-1.transparent{
+	border-color: black;
+	color: black;
+	background-color: transparent;
+}
+
+.input-1.white{
+	background-color: white;
+	color: black;
+}
