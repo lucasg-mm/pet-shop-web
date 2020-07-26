@@ -121,13 +121,13 @@
             <div v-show="currPage == pages[1]">
                 <div class="seletor cliente">
                     <h2>Client's Dashboard</h2>
-                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService(); getAppointments(); getPets();">Schedule
+                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService(); getAppointments(); getPets(userInfo._id);">Schedule
                         Service<br><br><img src="images/calendar.png"></button>
                     <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy
                         Products<br><br><img src="images/shopping-cart.png"></button>
                     <button class="botao-menu" v-on:click="setPage('manage1')">Update Info<br><br><img
                             src="images/registration.png"></button>
-                    <button class="botao-menu" v-on:click="setPage('manage2'); getPets();">Register Pets<br><br><img
+                    <button class="botao-menu" v-on:click="setPage('manage2'); getPets(userInfo._id);">Register Pets<br><br><img
                             src="images/carrier.png"></button>
                 </div>
             </div>
@@ -152,7 +152,7 @@
                                 </li>
                             </ul>
                             <button class="closeButton" class="button2"
-                                @click="showmodal2(); deletePet(index);">X</button>
+                                @click="deletePet(index)">X</button>
                         </div>
                     </div>
 
@@ -172,13 +172,13 @@
                             <img v-if="!urlPreview" class="small-img" src="images/pet.png">
                             <img v-if="urlPreview" class="small-img" :src="urlPreview">
                         </div>
-                        <form @submit="validateFormAddPets($event); addPet();">
+                        <form @submit="validateFormAddPets($event); addPet(userInfo._id);">
                             <div class="column">
                                 <input class="input-1" type="text" name="pet-name" v-model="addPetForm.name"
                                     placeholder="Pet's name">
                                 <input class="input-1" type="text" name="pet-species" v-model="addPetForm.species"
-                                    placeholder="Pet's species">
-                                <input v-model="petImage" type="file" @change="previewImage">    
+                                    placeholder="Pet's species"> 
+                                <input type="file" @change="previewImage">    
                             </div>
                             <div class="column">
                                 <input class="input-1" type="text" name="pet-breed" v-model="addPetForm.breed"
@@ -201,7 +201,7 @@
                         <img v-if="urlPreview" :src="urlPreview">                        
                         <img v-if="!urlPreview" :src="'http://localhost:3000/' + userInfo.imageURL">
                         <br>
-                        <input v-model="userImage" type="file" @change="previewImage">
+                        <input type="file" @change="previewImage">
                         <table>
                             <tr>
                                 <td><label>Phone Number:</label></td>
@@ -608,7 +608,7 @@
             <!--Div Admin, presente em todo momento em que user = admin-->
             <div class="userDiv">
 
-                <img src="images/osso.png">
+                <img :src="'http://localhost:3000/' + userInfo.imageURL">
                 <p style="float: left;">{{userInfo.username}}</p>
                 <button v-on:click="exite()">Exit</button>
 
@@ -620,11 +620,11 @@
                 <br>
                 <div class="seletor admin">
                     <h2>Admin's Dashboard</h2>
-                    <button class="botao-menu" v-on:click="setPage('manage1')">Manage Admins<br><br><img
+                    <button class="botao-menu" v-on:click="setPage('manage1'); getEveryAdmin()">Manage Admins<br><br><img
                             src="images/admin.png"></button>
-                    <button class="botao-menu" v-on:click="setPage('manage2')">Manage Clients<br><br><img
+                    <button class="botao-menu" v-on:click="setPage('manage2'); getEveryUser()">Manage Clients<br><br><img
                             src="images/cliente.png"></button>
-                    <button class="botao-menu" v-on:click="setPage('products')">Manage Products<br><br><img
+                    <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct()">Manage Products<br><br><img
                             src="images/osso.png"></button>
                     <button class="botao-menu" v-on:click="setPage('service')">Manage Services<br><br><img
                             src="images/banho.png"></button>
@@ -636,86 +636,55 @@
                 <br>
                 <div class="manager">
                     <!--Div Para edicao Usado, com leves variacoes em todos os menus de edicao-->
-                    <div class="editor">
-                        <h2>Editor</h2>
-                        <img class="prod-serv-miniatura" src="images/osso.png">
-                        <input type="file" id="imagem-escolhida-prod" name="myfile">
-                        <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name"
-                            placeholder="Product's name" type="text"></input>
-                        <input id="preço-produto-editor" value="Price" placeholder="Product's price"
-                            type="text"></input>
-                        <textarea>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore modi, accusantium nemo   minus, a nulla numquam dolores atque. Similique repellendus porro unde explicabo veniam placeat reprehenderit. Consequatur odio cum quaerat!
-                                </textarea>
-                        <label id="estoque-label" for="estoque">In Stock?</label>
-                        <input type="checkbox" id="estoque-check" name="estoque" value="true">
-                        <button class="save-btn">Save</button>
+                    <div class="editor" v-if="addProductOption">
+                        <h2>Add Product</h2>
+                        <form @submit="addProduct()">
+                            <img class="prod-serv-miniatura" src="images/osso.png">
+                            <input type="file" id="imagem-escolhida-prod" name="myfile" 
+                                v-model="productInfo.productImage">
+                            <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name"
+                                placeholder="Product's name" type="text" v-model="productInfo.name"></input>
+                             <input id="preço-produto-editor" value="Price" placeholder="Product's price"
+                                type="text" v-model="productInfo.price"></input>
+                            <input type="text" v-model="productInfo.description"></input>
+                            <input type="text" name="estoque" value="Product's stock" placeholder="Product's stock"
+                                v-model="productInfo.stock"></input>
+                            <button class="save-btn" type="submit">Save</button>
+                        </form>
+                        
+                    </div>
+                    
+                    <div class="editor" v-else="addProductOption">
+                        <h2>Edit Product</h2>
+                        <form @submit="editProduct()">
+                            <img class="prod-serv-miniatura" src="images/osso.png">
+                            <input type="file" id="imagem-escolhida-prod" name="myfile"
+                                v-model="productInfoUpdated.productImage">
+                            <input class="nome-prod-serv" id="nome-produto-editor" value="Product's name"
+                                placeholder="Product's name" type="text" v-model="productInfoUpdated.name"></input>
+                            <input id="preço-produto-editor" value="Price" placeholder="Product's price"
+                                type="text" v-model="productInfoUpdated.price"></input>
+                            <input type="text" v-model="productInfoUpdated.description">
+                        </input>
+                            <input type="text" name="estoque" value="Product's stock" placeholder="Product's stock"
+                                v-model="productInfoUpdated.stock"></input>
+                            <button class="save-btn" type="submit">Save</button>
+                        </form>
                     </div>
 
                     <!--Div de Inventario - Permite Visualisar o produto de forma resumida-->
                     <div class="inventory">
                         <button class="closeButton" v-on:click="setPage('main')">X</button>
                         <h2>Product Inventory</h2>
-                        <input type="search" class="search" id="product-search" name="q"
-                            aria-label="Search through site content">
-                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                        <div class="lista-registros">
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
+                        <button class="inventory-btn add-btn" @click="addProductOption=true" ><img class="img-btn" src="images/plus.png"></button>
+                        <div class="lista-registros" >
+                            <ul class="registro" v-for="(product, index) in products">
+                                <li class="registro-nome">Name: {{product.name}} / Stock:{{product.stock}}  </li>
                                 <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
                                         src="images/trash.png"></button>
                                 <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Product's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
+                                        src="images/edit.png" @click="addProductOption=false"></button>
+                                </ul>
                         </div>
                     </div>
                 </div>
@@ -731,7 +700,7 @@
                         <h2>Editor</h2>
                         <img class="prod-serv-miniatura" src="images/banho.png">
                         <input type="file" id="imagem-escolhida-serviço" name="myfile">
-                        <input class="nome-prod-serv" value="Service's name"
+                        <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name"
                             placeholder="Service's name" type="text"></input>
                         <input id="preço-serviço-editor" value="Price" placeholder="Service's Price"
                             type="text"></input>
@@ -750,62 +719,13 @@
                         <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
                         <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
                         <div class="lista-registros">
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
+                            <ul class="registro">
+                                <li class="registro-nome">Service's name</li>
                                 <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
                                         src="images/trash.png"></button>
                                 <button class="inventory-btn btn-edit"><img class="img-btn"
                                         src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Service's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
+                                </ul>
                         </div>
                     </div>
                 </div>
@@ -815,88 +735,73 @@
             <div v-show="currPage == pages[4]">
                 <br>
                 <div class="manager">
-                    <!--Div Editor-->
-                    <div class="editor">
-                        <h2>Editor</h2>
-                        <img class="prod-serv-miniatura pessoa-miniatura" src="images/admin2.png">
-                        <input type="file" id="imagem-escolhida-admin" name="myfile">
-                        <input class="nome-prod-serv" id="nome-admin-editor" value="Admin's name"
-                            placeholder="Admin's Name" type="text"></input>
-                        <input id="admin-id" value="Admin's ID" placeholder="Admin's ID" type="text"></input>
-                        <input id="admin-address" value="Admin's Address" placeholder="Admin's Address"
-                            type="text"></input>
-                        <input id="admin-phone" value="Admin's Phone" placeholder="Admin's Phone" type="text"></input>
-                        <input id="admin-email" value="Admin's E-mail" placeholder="Admin's E-mail" type="text"></input>
-                        <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname"
-                            type="text"></input>
-                        <button class="save-btn">Save</button>
+                    <!--Div Add Admin-->
+                    <div class="editor" v-if="addAdminOption">
+                        <h2>Add Admin</h2>
+                        <img class="prod-serv-miniatura" v-if="urlPreview" :src="urlPreview">                        
+                        <img class="prod-serv-miniatura" v-if="!urlPreview" :src="'http://localhost:3000/' + 'uploads/Default.png'">
+                        <br>
+                        <input type="file" @change="previewImage">
+                        <form @submit="addAdmin($event)">
+                            <input class="nome-prod-serv" id="nome-admin-editor" value="Admin's name"
+                                placeholder="Admin's Name" type="text" v-model="adminInfo.realName"></input>
+                            <input id="admin-address" value="Admin's Address" placeholder="Admin's Address"
+                                type="text" v-model="adminInfo.address"></input>
+                            <input id="admin-phone" value="Admin's Phone" placeholder="Admin's Phone" type="text"
+                                v-model="adminInfo.phonenumber"></input>
+                            <input id="admin-email" value="Admin's E-mail" placeholder="Admin's E-mail" type="text"
+                                v-model="adminInfo.email"></input>
+                            <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname"
+                                type="text" v-model="adminInfo.username"></input>
+                            <input id="admin-password" value="Admin's password" placeholder="Admin's password"
+                                type="text" v-model="adminInfo.password"></input>
+                            <button type="submit" class="save-btn">Save</button>   
+                        </form>
                     </div>
+                    <!--Div Edit Admin-->
+                    <div class="editor" v-else="addAdminOption">
+                        <h2>Edit Admin</h2>
+                        <!--<img v-if="!addAdminOption" src="http://localhost:3000/uploads/Default.png">                        
+                        <img v-if="addAdminOption" src="http://localhost:3000/uploads/Default.png">
+                        -->
+                        <img v-if="urlPreview" class="prod-serv-miniatura" :src="urlPreview">
+                        <img v-if="!urlPreview" class="prod-serv-miniatura" :src="'http://localhost:3000/' + adminInfoUpdated.profileImage">
+                        <br>
+                        <input type="file" @change="previewImage">
+                        <form @submit="updateAdminInfo($event)">
+                            <input class="nome-prod-serv" id="nome-admin-editor" value="Admin's name"
+                                placeholder="Admin's Name" type="text" v-model="adminInfoUpdated.realName"></input>
+                            <input id="admin-address" value="Admin's Address" placeholder="Admin's Address"
+                                type="text" v-model="adminInfoUpdated.address"></input>
+                            <input id="admin-phone" value="Admin's Phone" placeholder="Admin's Phone" type="text"
+                                v-model="adminInfoUpdated.phonenumber"></input>
+                            <input id="admin-email" value="Admin's E-mail" placeholder="Admin's E-mail" type="text"
+                                v-model="adminInfoUpdated.email"></input>
+                            <input id="admin-nickname" value="Admin's Nickname" placeholder="Admin's Nickname"
+                                type="text" v-model="adminInfoUpdated.username"></input>
+                            <input id="admin-password" value="Admin's password" placeholder="Admin's password"
+                                type="text" v-model="adminInfoUpdated.password"></input>
+                            <button type="submit" class="save-btn">Save</button>   
+                        </form>
+                    </div>
+
                     <!--Div Inventario-->
                     <div class="inventory">
                         <button class="closeButton" v-on:click="setPage('main')">X</button>
                         <h2>Admins List</h2>
-                        <input type="search" class="search" id="service-search" name="q"
-                            aria-label="Search through site content">
-                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                        <div class="lista-registros">
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
+
+                        <button class="inventory-btn add-btn" @click="addAdminOption=true"><img class="img-btn" src="images/plus.png"></button>
+
+                        <div class="lista-registros" >
+                            <ul class="registro" v-for="(admin, index) in admins">
+                                <li class="registro-nome">{{admin.username}}</li>
+                                <button class="inventory-btn btn-del" @click="deleteAdmin(index)"><img class="img-btn"
+                                        src="images/trash.png" ></button>
+                                <button class="inventory-btn btn-edit" @click="selectadmin(index);addAdminOption=false"><img class="img-btn"
                                         src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Admin's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                        </div>
+                                </ul>
+                        </div> 
+
                     </div>
                 </div>
             </div>
@@ -906,89 +811,68 @@
                 <br>
                 <div class="manager">
                     <!--Div Editor-->
-                    <div class="editor">
-                        <h2>Editor</h2>
+                    <div class="editor" v-if="addUserOption">
+                        <h2>Create Customer</h2>
                         <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
-                        <input type="file" id="imagem-escolhida-cliente" name="myfile">
-                        <input class="nome-prod-serv" value="Customer's name"
-                            placeholder="Customer's Name" type="text"></input>
-                        <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" type="text"></input>
-                        <input id="customer-address" value="Customer's Address" placeholder="Customer's Address"
-                            type="text"></input>
-                        <input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone"
-                            type="text"></input>
-                        <input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail"
-                            type="text"></input>
-                        <input id="customer-nickname" value="Customer's Nickname" placeholder="Customer's Nickname"
-                            type="text"></input>
-                        <button class="view-pets-btn" v-on:click="setPage('special')">Pets</button>
-                        <button class="save-btn">Save</button>
+                        <form @submit="addUser()">
+                            <img v-if="urlPreview" :src="urlPreview">                        
+                            <img v-if="!urlPreview" :src="'http://localhost:3000/' + userInfo.imageURL">
+                            <br>
+                            <input type="file" @change="previewImage">
+                            <input class="nome-prod-serv" id="nome-serviço-editor" value="Customer's name"
+                                placeholder="Customer's Name" type="text" v-model="userInfo.realName"></input>
+                            <input id="customer-address" value="Customer's Address" placeholder="Customer's Address"
+                                type="text" v-model="userInfo.address"></input>
+                            <input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone"
+                                type="text" v-model="userInfo.phonenumber"></input>
+                            <input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail"
+                                type="text" v-model="userInfo.email"></input>
+                            <input id="customer-nickname" value="Customer's Nickname" placeholder="Customer's Nickname"
+                                type="text" v-model="userInfo.username"></input>
+                            <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" 
+                                type="text" v-model="userInfo.password"></input>                            
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                    </div>
+                    <div class="editor" v-else="addUserOption">
+                        <h2>Edit Customer</h2>
+                        <img :src="'http://localhost:3000/' + userInfo.imageURL">
+ 
+                        <form @submit="updateUserInfo()">
+                            <img v-if="urlPreview" :src="urlPreview">                        
+                            <img v-if="!urlPreview" :src="'http://localhost:3000/' + userInfo.imageURL">
+                            <br>
+                            <input type="file" @change="previewImage">                          
+                            <input id="customer-username" value="Customer's Username" placeholder="Customer's Username"
+                                type="text" v-model="userInfoUpdated.username"></input>                            
+                            <input id="customer-address" value="Customer's Address" placeholder="Customer's Address"
+                                type="text" v-model="userInfoUpdated.address"></input>
+                            <input id="customer-phone" value="Customer's Phone" placeholder="Customer's Phone"
+                                type="text" v-model="userInfoUpdated.phonenumber"></input>
+                            <input id="customer-email" value="Customer's E-mail" placeholder="Customer's E-mail"
+                                type="text" v-model="userInfoUpdated.email"></input>
+
+                            <input id="customer-password" value="Customer's password" placeholder="Customer's password" 
+                                type="text" v-model="userInfoUpdated.password"></input>                            
+                            <button type="submit" class="save-btn">Save</button>
+                        </form>
+                        <button class="view-pets-btn" v-on:click="setPage('special'); getPets(selectedUser._id);">Pets</button>  
                     </div>
                     <!--Div Inventario-->
                     <div class="inventory">
                         <button class="closeButton" v-on:click="setPage('main')">X</button>
                         <h2>Customers List</h2>
-                        <input type="search" class="search" id="service-search" name="q"
-                            aria-label="Search through site content">
-                        <button class="inventory-btn search-btn"><img class="img-btn" src="images/loupe.png"></button>
-                        <button class="inventory-btn add-btn"><img class="img-btn" src="images/plus.png"></button>
-                        <div class="lista-registros">
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
-                            <div class="registro">
-                                <p class="registro-nome">Customer's name</p>
-                                <button class="inventory-btn btn-del" onclick="showmodal2()"><img class="img-btn"
-                                        src="images/trash.png"></button>
-                                <button class="inventory-btn btn-edit"><img class="img-btn"
-                                        src="images/edit.png"></button>
-                            </div>
+
+                        <button class="inventory-btn add-btn" @click="addUserOption=true"><img class="img-btn" src="images/plus.png"></button>
+
+                        <div class="lista-registros" >
+                            <ul class="registro" v-for="(user, index) in users">
+                                <li class="registro-nome">{{user.username}}</li>
+                                <button class="inventory-btn btn-del" @click="showmodal2();deleteUser(index)"><img class="img-btn" src="images/trash.png" ></button>
+                                <button class="inventory-btn btn-edit" @click="addUserOption=false; selectedUser=user;"><img class="img-btn" src="images/edit.png"></button>
+                                </ul>
+                        </div> 
+                            
                         </div>
                     </div>
                 </div>
@@ -1000,115 +884,49 @@
                 <div class="container-1 blue view-and-register">
                     <button class="closeButton principal" v-on:click="setPage('manage2')">X</button>
                     <h2>User's pets</h2>
-                    <div class="scroll-container view-animals">
-                        <div class="regAnimal">
-                            <img src="images/pet.png">
+                    <div v-if="selectedUser" class="scroll-container view-animals">
+                        <div class="regAnimal" v-for="(pet, index) in pets">
+                            <img class="small-img" :src="'http://localhost:3000/' + pet.petImage">
                             <ul class="list-card">
-                                <li class="list-card-item">Name: oqlaoqlao</li>
-                                <li class="list-card-item">ID: 10292389110</li>
-                                <li class="list-card-item">Species: ahshahsash</li>
-                                <li class="list-card-item">Breed: kjndckan</li>
-                                <li class="list-card-item">Age: 12</li>
+                                <li class="list-card-item">Name: {{ pet.name }}</li>
+                                <li class="list-card-item">Species: {{ pet.species }}</li>
+                                <li class="list-card-item">Breed: {{ pet.breed }}</li>
+                                <li class="list-card-item">Age: {{ pet.age }}</li>
                             </ul>
                             <ul class="list-card">
-                                <p>Reservas:</p>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
+                                <p>Reserves:</p>
+                                <li class="list-card-item" v-for="service in pets[index].services">
+                                    {{ service.name }}: {{ service.day }}, {{ service.hour }}h
+                                </li>
                             </ul>
-                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                        </div>
-
-                        <div class="regAnimal">
-                            <img src="images/pet.png">
-                            <ul class="list-card">
-                                <li class="list-card-item">Name: oqlaoqlao</li>
-                                <li class="list-card-item">ID: 10292389110</li>
-                                <li class="list-card-item">Species: ahshahsash</li>
-                                <li class="list-card-item">Breed: kjndckan</li>
-                                <li class="list-card-item">Age: 12</li>
-                            </ul>
-                            <ul class="list-card">
-                                <p>Reservas:</p>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                            </ul>
-                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                        </div>
-
-                        <div class="regAnimal">
-                            <img src="images/pet.png">
-                            <ul class="list-card">
-                                <li class="list-card-item">Name: oqlaoqlao</li>
-                                <li class="list-card-item">ID: 10292389110</li>
-                                <li class="list-card-item">Species: ahshahsash</li>
-                                <li class="list-card-item">Breed: kjndckan</li>
-                                <li class="list-card-item">Age: 12</li>
-                            </ul>
-                            <ul class="list-card">
-                                <p>Reservas:</p>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                            </ul>
-                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                        </div>
-
-                        <div class="regAnimal">
-                            <img src="images/pet.png">
-                            <ul class="list-card">
-                                <li class="list-card-item">Name: oqlaoqlao</li>
-                                <li class="list-card-item">ID: 10292389110</li>
-                                <li class="list-card-item">Species: ahshahsash</li>
-                                <li class="list-card-item">Breed: kjndckan</li>
-                                <li class="list-card-item">Age: 12</li>
-                            </ul>
-                            <ul class="list-card">
-                                <p>Reservas:</p>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                            </ul>
-                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
-                        </div>
-
-                        <div class="regAnimal">
-                            <img src="images/pet.png">
-                            <ul class="list-card">
-                                <li class="list-card-item">Name: oqlaoqlao</li>
-                                <li class="list-card-item">ID: 10292389110</li>
-                                <li class="list-card-item">Species: ahshahsash</li>
-                                <li class="list-card-item">Breed: kjndckan</li>
-                                <li class="list-card-item">Age: 12</li>
-                            </ul>
-                            <ul class="list-card">
-                                <p>Reservas:</p>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                                <li class="list-card-item"></li>
-                            </ul>
-                            <button class="closeButton" class="button2" onclick="showmodal2()">X</button>
+                            <button class="closeButton" class="button2"
+                                @click="deletePet(index)">X</button>
                         </div>
                     </div>
-
+                    
                     <div class="container-2 blue register-container">
                         <div class="column">
-                            <img class="small-img" src="images/pet.png">
+                            <img v-if="!urlPreview" class="small-img" src="images/pet.png">
+                            <img v-if="urlPreview" class="small-img" :src="urlPreview">
                         </div>
-                        <div class="column">
-                            <input class="input-1" type="text" name="pet-name" placeholder="Pet's name">
-                            <input class="input-1" type="text" name="pet-id" placeholder="Pet's ID">
-                            <input class="input-1" type="text" name="pet-species" placeholder="Pet's Species">
-                        </div>
-                        <div class="column">
-                            <input class="input-1" type="text" name="pet-breed" placeholder="Pet's Breed">
-                            <input class="input-1" type="text" name="pet-age" placeholder="Pet's Age">
-                            <button class="btn-1 green">Add Pet</button>
-                        </div>
+                        <form @submit="validateFormAddPets($event); addPet(selectedUser._id);">
+                            <div class="column">
+                                <input class="input-1" type="text" name="pet-name" v-model="addPetForm.name"
+                                    placeholder="Pet's name">
+                                <input class="input-1" type="text" name="pet-species" v-model="addPetForm.species"
+                                    placeholder="Pet's species">
+                                <input type="file" @change="previewImage">    
+                            </div>
+                            <div class="column">
+                                <input class="input-1" type="text" name="pet-breed" v-model="addPetForm.breed"
+                                    placeholder="Pet's breed">
+                                <input class="input-1" type="text" name="pet-age" v-model="addPetForm.age"
+                                    placeholder="Pet's age">
+                                <button type="submit" class="btn-1 green">Add Pet</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
 
             <!--Div para mudar data Servicos-->
@@ -1238,6 +1056,9 @@
                 el: "#app",
 
                 data: {
+                    // usuário selecionado (clicar no lápis) atualmente
+                    selectedUser: null,
+
                     // id do pet selecionado na hora de comprar um serviço
                     selectedPet: null,
 
@@ -1249,12 +1070,6 @@
 
                     // indica a semana do calendário que está sendo visualizada no momento
                     calendarPage: 0,  
-
-                    // two-way data binding com o seletor da imagem do pet a ser registrado                    
-                    userImage: "",
-
-                    // two-way data binding com o seletor da imagem do pet a ser registrado
-                    petImage: "",
 
                     // armazena um arquivo imagem
                     imageFile: null,
@@ -1323,11 +1138,515 @@
                     //tipos de usuarios
                     usertypes: ["Cli", "Adm", "N"],
                     //dependendo do tipo de usuario, a pagina a ser mostrada sera outra
-                    myerror: ""
+                    myerror: "",
 
+                    //Data criada pelo luis a partir de aqui:
+                    addAdminOption: true, //seleciona a opcao add admin ao inves de edit admin
+                    addUserOption: true, //o mesmo que o anterior
+                    addProductOption: true,
+
+                    adminInfo: {
+                        _id: "",
+                        username: "",
+                        phonenumber: "",
+                        address: "",
+                        email: "",
+                        password: "",
+                        imageURL: "",
+                        realName: ""
+                    },
+
+                    adminInfoUpdated: {
+                        _id:"",
+                        realName: "",
+                        address: "",
+                        phonenumber: "",
+                        email: "",
+                        username: "",
+                        password: "",
+                        profileImage: ""
+                    },
+                    productInfo: {
+                        _id: "",
+                        name: "",
+                        price: "",
+                        description: "",
+                        stock: "",
+                        productImage: ""
+                    },
+                    productInfoUpdated: {
+                        name: "",
+                        price: "",
+                        description: "",
+                        stock: "",
+                        productImage: ""
+                    }
                 },
 
                 methods: {
+                    
+                    //Funcoes do Luis
+                    addProduct: async function(){
+                        try {
+                            // faz um post para registrar o admin na base
+                            let resp = await fetch("http://localhost:3000/products/", {
+                            method: "POST",
+                            headers: {
+                                'Content-type': 'application/json'},
+                            body: JSON.stringify({  // conteúdo enviado (do form)
+                                name: this.productInfo.name,
+                                price: this.productInfo.price,
+                                description: this.productInfo.description,
+                                stock: this.productInfo.stock,
+
+                                })
+                            });                           
+                            // se a requisição for bem-sucedida
+                            if (resp.ok) {
+                                 this.products.push(await resp.json());
+                                alert("Your product has been succesfully added!");
+                                
+                             }
+                             else {  // se não for...
+                                 alert("Something went wrong. Try again later");
+                            }
+        
+                        }
+                        catch (e) {
+                             alert("Error: " + e);
+                            }
+                        // imagem do admin
+                        if(this.imageFile != null){
+                            try {
+                                if (!this.erros.length) {
+                                        let form = new FormData();
+                                        form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/admins/image/" + this.productInfo._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.productInfo.imageURL = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.productInfo.imageURL);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;                          
+                        }    
+                        },
+                    //deleteAd
+                    deleteproduct: async function (index) {
+                        try {
+
+                            let resp = await fetch("http://localhost:3000/admins/" + this.products[index]._id, {
+                                method: "DELETE"
+                            });
+
+                            // se a requisição foi bem-sucedida:
+                            if (resp.ok) {
+                                this.products.splice(index, 1);
+
+                                alert("Admin deleted succesfully!")
+                            }
+                            else {  // se não for, exibe a mensagem no console
+                                alert("Something went wrong. Try again later!")
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+                    //updateAdmins
+                    updateProductInfo: async function () {
+                        // atualiza as informações colocados no formulário
+                        try {
+                            let resp = await fetch("http://localhost:3000/admins/update/" + this.productInfo._id, {
+                                method: "PUT",
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                body: JSON.stringify({  // conteúdo enviado (do form)
+                                name: this.productInfoUpdated.name,
+                                price: this.productInfoUpdated.price,
+                                description: this.productInfoUpdated.description,
+                                stock: this.productInfoUpdated.stock,
+                                })
+                            });
+
+                            // se a requisição for bem sucedida
+                            if (resp.ok) {
+                                this.productInfo.name = this.productInfoUpdated.name;
+                                this.productInfo.price = this.productInfoUpdated.price;
+                                this.productInfo.description = this.productInfoUpdated.descripton;
+                                this.productInfo.stock = this.productInfoUpdated.stock;
+                                alert("Your information has been succesfully updated!");
+                            }
+                            else {  // se não for...
+                                alert("Something went wrong. Try again later!");
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+
+                                               // atualiza a imagem do usuário
+                        if(this.imageFile != null){
+                            try {
+                                if (!this.erros.length) {
+                                        let form = new FormData();
+                                        form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/products/image/" + this.productInfo._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.productInfo.imageURL = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.productInfo.imageURL);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;                           
+                        }
+
+                    },
+
+                    getEveryUser: async function () {
+                        try {
+                            // faz um get request para obter os produtos
+                            let resp = await fetch("http://localhost:3000/users/");
+
+                            // se a requisição for bem-sucedida
+                            if (resp.ok) {
+                                this.users = await resp.json();
+                            }
+                            else {  // se não for...
+                                alert("Something went wrong. Try again later!");
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+                    // Apenas para uso do Admin
+                    addUser: async function () {
+                        try {
+
+                            //tentamos pegar um usuario ja com esse nome, se nao houver, seguimos
+                            this.fetched = await fetch("http://localhost:3000/users/" + this.userInfo.username, { method: 'GET' });
+                            this.fetched = await this.fetched.json();
+
+                            console.log('Fetch result:' + JSON.stringify(this.fetched));
+
+                            //se nao achamos alguem com esse nome, eh valido    
+                            if (this.fetched.username == "NOTFOUND") {
+
+                                let myheaders = new Headers({ "Content-Type": "application/json", });
+
+                                this.fetched = await fetch("http://localhost:3000/users/", {
+                                    method: 'POST',
+                                    headers: myheaders,
+                                    body: JSON.stringify({
+                                        "username": this.userInfo.username,
+                                        "email": this.userInfo.email,
+                                        "phonenumber": this.userInfo.phonenumber,
+                                        "password": this.userInfo.password,
+                                        "address": this.userInfo.address
+                                    })
+
+                                });
+
+                                console.log(this.fetched);
+
+                                console.log('Success');
+                            }
+                            else {
+                                alert("Username Already in Use");
+                            }
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+                       // imagem do usuário
+                        if(this.imageFile != null){
+                            try {
+                                        let form = new FormData();
+                                        form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/users/image/" + this.userInfo._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.userInfo.imageURL = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.userInfo.imageURL);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;                           
+                        }
+                    },
+                                
+                    deleteUser: async function (index) {
+                        try {
+
+                            let resp = await fetch("http://localhost:3000/users/" + this.users[index]._id, {
+                                method: "DELETE"
+                            });
+
+                            // se a requisição foi bem-sucedida:
+                            if (resp.ok) {
+                                this.users.splice(index, 1);
+
+                                alert("Customer deleted succesfully!")
+                            }
+                            else {  // se não for, exibe a mensagem no console
+                                alert("Something went wrong. Try again later!")
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+
+                    getEveryAdmin: async function () {
+                        try {
+                            // faz um get request para obter os produtos
+                            let resp = await fetch("http://localhost:3000/admins/");
+
+                            // se a requisição for bem-sucedida
+                            if (resp.ok) {
+                                this.admins = await resp.json();
+                            }
+                            else {  // se não for...
+                                alert("Something went wrong. Try again later!");
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+                    addAdmin: async function(e){
+                        e.preventDefault();
+                        try {
+                            // faz um post para registrar o admin na base
+                            let resp = await fetch("http://localhost:3000/admins/", {
+                            method: "POST",
+                            headers: {
+                                'Content-type': 'application/json'},
+                            body: JSON.stringify({  // conteúdo enviado (do form)
+                                realName: this.adminInfo.realName,
+                                username: this.adminInfo.username,
+                                email: this.adminInfo.email,
+                                phonenumber: this.adminInfo.phonenumber,
+                                address: this.adminInfo.address,
+                                password: this.adminInfo.password
+
+                                })
+                            });   
+
+                            // se a requisição for bem-sucedida
+                            if (resp.ok) {
+                                this.admins.push(await resp.json());
+                                console.log('Ok!');
+                                alert("Your admin has been succesfully added!");
+                                
+                             }
+                             else {  // se não for...
+                                 console.log('Not Ok');
+                                 alert("Something went wrong. Try again later");
+                            }
+        
+                        }
+                        catch (e) {
+                            console.log("error" + e);
+                             alert("Error: " + e);
+                            }
+                        //= imagem do admin
+                        if(this.imageFile != null){
+                            try {
+                                
+                                    let form = new FormData();
+                                    form.append('Image', this.imageFile);
+                        
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/admins/image/" + this.admins[this.admins.length-1]._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.adminInfo.imageURL = url.profileImage;
+                                        console.log("Image succesfully uploaded: " + this.adminInfo.imageURL);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+
+                            this.imageFile = null;
+                            this.urlPreview = null;                          
+                        } 
+
+                        },
+
+                    selectadmin: async function(index){
+                        this.adminInfoUpdated.realName = this.admins[index].realName;
+                        this.adminInfoUpdated.username = this.admins[index].username;
+                        this.adminInfoUpdated.email = this.admins[index].email;
+                        this.adminInfoUpdated.phonenumber = this.admins[index].phonenumber;
+                        this.adminInfoUpdated.address = this.admins[index].address;
+                        this.adminInfoUpdated.password = this.admins[index].password;
+                        this.adminInfoUpdated._id = this.admins[index]._id;
+                        this.adminInfoUpdated.profileImage = this.admins[index].profileImage;
+                        console.log(this.admins[index].profileImage);
+                    },
+                    //deleteAdmin -- funciona
+                    deleteAdmin: async function (index) {
+                        try {
+
+                            let resp = await fetch("http://localhost:3000/admins/" + this.admins[index]._id, {
+                                method: "DELETE"
+                            });
+
+                            // se a requisição foi bem-sucedida:
+                            if (resp.ok) {
+                                this.admins.splice(index, 1);
+
+                                alert("Admin deleted succesfully!")
+                            }
+                            else {  // se não for, exibe a mensagem no console
+                                alert("Something went wrong. Try again later!")
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+                    },
+                    //updateAdmins
+                    updateAdminInfo: async function (e) {
+                        // atualiza as informações colocados no formulário
+                        e.preventDefault();
+                        try {
+                            
+                            console.log(this.adminInfoUpdated._id);
+                            console.log(this.adminInfoUpdated.profileImage);
+
+                            let resp = await fetch("http://localhost:3000/admins/update/" + this.adminInfoUpdated._id, {
+                                method: "PUT",
+                                headers: {
+                                    'Content-type': 'application/json'
+                                },
+                                // conteúdo enviado (do form)
+                                body: JSON.stringify({  
+                                realName: this.adminInfoUpdated.realName,
+                                username: this.adminInfoUpdated.username,
+                                email: this.adminInfoUpdated.email,
+                                phonenumber: this.adminInfoUpdated.phonenumber,
+                                address: this.adminInfoUpdated.address,
+                                password: this.adminInfoUpdated.password
+                                })
+                            });
+                            console.log("worked till here");
+                            // se a requisição for bem sucedida
+                          /*  if (resp.ok) {
+                                this.adminInfo.username = this.adminInfoUpdated.username;
+                                this.adminInfo.password = this.adminInfoUpdated.password;
+                                this.adminInfo.phonenumber = this.adminInfoUpdated.phonenumber;
+                                this.adminInfo.address = this.adminInfoUpdated.address;
+                                this.adminInfo.email = this.adminInfoUpdated.email;
+                                alert("Your information has been succesfully updated!");
+                            }
+                            else {  // se não for...
+                                alert("Something went wrong. Try again later!");
+                            }*/
+
+                            alert("Admin Info Updated Sucessfully!");
+                        }
+                        catch (e) {
+                            console.log("error" + e);
+                            alert("Error: " + e);
+                        }
+
+                        
+                        // atualiza a imagem do usuário
+                        if(this.imageFile != null){
+                            try {
+                                if (!this.erros.length) {
+                                        let form = new FormData();
+                                        form.append('Image', this.imageFile);
+
+                                    // faz um post para registrar um pet na base
+                                    let resp = await fetch("http://localhost:3000/admins/image/" + this.adminInfoUpdated._id, {
+                                        method: "POST",
+                                        body: form
+                                    });
+
+                                    // se a requisição for bem-sucedida
+                                    if (resp.ok) {
+                                        let url = await resp.json();
+                                        this.adminInfoUpdated.profileImage = url.profileImage;
+                                        alert("Image succesfully uploaded: " + this.adminInfoUpdated.profileImage);
+                                        console.log("Image succesfully uploaded: " + this.adminInfoUpdated.profileImage);
+                                    }
+                                    else {  // se não for...
+                                        alert("Could not upload the image");
+                                    }
+                                }
+                            }
+                            catch (e) {
+                                alert("Error: " + e);
+                            }
+                            
+                            this.imageFile = null;
+                            this.urlPreview = null;                           
+                        }
+                        //re att vetor 
+                    },
+
+                    //Funcoes do Lucas
                     // administra a ação de selecionar no calendário
                     toggleSelect: function(index, hora){
                         if(this.selectedAppointment != null){
@@ -1532,7 +1851,7 @@
 
                             // se a requisição foi bem-sucedida:
                             if (resp.ok) {
-                                alert("Pet deleted succesfully!")
+                                console.log("Pet deleted succesfully!")
                             }
                             else {  // se não for, exibe a mensagem no console
                                 alert("Something went wrong. Try again later!")
@@ -1598,8 +1917,8 @@
                         }
                     },
 
-                    // adiciona um pet
-                    addPet: async function () {
+                    // adiciona um pet cujo dono tem um certo "id"
+                    addPet: async function (id) {
                         // primeiro adiciona as informações do pet
                         try {
                             if (!this.erros.length) {
@@ -1614,7 +1933,7 @@
                                         species: this.addPetForm.species,
                                         breed: this.addPetForm.breed,
                                         age: this.addPetForm.age,
-                                        ownerId: this.userInfo._id
+                                        ownerId: id
                                     })
                                 });
 
@@ -1662,15 +1981,14 @@
 
                             this.imageFile = null;
                             this.urlPreview = null;
-                            this.petImage = "";
                         }                        
                     },
 
-                    // obtém todos os pets do usuário
-                    getPets: async function () {
+                    // obtém todos os pets de um  usuário com um certo id
+                    getPets: async function (id) {
                         try {
                             // faz um get request para obter os pets do usuário logado
-                            let resp = await fetch("http://localhost:3000/pets/owner/" + this.userInfo._id);
+                            let resp = await fetch("http://localhost:3000/pets/owner/" + id);
 
                             // se a requisição for bem-sucedida
                             if (resp.ok) {
@@ -1803,8 +2121,7 @@
                             }
 
                             this.imageFile = null;
-                            this.urlPreview = null;
-                            this.userImage = "";                            
+                            this.urlPreview = null;                          
                         }
                     },
 
@@ -2037,8 +2354,6 @@
                     setPage(sstring) {
                         this.imageFile = null;
                         this.urlPreview = null;
-                        this.petImage = "";
-                        this.userImage = "";
                         this.calendarPage = 0;                        
 
                         this.currPage = sstring;
@@ -2050,8 +2365,6 @@
 
                         this.imageFile = null;
                         this.urlPreview = null;
-                        this.petImage = "";
-                        this.userImage = "";
                         this.calendarPage = 0; 
 
                         this.setPage("login");
