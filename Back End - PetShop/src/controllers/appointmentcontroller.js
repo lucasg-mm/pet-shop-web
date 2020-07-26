@@ -77,7 +77,11 @@ exports.appoint = (req,res,next) =>{
             doc[0].timeTable[time].petid = req.body.petid;
             doc[0].timeTable[time].serviceid = req.body.serviceid;
             doc[0].timeTable[time].ownerid = req.body.ownerid;
-            doc[0].timeTable[time].status = 2;
+            doc[0].timeTable[time].status = 1;
+            doc[0].timeTable[time].petname = req.body.petname;
+            doc[0].timeTable[time].servicename = req.body.servicename;
+            doc[0].timeTable[time].ownername = req.body.ownername;
+            
 
             doc[0].save();
             res.status(200).send({result: "SUCCESS"});
@@ -109,13 +113,52 @@ exports.free = (req,res,next) =>{
             doc[0].timeTable[time].petid = "";
             doc[0].timeTable[time].serviceid = "";
             doc[0].timeTable[time].ownerid = "";
-            doc[0].timeTable[time].status = 1;
+            doc[0].timeTable[time].status = 0;
+            doc[0].timeTable[time].petname = "";
+            doc[0].timeTable[time].servicename = "";
+            doc[0].timeTable[time].ownername = "";
+                    
 
             doc[0].save();
             res.status(200).send({result: "SUCCESS"});
 
         }
     })
+}
+
+exports.freebyID = (req,res,next) =>{
+    Appointment.find(function(err,doc){
+        if(err){
+            console.log("Error" + err);
+            res.status(400).send({result: "FAIL"});
+        }
+        else if(doc.length == 0){
+            
+            res.status(400).send({result: "FAIL"},{
+                type:"NOAPP"
+            });
+        }
+        else{
+            var i;
+            for(i = 0; i < 700; i++){
+                if(doc[0].timeTable[i].petid == req.params.id){
+                    doc[0].timeTable[i].imageurl = "uploads/Default.png";
+                    doc[0].timeTable[i].petid = "";
+                    doc[0].timeTable[i].serviceid = "";
+                    doc[0].timeTable[i].ownerid = "";
+                    doc[0].timeTable[i].status = 0;
+                    doc[0].timeTable[i].petname = "";
+                    doc[0].timeTable[i].servicename = "";
+                    doc[0].timeTable[i].ownername = "";
+                    
+                }
+            }
+
+            doc[0].save();
+            res.status(200).send({result: "SUCCESS"});
+        }
+
+    });
 }
 
 exports.disassociate = (req,res,next) =>{
@@ -147,6 +190,11 @@ exports.disassociate = (req,res,next) =>{
 
         }
     })
+}
+
+exports.delete = (req,res,next)=>{
+
+    Appointment.deleteMany({});
 }
 
 

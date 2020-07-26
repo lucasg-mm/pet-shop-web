@@ -9,7 +9,7 @@ const theschema = new mySchema({
         status:{
             type: Number,
             required: true,
-            default: 0
+            default: 0  // 0 - livre, 1 - ocupado 
         },
 
         //colocamos tambem o nome de um pet
@@ -32,6 +32,21 @@ const theschema = new mySchema({
             type: String,
             trim:true,
             default: "uploads/Default.png"
+        },
+
+        servicename:{
+            type: String,
+            trim: true
+        },
+
+        ownername:{
+            type: String,
+            trim: true
+        },
+
+        petname:{
+            type: String,
+            trim: true
         }
     }]
 });

@@ -121,7 +121,7 @@
             <div v-show="currPage == pages[1]">
                 <div class="seletor cliente">
                     <h2>Client's Dashboard</h2>
-                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService(); getAppointments()">Schedule
+                    <button class="botao-menu" v-on:click="setPage('service'); getEveryService(); getAppointments(); getPets();">Schedule
                         Service<br><br><img src="images/calendar.png"></button>
                     <button class="botao-menu" v-on:click="setPage('products'); getEveryProduct();">Buy
                         Products<br><br><img src="images/shopping-cart.png"></button>
@@ -147,8 +147,8 @@
                             </ul>
                             <ul class="list-card">
                                 <p>Reserves:</p>
-                                <li class="list-card-item" v-for="service in pets.services">
-                                    {{ service.name }}: {{ service.day }}, {{ service.hour }}:00
+                                <li class="list-card-item" v-for="service in pets[index].services">
+                                    {{ service.name }}: {{ service.day }}, {{ service.hour }}h
                                 </li>
                             </ul>
                             <button class="closeButton" class="button2"
@@ -204,10 +204,6 @@
                         <input v-model="userImage" type="file" @change="previewImage">
                         <table>
                             <tr>
-                                <td><label>Username:</label></td>
-                                <td><input class="input-1 white" type="text" v-model="userInfoUpdated.username"></td>
-                            </tr>
-                            <tr>
                                 <td><label>Phone Number:</label></td>
                                 <td><input class="input-1 white" type="text" v-model="userInfoUpdated.phonenumber"></td>
                             </tr>
@@ -236,7 +232,7 @@
                 <div id="fancymodal" class="big-box-modal">
                     <div class="serv-grande">
                         <button class="closeButton" onclick="closer()">X</button>
-                        <img src="images/osso.png">
+                        <img :src="'http://localhost:3000/' + selectedProduct.productImage">
                         <br>
                         <em>Product Name: {{ selectedProduct.name }}</em>
                         <br>
@@ -245,7 +241,7 @@
                         <em>Price: ${{ selectedProduct.price }}</em>
                         <br>
                         <button v-if="selectedProduct.stock > 0" class="buy-btn-big"
-                            @click="addToCart(selectedProduct.name, selectedProduct.price, selectedProduct._id, 'product', selectedProduct.index)">ADD TO CART</button>
+                            @click="addToCart(selectedProduct.name, selectedProduct.price, selectedProduct._id, 'product', selectedProduct.index); closer3();">ADD TO CART</button>
                         <input v-model="qtdSelected" type="number" min="1" :max="selectedProduct.stock">
                         <br>
                         <div id="descricao-produto">
@@ -284,7 +280,7 @@
                 <div id="bigmodal2" class="big-box-modal" style="display: none;">
                     <div class="serv-grande" style="min-height: 900px;">
                         <button class="closeButton" id="closem2" onclick="closer3()">X</button>
-                        <img src="images/banho.png">
+                        <img :src="'http://localhost:3000/' + selectedService.ServiceImage">
                         <br>
                         <em>Service Name: {{ selectedService.name }}</em>
                         <br>
@@ -292,13 +288,18 @@
                         <br>
                         <br>
                         <button class="buy-btn-big"
-                            @click="addToCart(selectedService.name, selectedService.price, selectedService._id, 'service', selectedService.index)">BOOK</button>
+                            @click="addToCart(selectedService.name, selectedService.price, selectedService._id, 'service', selectedService.index, selectedService.ServiceImage); closer3();">BOOK</button>
                         <br>
                         <div id="descricao-servico">
                             <h3>Product Description:</h3>
                             <p>
                                 {{ selectedService.description }}
                             </p>
+                            <h3>Choose the pet:</h3>
+                            <select v-model="selectedPet">
+                                <option value="" ></option>
+                                <option v-for="pet in pets" :value="pet._id">{{ pet.name }}, {{ pet.age }}, {{ pet.species }}, {{ pet.breed }}</option>
+                            </select>                            
                         </div>
                         <div id="area-agendamento">
                             <h3>Choose your time slot:</h3>
@@ -306,11 +307,10 @@
                             <div class="time-slots">
                                 <button @click="previousCalendarPage" class="week-selector"><</button>
                                         <button @click="nextCalendarPage" class="week-selector">></button>
-                                        <!-- a fazer -->    
-                                        <div v-if="dates" class="tabela">
+                                           
+                                        <div v-if="dates && appointments" class="tabela">
                                             <table>
                                                 <thead>
-                                                    <!-- a fazer -->
                                                     <tr>
                                                         <th></th>
                                                         <th>{{ dates[0 + calendarPage * 7].getDate() + '/' + (Number(dates[0 + calendarPage * 7].getMonth()) + Number(1)).toString() }}</th>
@@ -331,76 +331,214 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="horario-dado">9h - 10h</td>
-                                                        <td><button class="selecionado">SELECTED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
+                                                        <!-- renderiza cada linha do calendário de acordo com o vetor de appointments -->
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 1)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (1 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>        
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">10h - 11h</td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 2)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (2 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>    
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">11h - 12h</td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 3)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (3 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>       
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="horario-dado">12h - 13h</td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 4)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (4 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>    
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">13h - 14h</td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 5)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (5 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>    
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">14h - 15h</td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 6)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (6 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>       
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">15h - 16h</td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 7)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (7 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>     
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">16h - 17h</td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 8)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (8 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>       
                                                     </tr>
                                                     <tr>
                                                         <td class="horario-dado">17h - 18h</td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
-                                                        <td><button class="liberado">FREE</button></td>
-                                                        <td><button class="ocupado">RESERVED</button></td>
+
+                                                         <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 9)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (9 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>        
                                                     </tr>
+
+                                                    <tr>
+                                                        <td class="horario-dado">18h - 19h</td>
+
+                                                        <td v-for="index in 7" :key="index">
+                                                            <button @click="toggleSelect(index, 10)" v-bind:class="{'selecionado': appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected,
+                                                             'liberado': !appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].isSelected}" v-if="!appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].status">
+                                                                LIVRE
+                                                            </button>
+
+                                                            <button v-if="appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].status" class="ocupado">
+                                                              
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].servicename}}<br>
+
+                                                              <img class="img-min" :src="'http://localhost:3000/' + appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].imageurl"><br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].petname}}<br>
+
+                                                              {{appointments.timeTable[(calendarPage*7 + index - 1)*10 + (10 - 1)].ownername}}<br>
+                                                            </button>                                                            
+                                                        </td>       
+                                                    </tr>                                                                                                        
                                                 </tbody>
                                             </table>
                                         </div>
@@ -593,7 +731,7 @@
                         <h2>Editor</h2>
                         <img class="prod-serv-miniatura" src="images/banho.png">
                         <input type="file" id="imagem-escolhida-serviço" name="myfile">
-                        <input class="nome-prod-serv" id="nome-serviço-editor" value="Service's name"
+                        <input class="nome-prod-serv" value="Service's name"
                             placeholder="Service's name" type="text"></input>
                         <input id="preço-serviço-editor" value="Price" placeholder="Service's Price"
                             type="text"></input>
@@ -772,7 +910,7 @@
                         <h2>Editor</h2>
                         <img class="prod-serv-miniatura pessoa-miniatura" src="images/social.png">
                         <input type="file" id="imagem-escolhida-cliente" name="myfile">
-                        <input class="nome-prod-serv" id="nome-serviço-editor" value="Customer's name"
+                        <input class="nome-prod-serv" value="Customer's name"
                             placeholder="Customer's Name" type="text"></input>
                         <input id="customer-id" value="Customer's ID" placeholder="Customer's ID" type="text"></input>
                         <input id="customer-address" value="Customer's Address" placeholder="Customer's Address"
@@ -1100,6 +1238,12 @@
                 el: "#app",
 
                 data: {
+                    // id do pet selecionado na hora de comprar um serviço
+                    selectedPet: null,
+
+                    // appointment selecionado no calendário
+                    selectedAppointment: null,
+
                     // vetor com as datas dos próximos 700 dias
                     dates: null,
 
@@ -1149,7 +1293,6 @@
 
                     // Para usar no form de atualização dos dados (página "Update Info" do cliente)
                     userInfoUpdated: {
-                        username: "",
                         password: "",
                         phonenumber: "",
                         address: "",
@@ -1165,7 +1308,7 @@
                     admins: [],
                     users: [],
                     pets: [],  // pets do usuário
-                    appointments: [],  // appointments marcados
+                    appointments: null,  // appointments marcados
 
                     selectedProduct: {},
                     selectedService: {},
@@ -1185,6 +1328,21 @@
                 },
 
                 methods: {
+                    // administra a ação de selecionar no calendário
+                    toggleSelect: function(index, hora){
+                        if(this.selectedAppointment != null){
+                            this.selectedAppointment.isSelected = false;
+                        }
+                        this.appointments.timeTable[(this.calendarPage*7 + index - 1)*10 + (hora - 1)].isSelected = true;
+                        this.selectedAppointment = this.appointments.timeTable[(this.calendarPage*7 + index - 1)*10 + (hora - 1)];
+                        this.selectedAppointment.day = this.calendarPage*7 + index;
+                        this.selectedAppointment.hour = hora;
+
+                        // provoca uma atualização na renderização do calendário
+                        this.calendarPage = this.calendarPage++;
+                        this.calendarPage = this.calendarPage--;
+                    },
+
                     // vai para a página anterior do calendário
                     nextCalendarPage: function(){
                         if(this.calendarPage < 9){
@@ -1220,9 +1378,12 @@
                             // se a requisição for bem-sucedida
                             if (resp.ok) {
                                 this.appointments = await resp.json();
+                                for(var i = 0; i < this.appointments.timeTable.length; i++){
+                                    this.appointments.timeTable[i].isSelected = false;
+                                }
                                 if(this.appointments.name === "NOTFOUND"){  // vetor vazio
                                     this.appointments = [];
-                                }                                
+                                }
                             }
                             else {  // se não for...
                                 console.log("Couldn't get the appointments");
@@ -1240,21 +1401,13 @@
                         this.imageFile = file;                        
                     },
 
-                    // esvazia o carrinho do usuário e libera appointments
+                    // esvazia o carrinho do usuário
                     emptyCart: function(){
                         if(this.myCart.total != 0){
-                            // libera appointments (a fazer)
-                            for(var i = 0; i < this.myCart.receipt.length; i++){
-
-                                // libera appointments (a fazer)
-                                console.log("a fazer")
-                            }
-
-                            // esvazia o carrinho
                             this.myCart.total = 0;
                             this.myCart.receipt = [];
                         }
-                        else{
+                        else{  // se o carrinho já estiver vazio, temos a seguinte mensagem
                             alert("Your cart is already empty!");
                         }
                     },
@@ -1287,7 +1440,75 @@
                                     }
                                 }
                                 if (this.myCart.receipt[i].type === "service") {  // se o item for um serviço...
-                                    console.log("serviços - a ser implementado");
+                                    // insere um appointment no registro do pet
+                                    try{
+                                        // fazer request para registrar um appointment
+                                        const day = this.myCart.receipt[i].appointment.day;
+                                        var hour = this.myCart.receipt[i].appointment.hour;
+                                        hour = hour + 8;
+
+                                        let resp = await fetch("http://localhost:3000/pets/reserve/", {
+                                            method: "PUT",
+                                            headers: {
+                                                'Content-type': 'application/json'
+                                            },
+                                            body: JSON.stringify({  // conteúdo enviado (do form)
+                                                // montar corpo da requisição
+                                                id: this.myCart.receipt[i].appointment.petid,  // id do pet
+                                                serviceId: this.myCart.receipt[i].id,
+                                                day: Number(this.dates[day - 1].getDate()),
+                                                hour: Number(hour),
+                                                name: this.myCart.receipt[i].name                                                
+                                            })                                            
+                                        });
+
+
+                                        //se a requisição for bem sucedida
+                                        if (resp.ok){
+                                            console.log("Success!");
+                                        }
+                                        else{
+                                            alert("Couldn't finish the transaction of a service");
+                                        }
+                                    }
+                                    catch(e){
+                                        alert("Error " + e);
+                                    }    
+                                    
+                                    // registra um appointment na coleção de appointments                                    
+                                    try{
+                                        // fazer request para registrar um appointment
+                                        // a fazer
+                                        let resp = await fetch("http://localhost:3000/appointments/appoint/", {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-type': 'application/json'
+                                            },
+                                            body: JSON.stringify({  // conteúdo enviado (do form)
+                                                imageurl: this.myCart.receipt[i].image,
+                                                petid: this.myCart.receipt[i].appointment.petid,
+                                                day: this.myCart.receipt[i].appointment.day,
+                                                hour: this.myCart.receipt[i].appointment.hour,
+                                                serviceid: this.myCart.receipt[i].id,
+                                                ownerid: this.userInfo._id,
+                                                petname: this.myCart.receipt[i].appointment.name,
+                                                servicename: this.myCart.receipt[i].name,
+                                                ownername: this.userInfo.username
+                                            })                                            
+                                        });
+
+
+                                        //se a requisição for bem sucedida
+                                        if (resp.ok){
+                                            alert("Success!");
+                                        }
+                                        else{
+                                            alert("Couldn't finish the transaction of a service");
+                                        }
+                                    }
+                                    catch(e){
+                                        alert("Error " + e);
+                                    }
                                 }
 
                                 this.myCart.total = this.myCart.total - this.myCart.receipt[i].value;
@@ -1302,6 +1523,7 @@
 
                     // deleta um determinado pet dentre aqueles no vetor de pets
                     deletePet: async function (index) {
+                        // deleta o pet
                         try {
 
                             let resp = await fetch("http://localhost:3000/pets/" + this.pets[index]._id, {
@@ -1310,7 +1532,24 @@
 
                             // se a requisição foi bem-sucedida:
                             if (resp.ok) {
-                                this.pets.splice(index, 1);
+                                alert("Pet deleted succesfully!")
+                            }
+                            else {  // se não for, exibe a mensagem no console
+                                alert("Something went wrong. Try again later!")
+                            }
+                        }
+                        catch (e) {
+                            alert("Error: " + e);
+                        }
+
+                        // deleta as reservas do pet
+                        try {
+
+                            let resp = await fetch("http://localhost:3000/appointments/free/" + this.pets[index]._id);  // GET request!
+
+                            // se a requisição foi bem-sucedida:
+                            if (resp.ok) {
+                                this.pets.splice(index, 1);  // remove o pet do vetor que já temos
 
                                 alert("Pet deleted succesfully!")
                             }
@@ -1453,19 +1692,46 @@
                     // value - valor do serviço/produto;
                     // id - id do serviço/produto;
                     // type - pode ser 'product' ou 'service'.
-                    addToCart: function (name, value, id, type, index) {
+                    addToCart: function (name, value, id, type, index, image) {
                         for (var i = 0; i < this.qtdSelected; i++) {  // repete de acordo com o número de produtos que o usuário pretende comprar
-                            // atualiza o valor total de compras no carrinho:
-                            this.myCart.total += value;
-
                             // adiciona um elemento (compra) ao vetor 'receipt':
-                            this.myCart.receipt.push({
-                                name: name,
-                                value: value,
-                                id: id,
-                                type: type,
-                                index: index
-                            });
+                            if(type === "product"){
+                                this.myCart.receipt.push({
+                                    name: name,
+                                    value: value,
+                                    id: id,
+                                    type: type,
+                                    index: index
+                                });
+
+                                // atualiza o valor total de compras no carrinho:
+                                this.myCart.total += value;                                
+                            }
+
+                            if(type === "service"){
+                                if((this.selectedPet != "" && this.selectedPet != null) && this.selectedAppointment != null){
+                                    this.myCart.receipt.push({
+                                        name: name,
+                                        value: value,
+                                        id: id,
+                                        type: type,
+                                        index: index,
+                                        appointment: this.selectedAppointment,
+                                        image: image   // imagem do serviço
+                                    });
+
+                                    // coloca no receipt o pet escolhido
+                                    this.myCart.receipt[this.myCart.receipt.length - 1].appointment.petid = this.selectedPet;
+
+                                    this.myCart.receipt[this.myCart.receipt.length - 1].appointment.name = this.pets.find(x => x._id === this.selectedPet).name;                                    
+
+                                    // atualiza o valor total de compras no carrinho:
+                                    this.myCart.total += value;                                    
+                                }
+                                else{
+                                    alert("Choose a pet and a timeslot first!")
+                                }
+                            }
 
                             console.log("No carrinho: ", this.myCart.total);
                         }
@@ -1483,7 +1749,7 @@
                                     'Content-type': 'application/json'
                                 },
                                 body: JSON.stringify({  // conteúdo enviado (do form)
-                                    username: this.userInfoUpdated.username,
+                                    username: this.userInfo.username,
                                     password: this.userInfoUpdated.password,
                                     phonenumber: this.userInfoUpdated.phonenumber,
                                     address: this.userInfoUpdated.address,

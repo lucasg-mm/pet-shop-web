@@ -242,6 +242,7 @@ body{
 	padding: 5%;
 	position: relative;
 	margin: 25%;
+	overflow: auto;
 }
 
 .serv-grande img{
@@ -277,6 +278,10 @@ body{
 .serv-grande #area-agendamento{
 	margin-top: 40px;
 	font-size: 15px;
+}
+
+#area-agendamento{
+	overflow: auto;
 } 
 
 .serv-grande p{
@@ -402,6 +407,11 @@ body{
 	border-style: none; 
 	border-radius: 2px;
 	float: left;
+}
+
+.tabela img{
+	width: 32px; 
+	height: 32px; 
 }
 
 .userDiv button{
@@ -702,10 +712,11 @@ body{
 .time-slots td button, .time-slots .week-selector{
 	font-family: 'Josefin Sans', sans-serif;
 	width: 100%;
-	height: 100%;
+	height: 300%;
 	border-style: none;
 	border-radius: 5px;
 	color: white;
+	overflow: hidden;
 }
 
 .time-slots td .liberado{
